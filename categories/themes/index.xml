@@ -1,20 +1,69 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>themes on Hugo Themes</title>
+    <title>themes on Liangkang233&#39;s Blog</title>
     <link>https://liangkang233.github.io/categories/themes/</link>
-    <description>Recent content in themes on Hugo Themes</description>
+    <description>Recent content in themes on Liangkang233&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh</language>
-    <copyright>Copyright © 2008–2019, Steve Francia and the Hugo Authors; all rights reserved.</copyright>
-    <lastBuildDate>Mon, 11 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://liangkang233.github.io/categories/themes/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>CC BY 4.0 CN</copyright>
+    <lastBuildDate>Mon, 11 Mar 2019 00:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="https://liangkang233.github.io/categories/themes/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hello World</title>
+      <link>https://liangkang233.github.io/2021/07/hello-world/</link>
+      <pubDate>Sun, 04 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://liangkang233.github.io/2021/07/hello-world/</guid>
+      <description>hello world 测试 老生常谈的hello world，在此之前的原blog帖子会留着不删除 之后会把一些其地方写的博客移动到此处，正式开始。 各测试项目文件 原</description>
+    </item>
+    
+    <item>
+      <title>关于</title>
+      <link>https://liangkang233.github.io/about/</link>
+      <pubDate>Wed, 28 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://liangkang233.github.io/about/</guid>
+      <description>目前在重邮读研，之前本科学的硬件。奈何头脑愚笨学不会，现在恶补计算机通信相关知识，目标是做后端开发。学习c/c++ go python中。 自己记性</description>
+    </item>
+    
     <item>
       <title>Markdown Syntax Guide</title>
-      <link>https://liangkang233.github.io/post/markdown-syntax/</link>
+      <link>https://liangkang233.github.io/2019/03/markdown-syntax/</link>
       <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://liangkang233.github.io/post/markdown-syntax/</guid>
+      <guid>https://liangkang233.github.io/2019/03/markdown-syntax/</guid>
       <description>&lt;p&gt;This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Rich Content</title>
+      <link>https://liangkang233.github.io/2019/03/rich-content/</link>
+      <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://liangkang233.github.io/2019/03/rich-content/</guid>
+      <description>&lt;p&gt;Hugo ships with several &lt;a href=&#34;https://gohugo.io/content-management/shortcodes/#use-hugo-s-built-in-shortcodes&#34;&gt;Built-in Shortcodes&lt;/a&gt; for rich content, along with a &lt;a href=&#34;https://gohugo.io/about/hugo-and-gdpr/&#34;&gt;Privacy Config&lt;/a&gt; and a set of Simple Shortcodes that enable static and no-JS versions of various social media embeds.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Placeholder Text</title>
+      <link>https://liangkang233.github.io/2019/03/placeholder-text/</link>
+      <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://liangkang233.github.io/2019/03/placeholder-text/</guid>
+      <description>&lt;p&gt;Lorem est tota propiore conpellat pectoribus de
+pectora summo.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Emoji Support</title>
+      <link>https://liangkang233.github.io/2019/03/emoji-support/</link>
+      <pubDate>Tue, 05 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://liangkang233.github.io/2019/03/emoji-support/</guid>
+      <description>&lt;p&gt;Emoji can be enabled in a Hugo project in a number of ways.&lt;/p&gt;</description>
     </item>
     
   </channel>
