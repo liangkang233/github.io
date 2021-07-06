@@ -1,0 +1,225 @@
+<!doctype html><html lang=zh><head><title>Python随机数据生成 - LK233's Blog</title><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui"><meta name=renderer content="webkit"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="black"><meta name=format-detection content="telephone=no,email=no,adress=no"><meta name=theme-color content="#000000"><meta http-equiv=window-target content="_top"><meta name=description content="使用python生成数据辅助C++测试"><link rel=apple-touch-icon sizes=180x180 href=/web/social.ico><link rel=icon type=ico/png href=/web/head.ico sizes=32x32><meta name=generator content="Hugo 0.85.0 with theme pure"><title>Python随机数据生成 - LK233's Blog</title><link rel=stylesheet href=https://liangkang233.github.io/css/style.min.e64d754037c0ee0ec4e20ab1d6f07740ace61729bc03850559b8caa21ae4a597.css><link rel=stylesheet href=https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css async><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css async><meta property="og:title" content="Python随机数据生成"><meta property="og:description" content="使用python生成数据辅助C++测试"><meta property="og:type" content="article"><meta property="og:url" content="https://liangkang233.github.io/2021/05/python%E9%9A%8F%E6%9C%BA%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2021-05-11T00:00:00+00:00"><meta property="article:modified_time" content="2021-05-11T00:00:00+00:00"><meta itemprop=name content="Python随机数据生成"><meta itemprop=description content="使用python生成数据辅助C++测试"><meta itemprop=datePublished content="2021-05-11T00:00:00+00:00"><meta itemprop=dateModified content="2021-05-11T00:00:00+00:00"><meta itemprop=wordCount content="2195"><meta itemprop=keywords content="python,C/C++,"><meta name=twitter:card content="summary"><meta name=twitter:title content="Python随机数据生成"><meta name=twitter:description content="使用python生成数据辅助C++测试"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body class="main-center theme-black" itemscope itemtype=http://schema.org/WebPage><header class=header itemscope itemtype=http://schema.org/WPHeader><div class=slimContent><div class=navbar-header><div class="profile-block text-center"><a id=avatar href=https://github.com/liangkang233 target=_blank><img class="img-circle img-rotate" src="https://s.gravatar.com/avatar/8c0c2764c711daf54a01dddef79fd9da?s=80" width=200 height=200></a><h2 id=name class="hidden-xs hidden-sm">LK233</h2><h3 id=title class="hidden-xs hidden-sm hidden-md">三无青年</h3><small id=location class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>现居 重庆</small></div><div class=search id=search-form-wrap><form class="search-form sidebar-form"><div class=input-group><input type=text class="search-form-input form-control" placeholder=搜索>
+<span class=input-group-btn><button type=submit class="search-form-submit btn btn-flat" onclick=return!1><i class="icon icon-search"></i></button></span></div><div class=ins-search><div class=ins-search-mask></div><div class=ins-search-container><div class=ins-input-wrapper><input type=text class=ins-search-input placeholder=想要查找什么... x-webkit-speech>
+<button type=button class="close ins-close ins-selectable" data-dismiss=modal aria-label=Close><span aria-hidden=true>×</span></button></div><div class=ins-section-wrapper><div class=ins-section-container></div></div></div></div></form></div><button class="navbar-toggle collapsed" type=button data-toggle=collapse data-target=#main-navbar aria-controls=main-navbar aria-expanded=false>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span><span class=icon-bar></span><span class=icon-bar></span></button></div><nav id=main-navbar class="collapse navbar-collapse" itemscope itemtype=http://schema.org/SiteNavigationElement role=navigation><ul class="nav navbar-nav main-nav"><li class="menu-item menu-item-home"><a href=/><i class="icon icon-home-fill"></i>
+<span class=menu-title>主页</span></a></li><li class="menu-item menu-item-books"><a href=/posts/><i class="icon icon-book-fill"></i>
+<span class=menu-title>文章</span></a></li><li class="menu-item menu-item-email"><a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=agYDCwQNAQsEDVhZWSobG0QJBQc"><i class="icon icon-email"></i>
+<span class=menu-title>邮箱</span></a></li><li class="menu-item menu-item-github"><a href=https://github.com/liangkang233><i class="icon icon-github-fill"></i>
+<span class=menu-title>github</span></a></li><li class="menu-item menu-item-about"><a href=/about/><i class="icon icon-cup-fill"></i>
+<span class=menu-title>关于</span></a></li></ul></nav></div></header><aside class=sidebar itemscope itemtype=http://schema.org/WPSideBar><div class=slimContent><div class=widget><h3 class=widget-title>^_^</h3><div class=widget-body><div id=board><div class=content><p>记录学习、生活的个人博客</p></div></div></div></div><div class=widget><h3 class=widget-title>标签</h3><div id=tag-cloud-list class=widget-body><a href=https://liangkang233.github.io/tags/blog-test/ class=tag-list-link rel=1>blog-test<span class=tag-list-count>1</span></a>
+<a href=https://liangkang233.github.io/tags/c/c++/ class=tag-list-link rel=2>c/c++<span class=tag-list-count>2</span></a>
+<a href=https://liangkang233.github.io/tags/go/ class=tag-list-link rel=1>go<span class=tag-list-count>1</span></a>
+<a href=https://liangkang233.github.io/tags/python/ class=tag-list-link rel=3>python<span class=tag-list-count>3</span></a>
+<a href=https://liangkang233.github.io/tags/%E5%B0%8F%E9%97%AE%E9%A2%98/ class=tag-list-link rel=1>小问题<span class=tag-list-count>1</span></a></div><script>document.onreadystatechange=()=>{document.readyState==='complete'&&tagCloud('#tag-cloud-list a',8,20)};function tagCloud(c,d,e){let b=0,a=0;$(c).each(function(){let c=Number($(this).attr("rel"));b<c&&(b=c),(a>c||a==0)&&(a=c)});let f=(e-d)/(b-a);$(c).each(function(){let b=$(this).attr("rel")-a;$(this).css({"font-size":d+b*f+'px'})})}</script></div><div class=widget><h3 class=widget-title>分类</h3><div class=widget-body><ul class=category-list><li class=category-list-item><a href=https://liangkang233.github.io/categories/core/ class=category-list-link>core</a><span class=category-list-count>6</span></li><li class=category-list-item><a href=https://liangkang233.github.io/categories/win10/ class=category-list-link>win10</a><span class=category-list-count>1</span></li><li class=category-list-item><a href=https://liangkang233.github.io/categories/%E5%AD%A6%E4%B9%A0/ class=category-list-link>学习</a><span class=category-list-count>4</span></li><li class=category-list-item><a href=https://liangkang233.github.io/categories/%E5%B7%A5%E5%85%B7/ class=category-list-link>工具</a><span class=category-list-count>2</span></li><li class=category-list-item><a href=https://liangkang233.github.io/categories/%E6%9D%82%E8%B0%88/ class=category-list-link>杂谈</a><span class=category-list-count>1</span></li></ul></div></div><div class=widget><h3 class=widget-title>最新文章</h3><div class=widget-body><ul class="recent-post-list list-unstyled no-thumbnail"><li><div class=item-inner><p class=item-title><a href=https://liangkang233.github.io/2021/07/distributed/ class=title>Core 分布式</a></p><p class=item-date><time datetime="2021-07-06 00:00:00 +0000 UTC" itemprop=datePublished>2021-07-06</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://liangkang233.github.io/2021/07/ctrlnet/ class=title>Core 控制网络</a></p><p class=item-date><time datetime="2021-07-06 00:00:00 +0000 UTC" itemprop=datePublished>2021-07-06</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://liangkang233.github.io/2021/07/installation/ class=title>Core/Emane 环境搭建</a></p><p class=item-date><time datetime="2021-07-04 00:00:00 +0000 UTC" itemprop=datePublished>2021-07-04</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://liangkang233.github.io/2021/07/gui/ class=title>Core Gui</a></p><p class=item-date><time datetime="2021-07-03 00:00:00 +0000 UTC" itemprop=datePublished>2021-07-03</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://liangkang233.github.io/2021/07/architecture/ class=title>Core 仿真架构</a></p><p class=item-date><time datetime="2021-07-02 00:00:00 +0000 UTC" itemprop=datePublished>2021-07-02</time></p></div></li></ul></div></div></div></aside><aside class="sidebar sidebar-toc collapse" id=collapseToc itemscope itemtype=http://schema.org/WPSideBar><div class=slimContent><h4 class=toc-title>文章目录</h4><nav id=toc class="js-toc toc"></nav></div></aside><main class=main role=main><div class=content><article id=- class="article article-type-" itemscope itemtype=http://schema.org/BlogPosting><div class=article-header><h1 itemprop=name><a class=article-title href=/2021/05/python%E9%9A%8F%E6%9C%BA%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90/>Python随机数据生成</a></h1><div class=article-meta><span class=article-date><i class="icon icon-calendar-check"></i>&nbsp;
+<a href=https://liangkang233.github.io/2021/05/python%E9%9A%8F%E6%9C%BA%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90/ class=article-date><time datetime="2021-05-11 00:00:00 +0000 UTC" itemprop=datePublished>2021-05-11</time></a></span>
+<span class=article-category><i class="icon icon-folder"></i>&nbsp;
+<a class=article-category-link href=/categories/%E5%AD%A6%E4%B9%A0/>学习</a></span>
+<span class=article-tag><i class="icon icon-tags"></i>&nbsp;
+<a class=article-tag-link href=/tags/python/>python</a>
+<a class=article-tag-link href=/tags/c/c++/>C/C++</a></span>
+<span class="article-read hidden-xs"><i class="icon icon-eye-fill" aria-hidden=true></i>
+<span id=https://liangkang233.github.io/2021/05/python%E9%9A%8F%E6%9C%BA%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90/ class=leancloud_visitors data-flag-title=Python随机数据生成>0</span></span>
+<span class=post-comment><i class="icon icon-comment"></i>&nbsp;<a href=/2021/05/python%E9%9A%8F%E6%9C%BA%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90/#comments class=article-comment-link>评论</a></span>
+<span class="post-wordcount hidden-xs" itemprop=wordCount>字数统计: 2195字</span></div></div><div class="article-entry marked-body js-toc-content" itemprop=articleBody><h1 id=思路>思路</h1><p>python的特性支持快速开发实用小程序的能力，能让你做事效率大幅度提高。特别是在c++数据测试中，检验一个程序的可靠性需要大量数据进行测试可靠性。虽然c++也有随机函数等方法但是不方便移植更改，用Python编写数据生成器是再合适不过的了。接下来进行举例说明：下面的代码直接在python3终端中运行，生成一个长度在4 ~9之间， 恰好包含一个大写字母， 其他字符为小写字母的特殊串。</p><pre><code class=language-python>&gt;&gt;&gt; from random import* 
+&gt;&gt;&gt; from string import* 
+&gt;&gt;&gt; L = randint(4, 9) 
+&gt;&gt;&gt; s =''.join([choice(ascii_lowercase) for i in range(L)]) 
+&gt;&gt;&gt; p = randint(0, len(s)) 
+&gt;&gt;&gt; s[:p] + choice(ascii_uppercase) + s[p:] 
+' bdsqVgke'
+</code></pre><p>列表解析Clist comprehension) 是一种构造列表的简单方法。range(5) 生成列表[0,1,2,3,4]。这条语句就是 “对于列表[0,1,2,3,4]中的每个数i调用一次 choice(lowercase)，把结果拼成一个列表” 。接下来用join函数把列表里的字符串连接起来。
+.join(L)的作用是把字符串列表L中的各个字符串拼接起来。 最后随机出小写字符出现的位置p, 然后插入到大写字母串中。s[a:b]代表列表或者字符串的第a个元素到第b-1 个元素。a和b都可以省略，a默认为0, b默认为列表长度。L2 = L[:］的作用是创建一个和L 一样的数组。
+由于Python 的所有值都是引用类型的， <strong>因此L2=L只是把L中保存的引用拷贝（浅拷贝）到了L2，这点需要小心</strong>。例如下面的代码，求其地址id可以分析出来。</p><pre><code class=language-python>&gt;&gt;&gt; a,b=1,2 
+&gt;&gt;&gt; a= [1,3,7] 
+&gt;&gt;&gt; b=[1,3,7] 
+&gt;&gt;&gt; c,d=a,a[:]
+&gt;&gt;&gt; id (a), id (b), id (c), id (d)
+(12598008, 12517288, 12598008, 12517208)
+</code></pre><p>计算 30!可以采用如下写法:</p><pre><code class=language-python>&gt;&gt;&gt; from functools import*
+&gt;&gt;&gt; reduce(lambda x,y: x*y, range(1,31)) 
+265252859812191058636308480000000L
+</code></pre><h2 id=简单实现>简单实现</h2><p>类似的东西还有很多。 使用Python后， 能大大缩短编写数据生成器、对拍器、 “猜想验证器” 等小程序的时间，这里我打算把python生成的数据全部转为字符数据存入文本中(转字符数据就不用考虑int位数 浮点数精度等问题)。c++再读数据存入容器进行原本函数的测试。</p><h1 id=python生成数据代码>python生成数据代码</h1><p>接下来的代码为进行测试写入文件的代码，作为参考：</p><pre><code class=language-python># !/usr/bin/env python3
+# coding: utf-8
+from random import *
+from string import *
+
+def create_element0(lines, a = 4, b = 7):
+    elements = []
+    for i in range(lines):
+        # ascii_lowercase在string中定义，为所有小写字符的列表
+        # choice(seq): 返回列表、元组或字符串seq的随机项str。（可重复）
+        L = randint(a, b)
+        s =''.join([choice(ascii_lowercase) for i in range(L)])
+        p = randint(0, len(s)) 
+        element = s[:p] + choice(ascii_uppercase) + s[p:] + '\n'
+        elements.append(element)
+    return elements
+
+def create_element1(lines):
+    elements = []
+    for i in range(lines):
+        # sample: 不重复的取列表中i个元素，并返回这些元素组成的列表
+        # 不可像choice中列表添加for in，因为其返回的是列表
+        # 要生成m个不重复i元素列表得在外面加循环
+        username = ''.join(sample(ascii_letters + digits, 5))
+        password = randint(10000,99999)
+        element= str(username) + &quot;,&quot; + str(password) + '\n'
+        elements.append(element)
+    return elements
+
+def create_element2(lines):
+    elements = []
+    allNum = list(range(-10000, 10000))
+    NumLen = len(allNum)    
+    #在allNum中抽取Len个不重复数字,最后依照题意排序，旋转。共lines组
+    for i in range(lines):  
+        s = []
+        num = randint(1, 256)
+        for j in range(num) :
+            index = randint(j, NumLen - 1)
+            s.append(allNum[index])
+            # 把用过的元素到前面,以防再次选中
+            allNum[index], allNum[i] = allNum[i], allNum[index]
+        # 模拟target是否存在，有1/36的几率必定不存在
+        suiji = randint(0,35)
+        if suiji == 35:
+            target = 10001
+        else :
+            target = s[randint(0, num-1)]
+        #排序取出的不重复数组并旋转
+        s.sort()
+        k = randint(0, num-1)
+        if k != 0 :
+            s = list(reversed(s[0:k])) + list(reversed(s[k:num]))
+            s.reverse()
+        element = ' '.join([str(s[i]) for i in range(num)]) + '\n'
+        elements.append(element)
+        elements.append(str(target) + '\n')
+        print(f&quot;i = {i},\t k = {k}, \ttarget = {target}&quot;)
+    return elements
+</code></pre><h1 id=c读取文件代码>C++读取文件代码</h1><p>C++中各种流头文件说明
+iostream处理控制台IO；
+fstream处理命名文件IO；
+stringstream完成内存string的IO。
+类fstream和stringstream都是继承在类iostream的。
+输入类都继承自istream，输出类都继承自ostream。
+string流：sstream头文件定义了三个类型来支持内存IO，
+这些类型可以向string写入数据，从string读取数据，就像string是一个IO流一样。 将所有行数据打印出：
+该代码仅为读取数据并载入容器中作为模板使用，若要加入判断正确等功能可以根据实际情况添加</p><pre><code class=language-cpp>// 导入文本至容器，将每一行的数据以空格为间隔输入一个字符容器，将所有行的数据输入
+int main() 
+{
+    string temp;
+	ifstream myfile(&quot;./date.txt&quot;);
+    if( !myfile ) {
+        cout &lt;&lt; &quot;open file fail!&quot; &lt;&lt; endl;
+        return -1;
+    }
+
+	vector&lt;string&gt; res;
+	while (getline(myfile, temp)) {		//默认停止符\n
+		stringstream slices(temp);
+		string slice;
+		while (slices &gt;&gt; slice) {		// 类似cin输入，将每行排除不可显字符 空格等字符输入容器，直到接收回车为止
+			res.push_back(slice);
+			// stoi(int), stol(long), stof(float), stod(double) 
+		}
+		// for( auto r : res)
+		//	cout &lt;&lt; r &lt;&lt; endl;
+		res.clear();
+	}
+	myfile.close();
+    return 0;
+}
+</code></pre><h1 id=实际测试案例>实际测试案例</h1><p>上述测试确定无问题后，开始实际做python数据导入c++中做测试：
+其中c++代码为leetcode题目<a href=https://leetcode-cn.com/problems/search-in-rotated-sorted-array/description/>搜索旋转排序数组</a>
+python生成数据函数即为上述代码的create_element2用于测试判断c++代码是否正确
+接下来是c++的读取文件并进行调用。</p><pre><code class=language-cpp>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;sstream&gt;
+#include &lt;fstream&gt;
+using namespace std;
+
+// 自己写的跟官方的思路差不多，官方答案不用先找到最大临界值再二分 直接进行判断二分 
+// 下面为官方答案，注意 边界 等于 问题
+class Solution {
+public:
+    int search(vector&lt;int&gt;&amp; nums, int target) {
+        int n = (int)nums.size();
+        if (!n) 
+            return -1;
+        else if (n == 1) 
+            return nums[0] == target ? 0 : -1;
+
+        int l = 0, r = n - 1;
+        while (l &lt;= r) {
+            int mid = (l + r) / 2;
+            if (nums[mid] == target) return mid;    // target判断是否为mid
+            if (nums[0] &lt;= nums[mid]) {             // 说明0到mid是升序
+                if (nums[0] &lt;= target &amp;&amp; target &lt; nums[mid])  // target在该升序中
+                    r = mid - 1;
+                else 
+                    l = mid + 1;
+            } 
+            else {                                  // 说明mid到n-1是升序
+                if (nums[mid] &lt; target &amp;&amp; target &lt;= nums[n - 1])  // target在该升序中
+                    l = mid + 1;
+                else 
+                    r = mid - 1;
+            }
+        }
+        return -1;
+    }
+};
+
+// 导入文本至容器测试，将每一行的数据以空格为间隔输入一个字符容器，将所有行的数据输入
+int main() 
+{
+    string temp;
+	ifstream myfile(&quot;./date.txt&quot;);
+    if( !myfile ) {
+        cout &lt;&lt; &quot;open file fail!&quot; &lt;&lt; endl;
+        return -1;
+    }
+
+	vector&lt;vector&lt;int&gt;&gt; ress;
+	vector&lt;int&gt; res;
+	vector&lt;int&gt; targets;
+	while (getline(myfile, temp)) {		//默认停止符\n
+		stringstream slices(temp);
+		string slice;
+		while (slices &gt;&gt; slice) {		// 类似cin输入，将每行排除不可显字符 空格等字符输入容器，直到接收回车为止
+			res.push_back(stoi(slice));
+			// stoi(int), stol(long), stof(float), stod(double) 
+		}
+		getline(myfile, temp);
+		targets.push_back(stoi(temp));
+		// for( auto rio : res)
+		// 	cout &lt;&lt; rio &lt;&lt; endl;
+		ress.push_back(res);
+		res.clear();
+	}
+	myfile.close();
+
+	Solution su;
+	for (int i = 0; i &lt; ress.size(); i++) {
+		int ans = su.search(ress[i], targets[i]);
+		cout &lt;&lt; targets[i] &lt;&lt; ' ' &lt;&lt; ans &lt;&lt;endl;
+	}
+	
+    return 0;
+}
+</code></pre></div><div class=article-footer><div class="panel panel-default panel-badger"><div class=panel-body><figure class=media><div class=media-left><a href=https://github.com/liangkang233 target=_blank class="img-burn thumb-sm visible-lg"><img src="https://s.gravatar.com/avatar/8c0c2764c711daf54a01dddef79fd9da?s=80" class="img-rounded w-full" alt></a></div><div class=media-body><h3 class=media-heading></h3><a href=https://github.com/liangkang233 target=_blank></a><span class=text-dark>LK233</span></a></h3><div>Segment error maker :(</div></div></figure></div></div></div></article><section id=comments><div id=disqus_thread><noscript>Please enable JavaScript to view the <a href=//disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></div></section></div><nav class="bar bar-footer clearfix" data-stick-bottom><div class=bar-inner><ul class="pager pull-left"><li class=prev><a href=https://liangkang233.github.io/2021/04/uwp%E5%BA%94%E7%94%A8%E4%BB%A3%E7%90%86/ title=uwp应用代理><i class="icon icon-angle-left" aria-hidden=true></i><span>&nbsp;&nbsp;下一篇</span></a></li><li class=next><a href=https://liangkang233.github.io/2021/06/c%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0http%E8%AF%B7%E6%B1%82/ title=C语言实现的http请求><span>上一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden=true></i></a></li><li class=toggle-toc><a class="toggle-btn collapsed" data-toggle=collapse href=#collapseToc aria-expanded=false title=文章目录 role=button><span>[&nbsp;</span><span>文章目录</span>
+<i class="text-collapsed icon icon-anchor"></i>
+<i class="text-in icon icon-close"></i>
+<span>]</span></a></li></ul><div class=bar-right><div class=share-component data-sites=qq,wechat,facebook,twitter data-mobile-sites=qq,wechat,facebook,twitter></div></div></div></nav></main><footer class=footer itemscope itemtype=http://schema.org/WPFooter><ul class=social-links><li><a href=https://www.linkedin.com/in/kang-liang-79b3b5216/ target=_blank title=linkedin data-toggle=tooltip data-placement=top><i class="icon icon-linkedin"></i></a></li><li><a href="http://wpa.qq.com/msgrd?v=3&uin=3479202458&site=qq&menu=yes" target=_blank title=qq data-toggle=tooltip data-placement=top><i class="icon icon-qq"></i></a></li></ul><div class=copyright>&copy;2020 -
+2021 <a href=https://github.com/liangkang233 target=_blank>LK233</a><div class=post-copyright-license><strong>License:</strong>
+<a href=http://creativecommons.org/licenses/by/4.0/deed.zh target=_blank rel=external>CC BY 4.0 CN</a></div></div></footer><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script><script type=text/x-mathjax-config>
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js></script><script>window.jQuery||document.write('<script src="js/jquery.min.js"><\/script>')</script><script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js></script><script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js defer></script><script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js defer></script><script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js defer></script><script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/languages/cpp.min.js defer></script><script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/languages/c.min.js defer></script><script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/languages/go.min.js defer></script><script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/languages/html.min.js defer></script><script>hljs.configure({tabReplace:'    ',classPrefix:''}),hljs.initHighlightingOnLoad()</script><script src=https://liangkang233.github.io/js/application.min.a94ab19cb63a95c8d7fbd7b85cab3ddeea8c369bdf75b9cab6708787ead123af.js></script><script src=https://liangkang233.github.io/js/plugin.min.19c5bcb2fb0789ab4f2b7834e5ceb5e92635645605bab902c1024b25f1502364.js></script><script>(function(a){var b={TRANSLATION:{POSTS:'文章',PAGES:'页面',CATEGORIES:'分类',TAGS:'标签',UNTITLED:'(未命名)'},ROOT_URL:'https://liangkang233.github.io/',CONTENT_URL:'https://liangkang233.github.io//searchindex.json '};a.INSIGHT_CONFIG=b})(window)</script><script type=text/javascript src=https://liangkang233.github.io/js/insight.min.4a2d52de4bfff73e0c688404fe3d17c9a3ae12d9888e1e1ac9c690e4890de2ded50fe55f2b819c2ba55435a76f396f3ea6805765f0b0af5635cdf74ea459eab0.js defer></script><script src=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js></script><script>tocbot.init({tocSelector:'.js-toc',contentSelector:'.js-toc-content',headingSelector:'h1, h2, h3',hasInnerContainers:!0})</script><script defer src=https://cdn1.lncld.net/static/js/av-min-1.2.1.js></script><script defer>AV.init({appId:'2A2wQX1Rs6bncdlrRguNq27J-gzGzoHsz',appKey:'hFOX6badEuckpc33uwYqWFDk'});function showTime(b){var a=new AV.Query(b),c=$('.leancloud_visitors');a.greaterThanOrEqualTo("time",0),a.find({success:function(a){if(a.length==0)return;var b=a;c.each(function(){for(var d=$(this).attr('id').trim(),a=0,c,e,f;a<b.length;a++)c=b[a],e=c.get('time'),f=c.get('url'),d==f&&$(this).text(e)})},error:function(b,a){console.log("Error: "+a.code+" "+a.message)}})}function addCount(a){var a=AV.Object.extend("Counter"),b;url=$(".leancloud_visitors").attr('id').trim(),title=$(".leancloud_visitors").attr('data-flag-title').trim(),b=new AV.Query(a),b.equalTo("url",url),b.find({success:function(d){var c,b;d.length>0?(c=d[0],c.fetchWhenSave(!0),c.increment("time"),c.save(null,{success:function(a){var b=a.get('time');$(document.getElementById(url)).text(b)},error:function(b,a){console.log('Failed to save Visitor num, with error message: '+a.message)}})):(b=new a,b.set("title",title),b.set("url",url),b.set("time",1),b.save(null,{success:function(a){console.log("newcounter.get('time')="+a.get('time'));var b=a.get('time');$(document.getElementById(url)).text(b)},error:function(a,b){console.log('Failed to create')}}))},error:function(a){console.log('Error:'+a.code+" "+a.message)}})}$(function(){var a=AV.Object.extend("Counter");$('.leancloud_visitors').length==1?addCount(a):showTime(a)})</script><script>var disqus_config=function(){this.page.url='https://liangkang233.github.io/2021/05/python%E9%9A%8F%E6%9C%BA%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90/',this.page.identifier='liangkang233'};(function(){var a=document,b=a.createElement('script');b.src='//liangkang233.disqus.com/embed.js',b.setAttribute('data-timestamp',+new Date),(a.head||a.body).appendChild(b)})()</script></body></html>

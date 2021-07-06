@@ -1,0 +1,123 @@
+<!doctype html><html lang=zh><head><title>Vscode配置debug - LK233's Blog</title><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui"><meta name=renderer content="webkit"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="black"><meta name=format-detection content="telephone=no,email=no,adress=no"><meta name=theme-color content="#000000"><meta http-equiv=window-target content="_top"><meta name=description content="Vscode配置debug"><link rel=apple-touch-icon sizes=180x180 href=/web/social.ico><link rel=icon type=ico/png href=/web/head.ico sizes=32x32><meta name=generator content="Hugo 0.85.0 with theme pure"><title>Vscode配置debug - LK233's Blog</title><link rel=stylesheet href=https://liangkang233.github.io/css/style.min.e64d754037c0ee0ec4e20ab1d6f07740ace61729bc03850559b8caa21ae4a597.css><link rel=stylesheet href=https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css async><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css async><meta property="og:title" content="Vscode配置debug"><meta property="og:description" content="Vscode配置debug"><meta property="og:type" content="article"><meta property="og:url" content="https://liangkang233.github.io/2021/06/vsode%E9%85%8D%E7%BD%AEdebug/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2021-06-10T00:00:00+00:00"><meta property="article:modified_time" content="2021-06-10T00:00:00+00:00"><meta itemprop=name content="Vscode配置debug"><meta itemprop=description content="Vscode配置debug"><meta itemprop=datePublished content="2021-06-10T00:00:00+00:00"><meta itemprop=dateModified content="2021-06-10T00:00:00+00:00"><meta itemprop=wordCount content="2495"><meta itemprop=keywords content=","><meta name=twitter:card content="summary"><meta name=twitter:title content="Vscode配置debug"><meta name=twitter:description content="Vscode配置debug"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body class="main-center theme-black" itemscope itemtype=http://schema.org/WebPage><header class=header itemscope itemtype=http://schema.org/WPHeader><div class=slimContent><div class=navbar-header><div class="profile-block text-center"><a id=avatar href=https://github.com/liangkang233 target=_blank><img class="img-circle img-rotate" src="https://s.gravatar.com/avatar/8c0c2764c711daf54a01dddef79fd9da?s=80" width=200 height=200></a><h2 id=name class="hidden-xs hidden-sm">LK233</h2><h3 id=title class="hidden-xs hidden-sm hidden-md">三无青年</h3><small id=location class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>现居 重庆</small></div><div class=search id=search-form-wrap><form class="search-form sidebar-form"><div class=input-group><input type=text class="search-form-input form-control" placeholder=搜索>
+<span class=input-group-btn><button type=submit class="search-form-submit btn btn-flat" onclick=return!1><i class="icon icon-search"></i></button></span></div><div class=ins-search><div class=ins-search-mask></div><div class=ins-search-container><div class=ins-input-wrapper><input type=text class=ins-search-input placeholder=想要查找什么... x-webkit-speech>
+<button type=button class="close ins-close ins-selectable" data-dismiss=modal aria-label=Close><span aria-hidden=true>×</span></button></div><div class=ins-section-wrapper><div class=ins-section-container></div></div></div></div></form></div><button class="navbar-toggle collapsed" type=button data-toggle=collapse data-target=#main-navbar aria-controls=main-navbar aria-expanded=false>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span><span class=icon-bar></span><span class=icon-bar></span></button></div><nav id=main-navbar class="collapse navbar-collapse" itemscope itemtype=http://schema.org/SiteNavigationElement role=navigation><ul class="nav navbar-nav main-nav"><li class="menu-item menu-item-home"><a href=/><i class="icon icon-home-fill"></i>
+<span class=menu-title>主页</span></a></li><li class="menu-item menu-item-books"><a href=/posts/><i class="icon icon-book-fill"></i>
+<span class=menu-title>文章</span></a></li><li class="menu-item menu-item-email"><a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=agYDCwQNAQsEDVhZWSobG0QJBQc"><i class="icon icon-email"></i>
+<span class=menu-title>邮箱</span></a></li><li class="menu-item menu-item-github"><a href=https://github.com/liangkang233><i class="icon icon-github-fill"></i>
+<span class=menu-title>github</span></a></li><li class="menu-item menu-item-about"><a href=/about/><i class="icon icon-cup-fill"></i>
+<span class=menu-title>关于</span></a></li></ul></nav></div></header><aside class=sidebar itemscope itemtype=http://schema.org/WPSideBar><div class=slimContent><div class=widget><h3 class=widget-title>^_^</h3><div class=widget-body><div id=board><div class=content><p>记录学习、生活的个人博客</p></div></div></div></div><div class=widget><h3 class=widget-title>标签</h3><div id=tag-cloud-list class=widget-body><a href=https://liangkang233.github.io/tags/blog-test/ class=tag-list-link rel=1>blog-test<span class=tag-list-count>1</span></a>
+<a href=https://liangkang233.github.io/tags/c/c++/ class=tag-list-link rel=2>c/c++<span class=tag-list-count>2</span></a>
+<a href=https://liangkang233.github.io/tags/go/ class=tag-list-link rel=1>go<span class=tag-list-count>1</span></a>
+<a href=https://liangkang233.github.io/tags/python/ class=tag-list-link rel=3>python<span class=tag-list-count>3</span></a>
+<a href=https://liangkang233.github.io/tags/%E5%B0%8F%E9%97%AE%E9%A2%98/ class=tag-list-link rel=1>小问题<span class=tag-list-count>1</span></a></div><script>document.onreadystatechange=()=>{document.readyState==='complete'&&tagCloud('#tag-cloud-list a',8,20)};function tagCloud(c,d,e){let b=0,a=0;$(c).each(function(){let c=Number($(this).attr("rel"));b<c&&(b=c),(a>c||a==0)&&(a=c)});let f=(e-d)/(b-a);$(c).each(function(){let b=$(this).attr("rel")-a;$(this).css({"font-size":d+b*f+'px'})})}</script></div><div class=widget><h3 class=widget-title>分类</h3><div class=widget-body><ul class=category-list><li class=category-list-item><a href=https://liangkang233.github.io/categories/core/ class=category-list-link>core</a><span class=category-list-count>6</span></li><li class=category-list-item><a href=https://liangkang233.github.io/categories/win10/ class=category-list-link>win10</a><span class=category-list-count>1</span></li><li class=category-list-item><a href=https://liangkang233.github.io/categories/%E5%AD%A6%E4%B9%A0/ class=category-list-link>学习</a><span class=category-list-count>4</span></li><li class=category-list-item><a href=https://liangkang233.github.io/categories/%E5%B7%A5%E5%85%B7/ class=category-list-link>工具</a><span class=category-list-count>2</span></li><li class=category-list-item><a href=https://liangkang233.github.io/categories/%E6%9D%82%E8%B0%88/ class=category-list-link>杂谈</a><span class=category-list-count>1</span></li></ul></div></div><div class=widget><h3 class=widget-title>最新文章</h3><div class=widget-body><ul class="recent-post-list list-unstyled no-thumbnail"><li><div class=item-inner><p class=item-title><a href=https://liangkang233.github.io/2021/07/distributed/ class=title>Core 分布式</a></p><p class=item-date><time datetime="2021-07-06 00:00:00 +0000 UTC" itemprop=datePublished>2021-07-06</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://liangkang233.github.io/2021/07/ctrlnet/ class=title>Core 控制网络</a></p><p class=item-date><time datetime="2021-07-06 00:00:00 +0000 UTC" itemprop=datePublished>2021-07-06</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://liangkang233.github.io/2021/07/installation/ class=title>Core/Emane 环境搭建</a></p><p class=item-date><time datetime="2021-07-04 00:00:00 +0000 UTC" itemprop=datePublished>2021-07-04</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://liangkang233.github.io/2021/07/gui/ class=title>Core Gui</a></p><p class=item-date><time datetime="2021-07-03 00:00:00 +0000 UTC" itemprop=datePublished>2021-07-03</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://liangkang233.github.io/2021/07/architecture/ class=title>Core 仿真架构</a></p><p class=item-date><time datetime="2021-07-02 00:00:00 +0000 UTC" itemprop=datePublished>2021-07-02</time></p></div></li></ul></div></div></div></aside><aside class="sidebar sidebar-toc collapse" id=collapseToc itemscope itemtype=http://schema.org/WPSideBar><div class=slimContent><h4 class=toc-title>文章目录</h4><nav id=toc class="js-toc toc"></nav></div></aside><main class=main role=main><div class=content><article id=- class="article article-type-" itemscope itemtype=http://schema.org/BlogPosting><div class=article-header><h1 itemprop=name><a class=article-title href=/2021/06/vsode%E9%85%8D%E7%BD%AEdebug/>Vscode配置debug</a></h1><div class=article-meta><span class=article-date><i class="icon icon-calendar-check"></i>&nbsp;
+<a href=https://liangkang233.github.io/2021/06/vsode%E9%85%8D%E7%BD%AEdebug/ class=article-date><time datetime="2021-06-10 00:00:00 +0000 UTC" itemprop=datePublished>2021-06-10</time></a></span>
+<span class=article-category><i class="icon icon-folder"></i>&nbsp;
+<a class=article-category-link href=/categories/%E5%B7%A5%E5%85%B7/>工具</a></span>
+<span class=article-tag><i class="icon icon-tags"></i>&nbsp;
+<a class=article-tag-link href=/tags//></a></span><span class="article-read hidden-xs"><i class="icon icon-eye-fill" aria-hidden=true></i>
+<span id=https://liangkang233.github.io/2021/06/vsode%E9%85%8D%E7%BD%AEdebug/ class=leancloud_visitors data-flag-title=Vscode配置debug>0</span></span>
+<span class=post-comment><i class="icon icon-comment"></i>&nbsp;<a href=/2021/06/vsode%E9%85%8D%E7%BD%AEdebug/#comments class=article-comment-link>评论</a></span>
+<span class="post-wordcount hidden-xs" itemprop=wordCount>字数统计: 2495字</span></div></div><div class="article-entry marked-body js-toc-content" itemprop=articleBody><p>VScode是一款非常好用的代码编辑器，还拥有强大的在线扩展插件。甚至可以进行代码的debug，整理了下配置过程遇到的问题分享出来。
+我使用的windows平台vscode版本为V1.56。</p><h1 id=通用配置>通用配置</h1><p>VS Code内置了对Node.js运行时的调试支持，可以调试JavaScript、TypeScript或JavaScript语言。</p><p>要调试其他语言(包括PHP, Ruby, Go, c#， Python, C++， PowerShell等)时，在VS Code扩展中寻找调试器扩展，或者在顶级运行菜单中选择安装额外的调试器。</p><p>确定安装可以编译调试的扩展或软件再进行以下步骤：</p><p>右击工程文件夹使用VScode打开。
+<img src=https://img-blog.csdnimg.cn/202106101428478.png alt=在这里插入图片描述></p><p>打开需要编译、运行的文件，点击顶部菜单->运行->添加配置&mldr;选择需要debug的类型，之后根据语言及即可在 .vscode文件夹下生成launch.json文件。生成的json文件对整个文件夹和子文件夹生效。</p><h2 id=举例如何debug-go>举例如何debug go</h2><p>以go语言为例，路径切换至当前工程文件夹。首先安装调试软件推荐使用dlv，终端中输入</p><pre><code class=language-bash>	go get -u github.com/go-delve/delve/cmd/dlv
+	# 未生成mod还得添加mod才能调试	
+	go mod init yourProjectName
+</code></pre><p>一切准备就绪后，点击上述步骤生成launch.json文件，此处会让你选择调试包还是附着到本地进程或远程服务器调试。
+<img src=https://img-blog.csdnimg.cn/20210610143614674.png alt=在这里插入图片描述>
+选择默认的调试package，这里打开生成的默认json</p><pre><code class=language-json>{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    &quot;version&quot;: &quot;0.2.0&quot;,
+    &quot;configurations&quot;: [
+        {
+            &quot;name&quot;: &quot;Launch Package&quot;,
+            &quot;type&quot;: &quot;go&quot;,
+            &quot;request&quot;: &quot;launch&quot;,
+            &quot;mode&quot;: &quot;auto&quot;,
+            &quot;program&quot;: &quot;${workspaceFolder}&quot;
+        }
+    ]
+}
+</code></pre><p>需要添加新的配置直接点击右下角即可，&ldquo;name"的值为左标签页调试器的名字用于区分用。</p><p>“type”语言类型设置为go，vs code 用于设定调试代码扩展类型。”mode“可以设置为 auto, debug, remote, test, exec 中的一个。</p><p>”program“调试程序的路径（绝对路径），这里使用workspaceFolder说明对整个工作区目录文件进行调试。</p><h2 id=各配置变量的含义>各配置变量的含义</h2><p>其中有许多vscode定义的变量，这里列出常用的：</p><ul><li>${workspaceFolder} - 在VS Code中打开的文件夹路径</li><li>${workspaceFolderBasename} - 在VS Code中打开的文件夹的名称没有任何斜杠(/)</li><li>${file} - 当前打开的文件名</li><li>${fileWorkspaceFolder} - 当前打开的文件的工作区文件夹</li><li>${relativeFile} - 当前打开的文件名相对于workspaceFolder</li><li>${relativeFileDirname} - 当前打开的文件的目录名相对于workspaceFolder</li><li>${fileBasename} - 当前打开的文件的基名</li><li>${fileBasenameNoExtension} - 当前打开的文件的基名没有文件扩展名</li><li>${fileDirname} - 当前打开文件的目录名</li><li>${fileExtname} - 当前打开的文件的扩展名</li><li>${cwd} - 任务运行器启动时的当前工作目录</li><li>${lineNumber} - 当前选中的行号在活动文件中</li><li>${selectedText} - 活动文件中当前选定的文本</li><li>${execPath} - 运行VS Code可执行文件的路径</li><li>${defaultBuildTask} - 默认构建任务的名称</li><li>${pathSeparator} - 操作系统用于分隔文件路径中的组件的字符</li><li>${pathSeparator} - 在macOS或linux系统为/, 在Windows上为\</li></ul><h1 id=关于debug-cc>关于debug C/C++</h1><pre><code>该文件设置debug的各项配置根据语言的不同，设置也不尽相同。这里介绍c/c++的具体配置流程。
+</code></pre><h2 id=总结各文件作用>总结各文件作用</h2><p>与其他语言类似的，debug的配置文件也是生成在.vscode文件夹中。
+c/c++程序配置一般有三个文件：</p><ul><li>tasks.json（如何编译生成可执行程序）</li><li>launch.json（调试设置）</li><li>c_cpp_properties.json（编译器路径和vscode感知设置）
+其中c_cpp_properties非常坑，由于我使用了自己写的头文件在c_cpp_properties.json的includePath项目配置各种路径类型都不生效，后面才看懂这个只是让vscode识别头文件该跳转的路径而已，真正要添加外部库或头文件的话要么放在系统默认库、头文件路径，要么在task.json中配置生成。</li></ul><h2 id=具体流程>具体流程</h2><p>c/c++代码需要先编译链接生成可执行程序（tasks.json），再使用gdb调试（launch.json），c_cpp_properties.json设置c/c++使用语言标准例如c++11等。注意：调试前确保系统环境已配置g++、gdb。验证方法：</p><p>要检查您的 Mingw-w64 工具是否正确安装和可用，请打开新的命令提示并键入：
+g++ &ndash;version
+gdb &ndash;version
+以此工程文件夹为例，main函数调用了lib文件夹下的stu_rw.h文件</p><p><img src=https://img-blog.csdnimg.cn/20210610151308592.png alt=在这里插入图片描述></p><p>打开main.cpp文件，点击顶部菜单->终端->配置默认生成任务，选择使用g++生成活动文件。打开生成的task.json文件</p><pre><code class=language-json>{
+	&quot;version&quot;: &quot;2.0.0&quot;,
+	&quot;tasks&quot;: [
+		{
+			&quot;type&quot;: &quot;cppbuild&quot;,
+			&quot;label&quot;: &quot;C/C++: g++.exe 生成活动文件&quot;,
+			&quot;command&quot;: &quot;C:\\Program Files\\mingw-w64\\x86_64-8.1.0-posix-seh-rt_v6-rev0\\mingw64\\bin\\g++.exe&quot;,
+			&quot;args&quot;: [
+				&quot;-g&quot;,
+                &quot;-Wall&quot;,        //显示全部详细警告
+                &quot;-std=c++11&quot;,   //支持C11
+				&quot;${file}&quot;,				
+				&quot;-I&quot;,
+				&quot;${workspaceFolder}\\lib&quot;,
+				&quot;-o&quot;,
+				&quot;${fileDirname}\\${fileBasenameNoExtension}.exe&quot;
+			],
+			&quot;options&quot;: {
+				&quot;cwd&quot;: &quot;${fileDirname}&quot;
+			},
+			&quot;problemMatcher&quot;: [
+				&quot;$gcc&quot;
+			],
+			&quot;group&quot;: {
+				&quot;kind&quot;: &quot;build&quot;,
+				&quot;isDefault&quot;: true
+			},
+			&quot;detail&quot;: &quot;编译器: \&quot;C:\\Program Files\\mingw-w64\\x86_64-8.1.0-posix-seh-rt_v6-rev0\\mingw64\\bin\\g++.exe\&quot;&quot;
+		}
+	]
+}
+</code></pre><p>其中args选项即为g++编译链接选项，如上所示我已经添加了&rdquo;-I"相关参数添加头文件路径，c11标准。静态库链接等就放-o选项后，除最后一行配置文件每行都得加逗号。</p><p>之后打开main.cpp点击顶部菜单->终端->运行生成任务，看是否生成成功。</p><p>之后设定debug选项，点击顶部菜单->运行->添加配置，选择gdb、之后选g++生成默认配置。
+下面展示配置的说明：</p><pre><code class=language-json>{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    &quot;version&quot;: &quot;0.2.0&quot;,
+    &quot;configurations&quot;: [
+        {
+            &quot;name&quot;: &quot;g++.exe - 生成和调试活动文件&quot;,	// 配置名称，将会在启动配置的下拉菜单中显示
+            &quot;type&quot;: &quot;cppdbg&quot;,
+            &quot;request&quot;: &quot;launch&quot;,					// 请求配置类型，可以为launch（启动）或attach（附加）
+            &quot;program&quot;: &quot;${fileDirname}\\${fileBasenameNoExtension}.exe&quot;,	// 将要进行调试的程序的路径
+            &quot;args&quot;: [],								// 程序调试时传递给程序的命令行参数，一般设为空即可
+            &quot;stopAtEntry&quot;: false,
+            &quot;cwd&quot;: &quot;${fileDirname}&quot;,
+            &quot;environment&quot;: [],
+            &quot;externalConsole&quot;: false,
+            &quot;MIMode&quot;: &quot;gdb&quot;,
+            &quot;miDebuggerPath&quot;: &quot;C:\\Program Files\\mingw-w64\\x86_64-8.1.0-posix-seh-rt_v6-rev0\\mingw64\\bin\\gdb.exe&quot;,
+            &quot;setupCommands&quot;: [
+                {
+                    &quot;description&quot;: &quot;为 gdb 启用整齐打印&quot;,
+                    &quot;text&quot;: &quot;-enable-pretty-printing&quot;,
+                    &quot;ignoreFailures&quot;: true
+                }
+            ],
+            &quot;preLaunchTask&quot;: &quot;C/C++: g++.exe 生成活动文件&quot;
+        }
+    ]
+}
+</code></pre><p>如果您想要对 C/C++扩展进行更多控制，c_cpp_properties.json将配置如编译器的路径，include路径、C++标准（默认值为 C++17）等等。</p><p>通过命令终端（Ctrl+Shift+P）输入>c/c++，有两个选项一个是直接配置json一个是通过UI界面配置。</p><p>这里的C/C++ 配置UI页面，基本保持默认即可。注意这里的配置编辑器是给vscode和扩展使用的，不影响task.json来配置真正生成可执行程序的过程。</p></div><div class=article-footer><div class="panel panel-default panel-badger"><div class=panel-body><figure class=media><div class=media-left><a href=https://github.com/liangkang233 target=_blank class="img-burn thumb-sm visible-lg"><img src="https://s.gravatar.com/avatar/8c0c2764c711daf54a01dddef79fd9da?s=80" class="img-rounded w-full" alt></a></div><div class=media-body><h3 class=media-heading></h3><a href=https://github.com/liangkang233 target=_blank></a><span class=text-dark>LK233</span></a></h3><div>Segment error maker :(</div></div></figure></div></div></div></article><section id=comments><div id=disqus_thread><noscript>Please enable JavaScript to view the <a href=//disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></div></section></div><nav class="bar bar-footer clearfix" data-stick-bottom><div class=bar-inner><ul class="pager pull-left"><li class=prev><a href=https://liangkang233.github.io/2021/06/c%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0http%E8%AF%B7%E6%B1%82/ title=C语言实现的http请求><i class="icon icon-angle-left" aria-hidden=true></i><span>&nbsp;&nbsp;下一篇</span></a></li><li class=next><a href=https://liangkang233.github.io/2021/06/go%E6%8C%87%E5%8D%97%E7%BB%83%E4%B9%A0-web%E7%88%AC%E8%99%AB/ title=Go指南练习><span>上一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden=true></i></a></li><li class=toggle-toc><a class="toggle-btn collapsed" data-toggle=collapse href=#collapseToc aria-expanded=false title=文章目录 role=button><span>[&nbsp;</span><span>文章目录</span>
+<i class="text-collapsed icon icon-anchor"></i>
+<i class="text-in icon icon-close"></i>
+<span>]</span></a></li></ul><div class=bar-right><div class=share-component data-sites=qq,wechat,facebook,twitter data-mobile-sites=qq,wechat,facebook,twitter></div></div></div></nav></main><footer class=footer itemscope itemtype=http://schema.org/WPFooter><ul class=social-links><li><a href=https://www.linkedin.com/in/kang-liang-79b3b5216/ target=_blank title=linkedin data-toggle=tooltip data-placement=top><i class="icon icon-linkedin"></i></a></li><li><a href="http://wpa.qq.com/msgrd?v=3&uin=3479202458&site=qq&menu=yes" target=_blank title=qq data-toggle=tooltip data-placement=top><i class="icon icon-qq"></i></a></li></ul><div class=copyright>&copy;2020 -
+2021 <a href=https://github.com/liangkang233 target=_blank>LK233</a><div class=post-copyright-license><strong>License:</strong>
+<a href=http://creativecommons.org/licenses/by/4.0/deed.zh target=_blank rel=external>CC BY 4.0 CN</a></div></div></footer><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script><script type=text/x-mathjax-config>
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js></script><script>window.jQuery||document.write('<script src="js/jquery.min.js"><\/script>')</script><script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js></script><script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js defer></script><script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js defer></script><script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js defer></script><script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/languages/cpp.min.js defer></script><script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/languages/c.min.js defer></script><script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/languages/go.min.js defer></script><script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/languages/html.min.js defer></script><script>hljs.configure({tabReplace:'    ',classPrefix:''}),hljs.initHighlightingOnLoad()</script><script src=https://liangkang233.github.io/js/application.min.a94ab19cb63a95c8d7fbd7b85cab3ddeea8c369bdf75b9cab6708787ead123af.js></script><script src=https://liangkang233.github.io/js/plugin.min.19c5bcb2fb0789ab4f2b7834e5ceb5e92635645605bab902c1024b25f1502364.js></script><script>(function(a){var b={TRANSLATION:{POSTS:'文章',PAGES:'页面',CATEGORIES:'分类',TAGS:'标签',UNTITLED:'(未命名)'},ROOT_URL:'https://liangkang233.github.io/',CONTENT_URL:'https://liangkang233.github.io//searchindex.json '};a.INSIGHT_CONFIG=b})(window)</script><script type=text/javascript src=https://liangkang233.github.io/js/insight.min.4a2d52de4bfff73e0c688404fe3d17c9a3ae12d9888e1e1ac9c690e4890de2ded50fe55f2b819c2ba55435a76f396f3ea6805765f0b0af5635cdf74ea459eab0.js defer></script><script src=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js></script><script>tocbot.init({tocSelector:'.js-toc',contentSelector:'.js-toc-content',headingSelector:'h1, h2, h3',hasInnerContainers:!0})</script><script defer src=https://cdn1.lncld.net/static/js/av-min-1.2.1.js></script><script defer>AV.init({appId:'2A2wQX1Rs6bncdlrRguNq27J-gzGzoHsz',appKey:'hFOX6badEuckpc33uwYqWFDk'});function showTime(b){var a=new AV.Query(b),c=$('.leancloud_visitors');a.greaterThanOrEqualTo("time",0),a.find({success:function(a){if(a.length==0)return;var b=a;c.each(function(){for(var d=$(this).attr('id').trim(),a=0,c,e,f;a<b.length;a++)c=b[a],e=c.get('time'),f=c.get('url'),d==f&&$(this).text(e)})},error:function(b,a){console.log("Error: "+a.code+" "+a.message)}})}function addCount(a){var a=AV.Object.extend("Counter"),b;url=$(".leancloud_visitors").attr('id').trim(),title=$(".leancloud_visitors").attr('data-flag-title').trim(),b=new AV.Query(a),b.equalTo("url",url),b.find({success:function(d){var c,b;d.length>0?(c=d[0],c.fetchWhenSave(!0),c.increment("time"),c.save(null,{success:function(a){var b=a.get('time');$(document.getElementById(url)).text(b)},error:function(b,a){console.log('Failed to save Visitor num, with error message: '+a.message)}})):(b=new a,b.set("title",title),b.set("url",url),b.set("time",1),b.save(null,{success:function(a){console.log("newcounter.get('time')="+a.get('time'));var b=a.get('time');$(document.getElementById(url)).text(b)},error:function(a,b){console.log('Failed to create')}}))},error:function(a){console.log('Error:'+a.code+" "+a.message)}})}$(function(){var a=AV.Object.extend("Counter");$('.leancloud_visitors').length==1?addCount(a):showTime(a)})</script><script>var disqus_config=function(){this.page.url='https://liangkang233.github.io/2021/06/vsode%E9%85%8D%E7%BD%AEdebug/',this.page.identifier='liangkang233'};(function(){var a=document,b=a.createElement('script');b.src='//liangkang233.disqus.com/embed.js',b.setAttribute('data-timestamp',+new Date),(a.head||a.body).appendChild(b)})()</script></body></html>

@@ -1,0 +1,160 @@
+<!doctype html><html lang=zh><head><title>批量语音转文字 - LK233's Blog</title><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui"><meta name=renderer content="webkit"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="black"><meta name=format-detection content="telephone=no,email=no,adress=no"><meta name=theme-color content="#000000"><meta http-equiv=window-target content="_top"><meta name=description content="调用百度ai接口，进行批量文本转换语音（python sdk）"><link rel=apple-touch-icon sizes=180x180 href=/web/social.ico><link rel=icon type=ico/png href=/web/head.ico sizes=32x32><meta name=generator content="Hugo 0.85.0 with theme pure"><title>批量语音转文字 - LK233's Blog</title><link rel=stylesheet href=https://liangkang233.github.io/css/style.min.e64d754037c0ee0ec4e20ab1d6f07740ace61729bc03850559b8caa21ae4a597.css><link rel=stylesheet href=https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css async><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css async><meta property="og:title" content="批量语音转文字"><meta property="og:description" content="调用百度ai接口，进行批量文本转换语音（python sdk）"><meta property="og:type" content="article"><meta property="og:url" content="https://liangkang233.github.io/2021/04/%E6%89%B9%E9%87%8F%E8%AF%AD%E9%9F%B3%E8%BD%AC%E5%AD%97%E7%AC%A6/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2021-04-03T00:00:00+00:00"><meta property="article:modified_time" content="2021-04-03T00:00:00+00:00"><meta itemprop=name content="批量语音转文字"><meta itemprop=description content="调用百度ai接口，进行批量文本转换语音（python sdk）"><meta itemprop=datePublished content="2021-04-03T00:00:00+00:00"><meta itemprop=dateModified content="2021-04-03T00:00:00+00:00"><meta itemprop=wordCount content="1122"><meta itemprop=keywords content="python,"><meta name=twitter:card content="summary"><meta name=twitter:title content="批量语音转文字"><meta name=twitter:description content="调用百度ai接口，进行批量文本转换语音（python sdk）"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body class="main-center theme-black" itemscope itemtype=http://schema.org/WebPage><header class=header itemscope itemtype=http://schema.org/WPHeader><div class=slimContent><div class=navbar-header><div class="profile-block text-center"><a id=avatar href=https://github.com/liangkang233 target=_blank><img class="img-circle img-rotate" src="https://s.gravatar.com/avatar/8c0c2764c711daf54a01dddef79fd9da?s=80" width=200 height=200></a><h2 id=name class="hidden-xs hidden-sm">LK233</h2><h3 id=title class="hidden-xs hidden-sm hidden-md">三无青年</h3><small id=location class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>现居 重庆</small></div><div class=search id=search-form-wrap><form class="search-form sidebar-form"><div class=input-group><input type=text class="search-form-input form-control" placeholder=搜索>
+<span class=input-group-btn><button type=submit class="search-form-submit btn btn-flat" onclick=return!1><i class="icon icon-search"></i></button></span></div><div class=ins-search><div class=ins-search-mask></div><div class=ins-search-container><div class=ins-input-wrapper><input type=text class=ins-search-input placeholder=想要查找什么... x-webkit-speech>
+<button type=button class="close ins-close ins-selectable" data-dismiss=modal aria-label=Close><span aria-hidden=true>×</span></button></div><div class=ins-section-wrapper><div class=ins-section-container></div></div></div></div></form></div><button class="navbar-toggle collapsed" type=button data-toggle=collapse data-target=#main-navbar aria-controls=main-navbar aria-expanded=false>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span><span class=icon-bar></span><span class=icon-bar></span></button></div><nav id=main-navbar class="collapse navbar-collapse" itemscope itemtype=http://schema.org/SiteNavigationElement role=navigation><ul class="nav navbar-nav main-nav"><li class="menu-item menu-item-home"><a href=/><i class="icon icon-home-fill"></i>
+<span class=menu-title>主页</span></a></li><li class="menu-item menu-item-books"><a href=/posts/><i class="icon icon-book-fill"></i>
+<span class=menu-title>文章</span></a></li><li class="menu-item menu-item-email"><a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=agYDCwQNAQsEDVhZWSobG0QJBQc"><i class="icon icon-email"></i>
+<span class=menu-title>邮箱</span></a></li><li class="menu-item menu-item-github"><a href=https://github.com/liangkang233><i class="icon icon-github-fill"></i>
+<span class=menu-title>github</span></a></li><li class="menu-item menu-item-about"><a href=/about/><i class="icon icon-cup-fill"></i>
+<span class=menu-title>关于</span></a></li></ul></nav></div></header><aside class=sidebar itemscope itemtype=http://schema.org/WPSideBar><div class=slimContent><div class=widget><h3 class=widget-title>^_^</h3><div class=widget-body><div id=board><div class=content><p>记录学习、生活的个人博客</p></div></div></div></div><div class=widget><h3 class=widget-title>标签</h3><div id=tag-cloud-list class=widget-body><a href=https://liangkang233.github.io/tags/blog-test/ class=tag-list-link rel=1>blog-test<span class=tag-list-count>1</span></a>
+<a href=https://liangkang233.github.io/tags/c/c++/ class=tag-list-link rel=2>c/c++<span class=tag-list-count>2</span></a>
+<a href=https://liangkang233.github.io/tags/go/ class=tag-list-link rel=1>go<span class=tag-list-count>1</span></a>
+<a href=https://liangkang233.github.io/tags/python/ class=tag-list-link rel=3>python<span class=tag-list-count>3</span></a>
+<a href=https://liangkang233.github.io/tags/%E5%B0%8F%E9%97%AE%E9%A2%98/ class=tag-list-link rel=1>小问题<span class=tag-list-count>1</span></a></div><script>document.onreadystatechange=()=>{document.readyState==='complete'&&tagCloud('#tag-cloud-list a',8,20)};function tagCloud(c,d,e){let b=0,a=0;$(c).each(function(){let c=Number($(this).attr("rel"));b<c&&(b=c),(a>c||a==0)&&(a=c)});let f=(e-d)/(b-a);$(c).each(function(){let b=$(this).attr("rel")-a;$(this).css({"font-size":d+b*f+'px'})})}</script></div><div class=widget><h3 class=widget-title>分类</h3><div class=widget-body><ul class=category-list><li class=category-list-item><a href=https://liangkang233.github.io/categories/core/ class=category-list-link>core</a><span class=category-list-count>6</span></li><li class=category-list-item><a href=https://liangkang233.github.io/categories/win10/ class=category-list-link>win10</a><span class=category-list-count>1</span></li><li class=category-list-item><a href=https://liangkang233.github.io/categories/%E5%AD%A6%E4%B9%A0/ class=category-list-link>学习</a><span class=category-list-count>4</span></li><li class=category-list-item><a href=https://liangkang233.github.io/categories/%E5%B7%A5%E5%85%B7/ class=category-list-link>工具</a><span class=category-list-count>2</span></li><li class=category-list-item><a href=https://liangkang233.github.io/categories/%E6%9D%82%E8%B0%88/ class=category-list-link>杂谈</a><span class=category-list-count>1</span></li></ul></div></div><div class=widget><h3 class=widget-title>最新文章</h3><div class=widget-body><ul class="recent-post-list list-unstyled no-thumbnail"><li><div class=item-inner><p class=item-title><a href=https://liangkang233.github.io/2021/07/distributed/ class=title>Core 分布式</a></p><p class=item-date><time datetime="2021-07-06 00:00:00 +0000 UTC" itemprop=datePublished>2021-07-06</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://liangkang233.github.io/2021/07/ctrlnet/ class=title>Core 控制网络</a></p><p class=item-date><time datetime="2021-07-06 00:00:00 +0000 UTC" itemprop=datePublished>2021-07-06</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://liangkang233.github.io/2021/07/installation/ class=title>Core/Emane 环境搭建</a></p><p class=item-date><time datetime="2021-07-04 00:00:00 +0000 UTC" itemprop=datePublished>2021-07-04</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://liangkang233.github.io/2021/07/gui/ class=title>Core Gui</a></p><p class=item-date><time datetime="2021-07-03 00:00:00 +0000 UTC" itemprop=datePublished>2021-07-03</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://liangkang233.github.io/2021/07/architecture/ class=title>Core 仿真架构</a></p><p class=item-date><time datetime="2021-07-02 00:00:00 +0000 UTC" itemprop=datePublished>2021-07-02</time></p></div></li></ul></div></div></div></aside><aside class="sidebar sidebar-toc collapse" id=collapseToc itemscope itemtype=http://schema.org/WPSideBar><div class=slimContent><h4 class=toc-title>文章目录</h4><nav id=toc class="js-toc toc"></nav></div></aside><main class=main role=main><div class=content><article id=- class="article article-type-" itemscope itemtype=http://schema.org/BlogPosting><div class=article-header><h1 itemprop=name><a class=article-title href=/2021/04/%E6%89%B9%E9%87%8F%E8%AF%AD%E9%9F%B3%E8%BD%AC%E5%AD%97%E7%AC%A6/>批量语音转文字</a></h1><div class=article-meta><span class=article-date><i class="icon icon-calendar-check"></i>&nbsp;
+<a href=https://liangkang233.github.io/2021/04/%E6%89%B9%E9%87%8F%E8%AF%AD%E9%9F%B3%E8%BD%AC%E5%AD%97%E7%AC%A6/ class=article-date><time datetime="2021-04-03 00:00:00 +0000 UTC" itemprop=datePublished>2021-04-03</time></a></span>
+<span class=article-category><i class="icon icon-folder"></i>&nbsp;
+<a class=article-category-link href=/categories/%E5%B7%A5%E5%85%B7/>工具</a></span>
+<span class=article-tag><i class="icon icon-tags"></i>&nbsp;
+<a class=article-tag-link href=/tags/python/>python</a></span>
+<span class="article-read hidden-xs"><i class="icon icon-eye-fill" aria-hidden=true></i>
+<span id=https://liangkang233.github.io/2021/04/%E6%89%B9%E9%87%8F%E8%AF%AD%E9%9F%B3%E8%BD%AC%E5%AD%97%E7%AC%A6/ class=leancloud_visitors data-flag-title=批量语音转文字>0</span></span>
+<span class=post-comment><i class="icon icon-comment"></i>&nbsp;<a href=/2021/04/%E6%89%B9%E9%87%8F%E8%AF%AD%E9%9F%B3%E8%BD%AC%E5%AD%97%E7%AC%A6/#comments class=article-comment-link>评论</a></span>
+<span class="post-wordcount hidden-xs" itemprop=wordCount>字数统计: 1122字</span></div></div><div class="article-entry marked-body js-toc-content" itemprop=articleBody><h1 id=功能>功能</h1><p>之前想获得一段机器配音时，总是一句一句粘贴在翻译软件上读取，非常麻烦。
+后来知道百度AI提供了免费的语音合成api，所以简单分享下使用方法。</p><h1 id=使用说明>使用说明</h1><p><a href="https://cloud.baidu.com/product/speech?track=cp:npinzhuan%7Cpf:pc%7Cpp:npinzhuan-biaoge%7Cpu:wenzineirong%7Cci:%7Ckw:2056418">百度智能云语音识别</a></p><ul><li><p>首先打开上述网址点击立即开始注册或登录账号</p></li><li><p>创建一个应用并按照你的需求注册，当然不只是语音识别还有其他类似人脸识别图像处理等接口，但是大部分是要收费的。具体其他业务可以看看<a href=https://ai.baidu.com/ai-doc/REFERENCE/Ck3dwjgn3>官方指南</a><img src=https://img-blog.csdnimg.cn/20210403201502164.png?size_12,color_FFFFFF,t_70 alt=在这里插入图片描述></p></li><li><p>这些我们可以不管，只需要注册语音识别应用，文本转语音业务包含在其中。注册好可以如下图领取免费额度。 <img src=https://img-blog.csdnimg.cn/20210403200506548.png?size_18,color_FFFFFF,t_70 alt=在这里插入图片描述></p></li><li><p>最后配置完成后，<a href=https://ai.baidu.com/sdk#asr>下载python的sdk</a>来安装,使用python setup.py install</p></li></ul><h2 id=其他组件>其他组件</h2><p>所有组件github地址: <a href=https://github.com/Baidu-AIP/python-sdk>百度AI python sdk地址</a>.
+其它功能也可类似调用接口实现，这里只是简单使用语音识别的文本语音转换功能。</p><h1 id=文本转语音测试>文本转语音测试</h1><p>参考了官方的<a href=https://github.com/Baidu-AIP/speech-demo/tree/master/rest-api-tts/python>测试案例</a>编写了下面的代码，有兴趣的可以试试其他api的调用，此代码python2 3皆可使用。</p><pre><code class=language-python># coding: utf-8
+# 逐行读入source/test.txt文件，并创建audio1.mp3 audio2.mp3 audio3.mp3存入source文件夹中 ......
+import sys
+import json
+
+IS_PY3 = sys.version_info.major == 3
+if IS_PY3:
+    from urllib.request import urlopen
+    from urllib.request import Request
+    from urllib.error import URLError
+    from urllib.parse import urlencode
+    from urllib.parse import quote_plus
+else:
+    import urllib2
+    from urllib import quote_plus
+    from urllib2 import urlopen
+    from urllib2 import Request
+    from urllib2 import URLError
+    from urllib import urlencode
+
+API_KEY = '此处替换为你应用的API_KEY '
+SECRET_KEY = '此处替换为你应用的SECRET_KEY'
+TEXT = &quot;欢迎使用百度语音合成。&quot;
+
+# 发音人选择，默认为度小美 
+# 基础音库：0为度小美，1为度小宇，3为度逍遥，4为度丫丫，
+# 精品音库：5为度小娇，103为度米朵，106为度博文，110为度小童，111为度小萌
+PER = 3
+# 语速，取值0-15，默认为5中语速
+SPD = 6
+# 音调，取值0-15，默认为5中语调
+PIT = 5
+# 音量，取值0-9，默认为5中音量
+VOL = 7
+# 下载的文件格式, 3：mp3(default) 4： pcm-16k 5： pcm-8k 6. wav
+AUE = 3
+
+FORMATS = {3: &quot;.mp3&quot;, 4: &quot;.pcm&quot;, 5: &quot;.pcm&quot;, 6: &quot;.wav&quot;}
+FORMAT = FORMATS[AUE]
+
+CUID = &quot;123456PYTHON&quot;
+TTS_URL = 'http://tsn.baidu.com/text2audio'
+
+class DemoError(Exception):
+    pass
+
+
+&quot;&quot;&quot;  TOKEN start &quot;&quot;&quot;
+TOKEN_URL = 'http://openapi.baidu.com/oauth/2.0/token'
+SCOPE = 'audio_tts_post'  # 有此scope表示有tts能力，没有请在网页里勾选
+
+def fetch_token():
+    print(&quot;fetch token begin&quot;)
+    params = {'grant_type': 'client_credentials',
+              'client_id': API_KEY,
+              'client_secret': SECRET_KEY}
+    post_data = urlencode(params)
+    if (IS_PY3):
+        post_data = post_data.encode('utf-8')
+    req = Request(TOKEN_URL, post_data)
+    try:
+        f = urlopen(req, timeout=5)
+        result_str = f.read()
+    except URLError as err:
+        print('token http response http code : ' + str(err.code))
+        result_str = err.read()
+    if (IS_PY3):
+        result_str = result_str.decode()
+
+    print(result_str)
+    result = json.loads(result_str)
+    print(result)
+    if ('access_token' in result.keys() and 'scope' in result.keys()):
+        if not SCOPE in result['scope'].split(' '):
+            raise DemoError('scope is not correct')
+        print('SUCCESS WITH TOKEN: %s ; EXPIRES IN SECONDS: %s' % (result['access_token'], result['expires_in']))
+        return result['access_token']
+    else:
+        raise DemoError('MAYBE API_KEY or SECRET_KEY not correct: access_token or scope not found in token response')
+&quot;&quot;&quot;  TOKEN end &quot;&quot;&quot;
+
+def tts(str, id):
+    # tex = quote_plus(TEXT) 
+    tex = quote_plus(text[i])  # 此处TEXT需要两次urlencode
+    print(tex)
+    params = {'tok': token, 'tex': tex, 'per': PER, 'spd': SPD, 'pit': PIT, 'vol': VOL, 'aue': AUE, 'cuid': CUID,
+            'lan': 'zh', 'ctp': 1}  # lan ctp 固定参数
+    data = urlencode(params)
+    print('test on Web Browser' + TTS_URL + '?' + data)
+
+    req = Request(TTS_URL, data.encode('utf-8'))
+    has_error = False
+    try:
+        f = urlopen(req)
+        result_str = f.read()
+        headers = dict((name.lower(), value) for name, value in f.headers.items())
+        has_error = ('content-type' not in headers.keys() or headers['content-type'].find('audio/') &lt; 0)
+    except  URLError as err:
+        print('asr http response http code : ' + str(err.code))
+        result_str = err.read()
+        has_error = True
+    save_file = &quot;error.txt&quot; if has_error else &quot;./source/result&quot; + id + FORMAT    #三目运算符
+    with open(save_file, 'wb') as of:
+        of.write(result_str)
+    if has_error:
+        if (IS_PY3):
+            result_str = str(result_str, 'utf-8')
+        print(&quot;tts api  error:&quot; + result_str)
+    print(&quot;result saved as :&quot; + save_file)
+
+
+if __name__ == '__main__':
+    token = fetch_token()
+    text = []
+    file = open(&quot;./source/test.txt&quot;, 'r', encoding='UTF-8')
+    while True:
+        lines = file.readlines(100000)
+        if not lines:
+            break
+        for line in lines:
+            text.append(line)
+    for i in range(len(text)):
+        tts(text[i], str(i+1))
+</code></pre></div><div class=article-footer><div class="panel panel-default panel-badger"><div class=panel-body><figure class=media><div class=media-left><a href=https://github.com/liangkang233 target=_blank class="img-burn thumb-sm visible-lg"><img src="https://s.gravatar.com/avatar/8c0c2764c711daf54a01dddef79fd9da?s=80" class="img-rounded w-full" alt></a></div><div class=media-body><h3 class=media-heading></h3><a href=https://github.com/liangkang233 target=_blank></a><span class=text-dark>LK233</span></a></h3><div>Segment error maker :(</div></div></figure></div></div></div></article><section id=comments><div id=disqus_thread><noscript>Please enable JavaScript to view the <a href=//disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></div></section></div><nav class="bar bar-footer clearfix" data-stick-bottom><div class=bar-inner><ul class="pager pull-left"><li class=prev><a href=https://liangkang233.github.io/2021/03/python%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/ title=Pthon读写文件><i class="icon icon-angle-left" aria-hidden=true></i><span>&nbsp;&nbsp;下一篇</span></a></li><li class=next><a href=https://liangkang233.github.io/2021/04/uwp%E5%BA%94%E7%94%A8%E4%BB%A3%E7%90%86/ title=uwp应用代理><span>上一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden=true></i></a></li><li class=toggle-toc><a class="toggle-btn collapsed" data-toggle=collapse href=#collapseToc aria-expanded=false title=文章目录 role=button><span>[&nbsp;</span><span>文章目录</span>
+<i class="text-collapsed icon icon-anchor"></i>
+<i class="text-in icon icon-close"></i>
+<span>]</span></a></li></ul><div class=bar-right><div class=share-component data-sites=qq,wechat,facebook,twitter data-mobile-sites=qq,wechat,facebook,twitter></div></div></div></nav></main><footer class=footer itemscope itemtype=http://schema.org/WPFooter><ul class=social-links><li><a href=https://www.linkedin.com/in/kang-liang-79b3b5216/ target=_blank title=linkedin data-toggle=tooltip data-placement=top><i class="icon icon-linkedin"></i></a></li><li><a href="http://wpa.qq.com/msgrd?v=3&uin=3479202458&site=qq&menu=yes" target=_blank title=qq data-toggle=tooltip data-placement=top><i class="icon icon-qq"></i></a></li></ul><div class=copyright>&copy;2020 -
+2021 <a href=https://github.com/liangkang233 target=_blank>LK233</a><div class=post-copyright-license><strong>License:</strong>
+<a href=http://creativecommons.org/licenses/by/4.0/deed.zh target=_blank rel=external>CC BY 4.0 CN</a></div></div></footer><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script><script type=text/x-mathjax-config>
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js></script><script>window.jQuery||document.write('<script src="js/jquery.min.js"><\/script>')</script><script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js></script><script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js defer></script><script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js defer></script><script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js defer></script><script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/languages/cpp.min.js defer></script><script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/languages/c.min.js defer></script><script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/languages/go.min.js defer></script><script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/languages/html.min.js defer></script><script>hljs.configure({tabReplace:'    ',classPrefix:''}),hljs.initHighlightingOnLoad()</script><script src=https://liangkang233.github.io/js/application.min.a94ab19cb63a95c8d7fbd7b85cab3ddeea8c369bdf75b9cab6708787ead123af.js></script><script src=https://liangkang233.github.io/js/plugin.min.19c5bcb2fb0789ab4f2b7834e5ceb5e92635645605bab902c1024b25f1502364.js></script><script>(function(a){var b={TRANSLATION:{POSTS:'文章',PAGES:'页面',CATEGORIES:'分类',TAGS:'标签',UNTITLED:'(未命名)'},ROOT_URL:'https://liangkang233.github.io/',CONTENT_URL:'https://liangkang233.github.io//searchindex.json '};a.INSIGHT_CONFIG=b})(window)</script><script type=text/javascript src=https://liangkang233.github.io/js/insight.min.4a2d52de4bfff73e0c688404fe3d17c9a3ae12d9888e1e1ac9c690e4890de2ded50fe55f2b819c2ba55435a76f396f3ea6805765f0b0af5635cdf74ea459eab0.js defer></script><script src=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js></script><script>tocbot.init({tocSelector:'.js-toc',contentSelector:'.js-toc-content',headingSelector:'h1, h2, h3',hasInnerContainers:!0})</script><script defer src=https://cdn1.lncld.net/static/js/av-min-1.2.1.js></script><script defer>AV.init({appId:'2A2wQX1Rs6bncdlrRguNq27J-gzGzoHsz',appKey:'hFOX6badEuckpc33uwYqWFDk'});function showTime(b){var a=new AV.Query(b),c=$('.leancloud_visitors');a.greaterThanOrEqualTo("time",0),a.find({success:function(a){if(a.length==0)return;var b=a;c.each(function(){for(var d=$(this).attr('id').trim(),a=0,c,e,f;a<b.length;a++)c=b[a],e=c.get('time'),f=c.get('url'),d==f&&$(this).text(e)})},error:function(b,a){console.log("Error: "+a.code+" "+a.message)}})}function addCount(a){var a=AV.Object.extend("Counter"),b;url=$(".leancloud_visitors").attr('id').trim(),title=$(".leancloud_visitors").attr('data-flag-title').trim(),b=new AV.Query(a),b.equalTo("url",url),b.find({success:function(d){var c,b;d.length>0?(c=d[0],c.fetchWhenSave(!0),c.increment("time"),c.save(null,{success:function(a){var b=a.get('time');$(document.getElementById(url)).text(b)},error:function(b,a){console.log('Failed to save Visitor num, with error message: '+a.message)}})):(b=new a,b.set("title",title),b.set("url",url),b.set("time",1),b.save(null,{success:function(a){console.log("newcounter.get('time')="+a.get('time'));var b=a.get('time');$(document.getElementById(url)).text(b)},error:function(a,b){console.log('Failed to create')}}))},error:function(a){console.log('Error:'+a.code+" "+a.message)}})}$(function(){var a=AV.Object.extend("Counter");$('.leancloud_visitors').length==1?addCount(a):showTime(a)})</script><script>var disqus_config=function(){this.page.url='https://liangkang233.github.io/2021/04/%E6%89%B9%E9%87%8F%E8%AF%AD%E9%9F%B3%E8%BD%AC%E5%AD%97%E7%AC%A6/',this.page.identifier='liangkang233'};(function(){var a=document,b=a.createElement('script');b.src='//liangkang233.disqus.com/embed.js',b.setAttribute('data-timestamp',+new Date),(a.head||a.body).appendChild(b)})()</script></body></html>
