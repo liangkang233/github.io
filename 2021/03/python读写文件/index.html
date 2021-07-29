@@ -1,29 +1,259 @@
-<!doctype html><html lang=zh><head><title>Pthon读写文件 - LK233's Blog</title><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui"><meta name=renderer content="webkit"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="black"><meta name=format-detection content="telephone=no,email=no,adress=no"><meta name=theme-color content="#000000"><meta http-equiv=window-target content="_top"><meta name=description content="python下修改配置文件参数"><link rel=apple-touch-icon sizes=180x180 href=/web/social.ico><link rel=icon type=ico/png href=/web/GitHub-Mark-32px.png sizes=32x32><meta name=generator content="Hugo 0.85.0 with theme pure"><title>Pthon读写文件 - LK233's Blog</title><link rel=stylesheet href=https://liangkang233.github.io/css/style.min.911fc455aff286fbb0796ca516874da5dbf4b20cf101ff5f78329dc97ed7c711.css><link rel=stylesheet href=https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css async><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css async><meta property="og:title" content="Pthon读写文件"><meta property="og:description" content="python下修改配置文件参数"><meta property="og:type" content="article"><meta property="og:url" content="https://liangkang233.github.io/2021/03/python%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2021-03-27T00:00:00+00:00"><meta property="article:modified_time" content="2021-03-27T00:00:00+00:00"><meta itemprop=name content="Pthon读写文件"><meta itemprop=description content="python下修改配置文件参数"><meta itemprop=datePublished content="2021-03-27T00:00:00+00:00"><meta itemprop=dateModified content="2021-03-27T00:00:00+00:00"><meta itemprop=wordCount content="999"><meta itemprop=keywords content="python,"><meta name=twitter:card content="summary"><meta name=twitter:title content="Pthon读写文件"><meta name=twitter:description content="python下修改配置文件参数"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body class="main-center theme-black" itemscope itemtype=http://schema.org/WebPage><header class=header itemscope itemtype=http://schema.org/WPHeader><div class=slimContent><div class=navbar-header><div class="profile-block text-center"><a id=avatar href=https://github.com/liangkang233 target=_blank><img class="img-circle img-rotate" src=https://liangkang233.github.io/web/head.png width=200 height=200></a><h2 id=name class="hidden-xs hidden-sm">LK233</h2><h3 id=title class="hidden-xs hidden-sm hidden-md">三无 青年</h3><small id=location class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>现居 重庆</small></div><div class=search id=search-form-wrap><form class="search-form sidebar-form"><div class=input-group><input type=text class="search-form-input form-control" placeholder=搜索>
-<span class=input-group-btn><button type=submit class="search-form-submit btn btn-flat" onclick=return!1><i class="icon icon-search"></i></button></span></div><div class=ins-search><div class=ins-search-mask></div><div class=ins-search-container><div class=ins-input-wrapper><input type=text class=ins-search-input placeholder=想要查找什么... x-webkit-speech>
-<button type=button class="close ins-close ins-selectable" data-dismiss=modal aria-label=Close><span aria-hidden=true>×</span></button></div><div class=ins-section-wrapper><div class=ins-section-container></div></div></div></div></form></div><button class="navbar-toggle collapsed" type=button data-toggle=collapse data-target=#main-navbar aria-controls=main-navbar aria-expanded=false>
+<!doctype html><html lang=zh>
+<head>
+<title>
+Pthon读写文件 - LK233's Blog
+</title>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui">
+<meta name=renderer content="webkit">
+<meta http-equiv=cache-control content="no-transform">
+<meta http-equiv=cache-control content="no-siteapp">
+<meta name=apple-mobile-web-app-capable content="yes">
+<meta name=apple-mobile-web-app-status-bar-style content="black">
+<meta name=format-detection content="telephone=no,email=no,adress=no">
+<meta name=theme-color content="#000000">
+<meta http-equiv=window-target content="_top">
+<meta name=description content="python下修改配置文件参数">
+<link rel=apple-touch-icon sizes=180x180 href=/web/social.ico>
+<link rel=icon type=ico/png href=/web/GitHub-Mark-32px.png sizes=32x32>
+<meta name=generator content="Hugo 0.86.0 with theme pure">
+<title>Pthon读写文件 - LK233's Blog</title>
+<link rel=stylesheet href=https://liangkang233.github.io/css/style.min.911fc455aff286fbb0796ca516874da5dbf4b20cf101ff5f78329dc97ed7c711.css>
+<link rel=stylesheet href=https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css async>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css async>
+<meta property="og:title" content="Pthon读写文件">
+<meta property="og:description" content="python下修改配置文件参数">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://liangkang233.github.io/2021/03/python%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2021-03-27T00:00:00+00:00">
+<meta property="article:modified_time" content="2021-03-27T00:00:00+00:00">
+<meta itemprop=name content="Pthon读写文件">
+<meta itemprop=description content="python下修改配置文件参数"><meta itemprop=datePublished content="2021-03-27T00:00:00+00:00">
+<meta itemprop=dateModified content="2021-03-27T00:00:00+00:00">
+<meta itemprop=wordCount content="999">
+<meta itemprop=keywords content="python,"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="Pthon读写文件">
+<meta name=twitter:description content="python下修改配置文件参数"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
+</head>
+<body class="main-center theme-black" itemscope itemtype=http://schema.org/WebPage><header class=header itemscope itemtype=http://schema.org/WPHeader>
+<div class=slimContent>
+<div class=navbar-header>
+<div class="profile-block text-center">
+<a id=avatar href=https://github.com/liangkang233 target=_blank>
+<img class="img-circle img-rotate" src=https://liangkang233.github.io/web/head.png width=200 height=200>
+</a>
+<h2 id=name class="hidden-xs hidden-sm">LK233</h2>
+<h3 id=title class="hidden-xs hidden-sm hidden-md">三无 青年</h3>
+<small id=location class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>现居 重庆</small>
+</div><div class=search id=search-form-wrap>
+<form class="search-form sidebar-form">
+<div class=input-group>
+<input type=text class="search-form-input form-control" placeholder=搜索>
+<span class=input-group-btn>
+<button type=submit class="search-form-submit btn btn-flat" onclick=return!1><i class="icon icon-search"></i></button>
+</span>
+</div>
+<div class=ins-search>
+<div class=ins-search-mask></div>
+<div class=ins-search-container>
+<div class=ins-input-wrapper>
+<input type=text class=ins-search-input placeholder=想要查找什么... x-webkit-speech>
+<button type=button class="close ins-close ins-selectable" data-dismiss=modal aria-label=Close><span aria-hidden=true>×</span></button>
+</div>
+<div class=ins-section-wrapper>
+<div class=ins-section-container></div>
+</div>
+</div>
+</div>
+</form>
+</div>
+<button class="navbar-toggle collapsed" type=button data-toggle=collapse data-target=#main-navbar aria-controls=main-navbar aria-expanded=false>
 <span class=sr-only>Toggle navigation</span>
-<span class=icon-bar></span><span class=icon-bar></span><span class=icon-bar></span></button></div><nav id=main-navbar class="collapse navbar-collapse" itemscope itemtype=http://schema.org/SiteNavigationElement role=navigation><ul class="nav navbar-nav main-nav"><li class="menu-item menu-item-home"><a href=/><i class="icon icon-home-fill"></i>
-<span class=menu-title>主页</span></a></li><li class="menu-item menu-item-books"><a href=/posts/><i class="icon icon-book-fill"></i>
-<span class=menu-title>文章</span></a></li><li class="menu-item menu-item-email"><a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=agYDCwQNAQsEDVhZWSobG0QJBQc"><i class="icon icon-email"></i>
-<span class=menu-title>邮箱</span></a></li><li class="menu-item menu-item-github"><a href=https://github.com/liangkang233><i class="icon icon-github-fill"></i>
-<span class=menu-title>github</span></a></li><li class="menu-item menu-item-about"><a href=/about/><i class="icon icon-cup-fill"></i>
-<span class=menu-title>关于</span></a></li></ul></nav></div></header><aside class=sidebar itemscope itemtype=http://schema.org/WPSideBar><div class=slimContent><div class=widget><h3 class=widget-title>^_^</h3><div class=widget-body><div id=board><div class=content><p>记录学习、生活的个人博客</p></div></div></div></div><div class=widget><h3 class=widget-title>标签</h3><div id=tag-cloud-list class=widget-body><a href=https://liangkang233.github.io/tags/blog-test/ class=tag-list-link rel=1>blog-test<span class=tag-list-count>1</span></a>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+</button>
+</div>
+<nav id=main-navbar class="collapse navbar-collapse" itemscope itemtype=http://schema.org/SiteNavigationElement role=navigation>
+<ul class="nav navbar-nav main-nav">
+<li class="menu-item menu-item-home">
+<a href=/>
+<i class="icon icon-home-fill"></i>
+<span class=menu-title>主页</span>
+</a>
+</li>
+<li class="menu-item menu-item-books">
+<a href=/posts/>
+<i class="icon icon-book-fill"></i>
+<span class=menu-title>文章</span>
+</a>
+</li>
+<li class="menu-item menu-item-email">
+<a href=mailto:liangkang233@outlook.com>
+<i class="icon icon-email"></i>
+<span class=menu-title>邮箱</span>
+</a>
+</li>
+<li class="menu-item menu-item-github">
+<a href=https://github.com/liangkang233>
+<i class="icon icon-github-fill"></i>
+<span class=menu-title>github</span>
+</a>
+</li>
+<li class="menu-item menu-item-about">
+<a href=/about/>
+<i class="icon icon-cup-fill"></i>
+<span class=menu-title>关于</span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</header>
+<aside class=sidebar itemscope itemtype=http://schema.org/WPSideBar>
+<div class=slimContent>
+<div class=widget>
+<h3 class=widget-title>^_^</h3>
+<div class=widget-body>
+<div id=board>
+<div class=content><p>记录学习、生活的个人博客</p>
+</div>
+</div>
+</div>
+</div>
+<div class=widget>
+<h3 class=widget-title> 标签</h3>
+<div id=tag-cloud-list class=widget-body>
+<a href=https://liangkang233.github.io/tags/blog-test/ class=tag-list-link rel=1>blog-test<span class=tag-list-count>1</span></a>
 <a href=https://liangkang233.github.io/tags/c/c++/ class=tag-list-link rel=2>c/c++<span class=tag-list-count>2</span></a>
 <a href=https://liangkang233.github.io/tags/go/ class=tag-list-link rel=1>go<span class=tag-list-count>1</span></a>
+<a href=https://liangkang233.github.io/tags/linux/ class=tag-list-link rel=1>linux<span class=tag-list-count>1</span></a>
 <a href=https://liangkang233.github.io/tags/python/ class=tag-list-link rel=3>python<span class=tag-list-count>3</span></a>
 <a href=https://liangkang233.github.io/tags/%E4%BB%BF%E7%9C%9F/ class=tag-list-link rel=3>仿真<span class=tag-list-count>3</span></a>
-<a href=https://liangkang233.github.io/tags/%E5%B0%8F%E9%97%AE%E9%A2%98/ class=tag-list-link rel=1>小问题<span class=tag-list-count>1</span></a></div><script>document.onreadystatechange=()=>{document.readyState==='complete'&&tagCloud('#tag-cloud-list a',8,20)};function tagCloud(c,d,e){let b=0,a=0;$(c).each(function(){let c=Number($(this).attr("rel"));b<c&&(b=c),(a>c||a==0)&&(a=c)});let f=(e-d)/(b-a);$(c).each(function(){let b=$(this).attr("rel")-a;$(this).css({"font-size":d+b*f+'px'})})}</script></div><div class=widget><h3 class=widget-title>分类</h3><div class=widget-body><ul class=category-list><li class=category-list-item><a href=https://liangkang233.github.io/categories/core/ class=category-list-link>core</a><span class=category-list-count>8</span></li><li class=category-list-item><a href=https://liangkang233.github.io/categories/win10/ class=category-list-link>win10</a><span class=category-list-count>1</span></li><li class=category-list-item><a href=https://liangkang233.github.io/categories/%E5%AD%A6%E4%B9%A0/ class=category-list-link>学习</a><span class=category-list-count>4</span></li><li class=category-list-item><a href=https://liangkang233.github.io/categories/%E5%B7%A5%E5%85%B7/ class=category-list-link>工具</a><span class=category-list-count>2</span></li><li class=category-list-item><a href=https://liangkang233.github.io/categories/%E6%9D%82%E8%B0%88/ class=category-list-link>杂谈</a><span class=category-list-count>1</span></li></ul></div></div><div class=widget><h3 class=widget-title>最新文章</h3><div class=widget-body><ul class="recent-post-list list-unstyled no-thumbnail"><li><div class=item-inner><p class=item-title><a href=https://liangkang233.github.io/2021/07/core%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ class=title>Core 学习笔记</a></p><p class=item-date><time datetime="2021-07-16 00:00:00 +0000 UTC" itemprop=datePublished>2021-07-16</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://liangkang233.github.io/2021/07/emane/ class=title>Emane学习记录</a></p><p class=item-date><time datetime="2021-07-15 00:00:00 +0000 UTC" itemprop=datePublished>2021-07-15</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://liangkang233.github.io/2021/07/services/ class=title>Core services</a></p><p class=item-date><time datetime="2021-07-10 00:00:00 +0000 UTC" itemprop=datePublished>2021-07-10</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://liangkang233.github.io/2021/07/distributed/ class=title>Core 分布式</a></p><p class=item-date><time datetime="2021-07-06 00:00:00 +0000 UTC" itemprop=datePublished>2021-07-06</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://liangkang233.github.io/2021/07/ctrlnet/ class=title>Core 控制网络</a></p><p class=item-date><time datetime="2021-07-06 00:00:00 +0000 UTC" itemprop=datePublished>2021-07-06</time></p></div></li></ul></div></div></div></aside><aside class="sidebar sidebar-toc collapse" id=collapseToc itemscope itemtype=http://schema.org/WPSideBar><div class=slimContent><h4 class=toc-title>文章目录</h4><nav id=toc class="js-toc toc"></nav></div></aside><main class=main role=main><div class=content><article id=- class="article article-type-" itemscope itemtype=http://schema.org/BlogPosting><div class=article-header><h1 itemprop=name><a class=article-title href=/2021/03/python%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/>Pthon读写文件</a></h1><div class=article-meta><span class=article-date><i class="icon icon-calendar-check"></i>&nbsp;
-<a href=https://liangkang233.github.io/2021/03/python%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/ class=article-date><time datetime="2021-03-27 00:00:00 +0000 UTC" itemprop=datePublished>2021-03-27</time></a></span>
-<span class=article-category><i class="icon icon-folder"></i>&nbsp;
-<a class=article-category-link href=/categories/%E5%AD%A6%E4%B9%A0/>学习</a></span>
-<span class=article-tag><i class="icon icon-tags"></i>&nbsp;
-<a class=article-tag-link href=/tags/python/>python</a></span>
-<span class="article-read hidden-xs"><i class="icon icon-eye-fill" aria-hidden=true></i>
-<span id=busuanzi_container_page_pv><span id=busuanzi_value_page_pv>0</span></span></span>
+<a href=https://liangkang233.github.io/tags/%E5%B0%8F%E9%97%AE%E9%A2%98/ class=tag-list-link rel=1>小问题<span class=tag-list-count>1</span></a>
+</div>
+<script>document.onreadystatechange=()=>{document.readyState==='complete'&&tagCloud('#tag-cloud-list a',8,20)};function tagCloud(c,d,e){let b=0,a=0;$(c).each(function(){let c=Number($(this).attr("rel"));b<c&&(b=c),(a>c||a==0)&&(a=c)});let f=(e-d)/(b-a);$(c).each(function(){let b=$(this).attr("rel")-a;$(this).css({"font-size":d+b*f+'px'})})}</script>
+</div>
+<div class=widget>
+<h3 class=widget-title> 分类</h3>
+<div class=widget-body>
+<ul class=category-list>
+<li class=category-list-item><a href=https://liangkang233.github.io/categories/core/ class=category-list-link>core</a><span class=category-list-count>8</span></li>
+<li class=category-list-item><a href=https://liangkang233.github.io/categories/%E5%AD%A6%E4%B9%A0/ class=category-list-link>学习</a><span class=category-list-count>4</span></li>
+<li class=category-list-item><a href=https://liangkang233.github.io/categories/%E5%B7%A5%E5%85%B7/ class=category-list-link>工具</a><span class=category-list-count>2</span></li>
+<li class=category-list-item><a href=https://liangkang233.github.io/categories/%E6%9D%82%E8%B0%88/ class=category-list-link>杂谈</a><span class=category-list-count>1</span></li>
+<li class=category-list-item><a href=https://liangkang233.github.io/categories/%E8%AE%B0%E5%BD%95/ class=category-list-link>记录</a><span class=category-list-count>2</span></li>
+</ul>
+</div>
+</div>
+<div class=widget>
+<h3 class=widget-title>最新文章</h3>
+<div class=widget-body>
+<ul class="recent-post-list list-unstyled no-thumbnail">
+<li>
+<div class=item-inner>
+<p class=item-title>
+<a href=https://liangkang233.github.io/2021/07/linux%E4%B8%BB%E6%9C%BA%E8%B7%AF%E7%94%B1%E8%BD%AC%E5%8F%91/ class=title>linux配置主机路由转发</a>
+</p>
+<p class=item-date>
+<time datetime="2021-07-25 00:00:00 +0000 UTC" itemprop=datePublished>2021-07-25</time>
+</p>
+</div>
+</li>
+<li>
+<div class=item-inner>
+<p class=item-title>
+<a href=https://liangkang233.github.io/2021/07/core%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ class=title>Core 学习笔记</a>
+</p>
+<p class=item-date>
+<time datetime="2021-07-16 00:00:00 +0000 UTC" itemprop=datePublished>2021-07-16</time>
+</p>
+</div>
+</li>
+<li>
+<div class=item-inner>
+<p class=item-title>
+<a href=https://liangkang233.github.io/2021/07/emane/ class=title>Emane学习记录</a>
+</p>
+<p class=item-date>
+<time datetime="2021-07-15 00:00:00 +0000 UTC" itemprop=datePublished>2021-07-15</time>
+</p>
+</div>
+</li>
+<li>
+<div class=item-inner>
+<p class=item-title>
+<a href=https://liangkang233.github.io/2021/07/services/ class=title>Core services</a>
+</p>
+<p class=item-date>
+<time datetime="2021-07-10 00:00:00 +0000 UTC" itemprop=datePublished>2021-07-10</time>
+</p>
+</div>
+</li>
+<li>
+<div class=item-inner>
+<p class=item-title>
+<a href=https://liangkang233.github.io/2021/07/distributed/ class=title>Core 分布式</a>
+</p>
+<p class=item-date>
+<time datetime="2021-07-06 00:00:00 +0000 UTC" itemprop=datePublished>2021-07-06</time>
+</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</aside>
+<aside class="sidebar sidebar-toc collapse" id=collapseToc itemscope itemtype=http://schema.org/WPSideBar>
+<div class=slimContent>
+<h4 class=toc-title>文章目录</h4>
+<nav id=toc class="js-toc toc">
+</nav>
+</div>
+</aside>
+<main class=main role=main><div class=content>
+<article id=- class="article article-type-" itemscope itemtype=http://schema.org/BlogPosting>
+<div class=article-header>
+<h1 itemprop=name>
+<a class=article-title href=/2021/03/python%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/>Pthon读写文件</a>
+</h1>
+<div class=article-meta>
+<span class=article-date>
+<i class="icon icon-calendar-check"></i>&nbsp;
+<a href=https://liangkang233.github.io/2021/03/python%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/ class=article-date>
+<time datetime="2021-03-27 00:00:00 +0000 UTC" itemprop=datePublished>2021-03-27</time>
+</a>
+</span>
+<span class=article-category>
+<i class="icon icon-folder"></i>&nbsp;
+<a class=article-category-link href=/categories/%E5%AD%A6%E4%B9%A0/> 学习 </a>
+</span>
+<span class=article-tag>
+<i class="icon icon-tags"></i>&nbsp;
+<a class=article-tag-link href=/tags/python/> python </a>
+</span>
+<span class="article-read hidden-xs">
+<i class="icon icon-eye-fill" aria-hidden=true></i>
+<span id=busuanzi_container_page_pv>
+<span id=busuanzi_value_page_pv>0</span>
+</span>
+</span>
 <span class=post-comment><i class="icon icon-comment"></i>&nbsp;<a href=/2021/03/python%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/#comments class=article-comment-link>评论</a></span>
-<span class="post-wordcount hidden-xs" itemprop=wordCount>字数统计: 999字</span></div></div><div class="article-entry marked-body js-toc-content" itemprop=articleBody><h1 id=功能>功能</h1><p>由于刚好有需求要更改配置文件参数，想到python简单易用的特点，所以边学边做了这个程序帮助修改参数。该程序功能为读取一个二进制文本其中的参数按照指定格式修改。</p><h2 id=参考教程>参考教程</h2><p><a href=https://www.liaoxuefeng.com/wiki/1016959663602400/1017607179232640/>文件读写教程</a>.
+<span class="post-wordcount hidden-xs" itemprop=wordCount>字数统计: 999字</span>
+</div>
+</div>
+<div class="article-entry marked-body js-toc-content" itemprop=articleBody>
+<h1 id=功能>功能</h1>
+<p>由于刚好有需求要更改配置文件参数，想到python简单易用的特点，所以边学边做了这个程序帮助修改参数。该程序功能为读取一个二进制文本其中的参数按照指定格式修改。</p>
+<h2 id=参考教程>参考教程</h2>
+<p><a href=https://www.liaoxuefeng.com/wiki/1016959663602400/1017607179232640/>文件读写教程</a>.
 <a href=https://www.liaoxuefeng.com/wiki/1016959663602400/1017639890281664>正则表达式教程</a>.
-python的很多基础都是在廖雪峰老师这学的，写的很详细不错，所以后面的分析就不详细说了。</p><h1 id=源码>源码</h1><pre><code class=language-python>    #!/usr/bin/python3
+python的很多基础都是在廖雪峰老师这学的，写的很详细不错，所以后面的分析就不详细说了。</p>
+<h1 id=源码>源码</h1>
+<pre><code class=language-python>    #!/usr/bin/python3
     # coding: utf-8
     speed = int(input(&quot;Please enter the adjustment speed: &quot;))
 
@@ -61,10 +291,23 @@ python的很多基础都是在廖雪峰老师这学的，写的很详细不错�
         new_nodes.writelines(lines)
 
     print(&quot;Modified to complete&quot;)
-</code></pre><h2 id=代码分析>代码分析</h2><ol><li>python修改文本暂时没找到直接更改办法，<strong>上述代码都是先读取文本复制到内存中的列表，修改后再将列表写入文件。</strong></li><li>修改test.config文件代码，使用readlines返回每行字符串组成的list。当然也可以用readline和while读取每一行来进行操作。</li><li>使用startswith对每行行首判断寻找关键字符串类型，之后使用split空格分开为字符串列表后用切片提取出值对应的字符串。
+</code></pre>
+<h2 id=代码分析>代码分析</h2>
+<ol>
+<li>python修改文本暂时没找到直接更改办法，<strong>上述代码都是先读取文本复制到内存中的列表，修改后再将列表写入文件。</strong></li>
+<li>修改test.config文件代码，使用readlines返回每行字符串组成的list。当然也可以用readline和while读取每一行来进行操作。</li>
+<li>使用startswith对每行行首判断寻找关键字符串类型，之后使用split空格分开为字符串列表后用切片提取出值对应的字符串。
 例如下图中config文件会读取到lines[8]这行有待寻找关键字，用split生成list[&lsquo;SIMULATION-TIME&rsquo;, &lsquo;3600S\n&rsquo;],
-进行切片操作[1:-2:1]得到字符串'3600' (回车\n也需要切片去除)，这样转化成int型处理完再转为字符串填充回原来列表中即可。</li></ol><p><img src=https://img-blog.csdnimg.cn/2021032713570211.png alt=config文件></p><ol start=4><li>之后类似的对test.nodes进行操作!<br><img src=https://img-blog.csdnimg.cn/20210327140343298.png alt=test.nodes文件></li></ol><p>此处，由于其配置文件规则简单由空格区分，所以处理起来只需要split和列表切片，若是复杂的字符串数据还是得用上面教程中的正则表达式来处理。
-此外，如果需要更改参数精度更好的案例这里也提供一份</p><pre><code class=language-python>#!/usr/bin/python3
+进行切片操作[1:-2:1]得到字符串'3600' (回车\n也需要切片去除)，这样转化成int型处理完再转为字符串填充回原来列表中即可。</li>
+</ol>
+<p><img src=https://img-blog.csdnimg.cn/2021032713570211.png alt=config文件></p>
+<ol start=4>
+<li>之后类似的对test.nodes进行操作!<br>
+<img src=https://img-blog.csdnimg.cn/20210327140343298.png alt=test.nodes文件></li>
+</ol>
+<p>此处，由于其配置文件规则简单由空格区分，所以处理起来只需要split和列表切片，若是复杂的字符串数据还是得用上面教程中的正则表达式来处理。
+此外，如果需要更改参数精度更好的案例这里也提供一份</p>
+<pre><code class=language-python>#!/usr/bin/python3
 #coding: utf-8
 
 #修改 1.nodes文件
@@ -89,16 +332,90 @@ with open('1.nodes','w', encoding='utf-8') as new_nodes :
 
 print(&quot;Modified to complete&quot;)
 
-</code></pre></div><div class=article-footer><div class="panel panel-default panel-badger"><div class=panel-body><figure class=media><div class=media-left><a href=https://github.com/liangkang233 target=_blank class="img-burn thumb-sm visible-lg"><img src=https://liangkang233.github.io/web/head.png class="img-rounded w-full" alt></a></div><div class=media-body><h3 class=media-heading></h3><a href=https://github.com/liangkang233 target=_blank></a><span class=text-dark>LK233</span></a></h3><div>Segment error maker :(</div></div></figure></div></div></div></article><section id=comments><div id=vcomments></div></section></div><nav class="bar bar-footer clearfix" data-stick-bottom><div class=bar-inner><ul class="pager pull-left"><li class=prev><a href=https://liangkang233.github.io/2020/12/hello-world/ title="Hello World"><i class="icon icon-angle-left" aria-hidden=true></i><span>&nbsp;&nbsp;下一篇</span></a></li><li class=next><a href=https://liangkang233.github.io/2021/04/%E6%89%B9%E9%87%8F%E8%AF%AD%E9%9F%B3%E8%BD%AC%E5%AD%97%E7%AC%A6/ title=批量语音转文字><span>上一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden=true></i></a></li><li class=toggle-toc><a class="toggle-btn collapsed" data-toggle=collapse href=#collapseToc aria-expanded=false title=文章目录 role=button><span>[&nbsp;</span><span>文章目录</span>
+</code></pre>
+</div>
+<div class=article-footer>
+<div class="panel panel-default panel-badger">
+<div class=panel-body>
+<figure class=media>
+<div class=media-left>
+<a href=https://github.com/liangkang233 target=_blank class="img-burn thumb-sm visible-lg">
+<img src=https://liangkang233.github.io/web/head.png class="img-rounded w-full" alt>
+</a>
+</div>
+<div class=media-body>
+<h3 class=media-heading></h3><a href=https://github.com/liangkang233 target=_blank></a><span class=text-dark>LK233</span></a></h3>
+<div>Segment error maker :(</div>
+</div>
+</figure>
+</div>
+</div>
+</div>
+</article>
+<section id=comments>
+<div id=vcomments></div>
+</section>
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+<div class=bar-inner>
+<ul class="pager pull-left">
+<li class=prev>
+<a href=https://liangkang233.github.io/2020/12/hello-world/ title="Hello World"><i class="icon icon-angle-left" aria-hidden=true></i><span>&nbsp;&nbsp;下一篇</span></a>
+</li>
+<li class=next>
+<a href=https://liangkang233.github.io/2021/04/%E6%89%B9%E9%87%8F%E8%AF%AD%E9%9F%B3%E8%BD%AC%E5%AD%97%E7%AC%A6/ title=批量语音转文字><span>上一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden=true></i></a>
+</li>
+<li class=toggle-toc>
+<a class="toggle-btn collapsed" data-toggle=collapse href=#collapseToc aria-expanded=false title=文章目录 role=button>
+<span>[&nbsp;</span><span>文章目录</span>
 <i class="text-collapsed icon icon-anchor"></i>
 <i class="text-in icon icon-close"></i>
-<span>]</span></a></li></ul><div class=bar-right><div class=share-component data-sites=qq,wechat,facebook,twitter data-mobile-sites=qq,wechat,facebook,twitter></div></div></div></nav></main><footer class=footer itemscope itemtype=http://schema.org/WPFooter><ul class=social-links><li><a href=https://www.linkedin.com/in/kang-liang-79b3b5216/ target=_blank title=linkedin data-toggle=tooltip data-placement=top><i class="icon icon-linkedin"></i></a></li><li><a href="http://wpa.qq.com/msgrd?v=3&uin=3479202458&site=qq&menu=yes" target=_blank title=qq data-toggle=tooltip data-placement=top><i class="icon icon-qq"></i></a></li></ul><div class=copyright>&copy;2020 -
-2021 <a href=https://github.com/liangkang233 target=_blank>LK233</a><div class=post-copyright-license><strong>License:</strong>
-<a href=http://creativecommons.org/licenses/by/4.0/deed.zh target=_blank rel=external>CC BY 4.0 CN</a></div></div></footer><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script><script type=text/x-mathjax-config>
+<span>]</span>
+</a>
+</li>
+</ul>
+<div class=bar-right>
+<div class=share-component data-sites=qq,wechat,facebook,twitter data-mobile-sites=qq,wechat,facebook,twitter></div>
+</div>
+</div>
+</nav>
+</main><footer class=footer itemscope itemtype=http://schema.org/WPFooter>
+<ul class=social-links>
+<li><a href=https://www.linkedin.com/in/kang-liang-79b3b5216/ target=_blank title=linkedin data-toggle=tooltip data-placement=top>
+<i class="icon icon-linkedin"></i></a></li>
+<li><a href="http://wpa.qq.com/msgrd?v=3&uin=3479202458&site=qq&menu=yes" target=_blank title=qq data-toggle=tooltip data-placement=top>
+<i class="icon icon-qq"></i></a></li>
+</ul>
+<div class=copyright>
+&copy;2020 -
+2021 <a href=https://github.com/liangkang233 target=_blank> LK233 </a>
+<div class=post-copyright-license>
+<strong>License: </strong>
+<a href=http://creativecommons.org/licenses/by/4.0/deed.zh target=_blank rel=external>CC BY 4.0 CN</a>
+</div>
+</div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type=text/x-mathjax-config>
     MathJax.Hub.Config({
             showMathMenu: false, //disables context menu
             tex2jax: {
             inlineMath: [ ['$','$'], ['\\(','\\)'] ]
            }
     });
-</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js></script><script>window.jQuery||document.write('<script src="js/jquery.min.js"><\/script>')</script><script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js></script><script>hljs.configure({tabReplace:'    ',classPrefix:''}),hljs.initHighlightingOnLoad()</script><script src=https://liangkang233.github.io/js/application.min.a94ab19cb63a95c8d7fbd7b85cab3ddeea8c369bdf75b9cab6708787ead123af.js></script><script src=https://liangkang233.github.io/js/plugin.min.19c5bcb2fb0789ab4f2b7834e5ceb5e92635645605bab902c1024b25f1502364.js></script><script>(function(a){var b={TRANSLATION:{POSTS:'文章',PAGES:'页面',CATEGORIES:'分类',TAGS:'标签',UNTITLED:'(未命名)'},ROOT_URL:'https://liangkang233.github.io/',CONTENT_URL:'https://liangkang233.github.io//searchindex.json '};a.INSIGHT_CONFIG=b})(window)</script><script type=text/javascript src=https://liangkang233.github.io/js/insight.min.4a2d52de4bfff73e0c688404fe3d17c9a3ae12d9888e1e1ac9c690e4890de2ded50fe55f2b819c2ba55435a76f396f3ea6805765f0b0af5635cdf74ea459eab0.js defer></script><script src=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js></script><script>tocbot.init({tocSelector:'.js-toc',contentSelector:'.js-toc-content',headingSelector:'h1, h2, h3',hasInnerContainers:!0})</script><script async src=https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><script src=https://cdn1.lncld.net/static/js/3.0.4/av-min.js></script><script src=https://cdn.jsdelivr.net/npm/valine></script><script type=text/javascript>var GUEST=['nick','mail','link'],meta='nick,mail';meta=meta.split(',').filter(function(a){return GUEST.indexOf(a)>-1}),new Valine({el:'#vcomments',verify:null,notify:null,appId:'2A2wQX1Rs6bncdlrRguNq27J-gzGzoHsz',appKey:'hFOX6badEuckpc33uwYqWFDk',placeholder:'评论框上方可以留下联系邮箱，评论支持MD语法',avatar:'retro',meta,pageSize:'10'||10,visitor:!1,emojiCDN:'//i0.hdslb.com/bfs/emote/',emojiMaps:{"藏狐":"ba0937ef6f3ccca85e2e0047e6263f3b4da37201.png",doge:"3087d273a78ccaff4bb1e9972e2ba2a7583c9f11.png","微笑":"685612eadc33f6bc233776c6241813385844f182.png",OK:"4683fd9ffc925fa6423110979d7dcac5eda297f4.png","星星眼":"63c9d1a31c0da745b61cdb35e0ecb28635675db2.png","妙啊":"b4cb77159d58614a9b787b91b1cd22a81f383535.png","辣眼睛":"35d62c496d1e4ea9e091243fa812866f5fecc101.png","吃瓜":"4191ce3c44c2b3df8fd97c33f85d3ab15f4f3c84.png","滑稽":"d15121545a99ac46774f1f4465b895fe2d1411c3.png","呲牙":"b5a5898491944a4268360f2e7a84623149672eb6.png","打call":"431432c43da3ee5aab5b0e4f8931953e649e9975.png","歪嘴":"4384050fbab0586259acdd170b510fe262f08a17.png","调皮":"8290b7308325e3179d2154327c85640af1528617.png","嗑瓜子":"28a91da1685d90124cfeead74622e1ebb417c0eb.png","笑哭":"c3043ba94babf824dea03ce500d0e73763bf4f40.png","脱单doge":"bf7e00ecab02171f8461ee8cf439c73db9797748.png","给心心":"1597302b98827463f5b75c7cac1f29ea6ce572c4.png","嘟嘟":"abd7404537d8162720ccbba9e0a8cdf75547e07a.png","喜欢":"8a10a4d73a89f665feff3d46ca56e83dc68f9eb8.png","酸了":"92b1c8cbceea3ae0e8e32253ea414783e8ba7806.png","哦呼":"362bded07ea5434886271d23fa25f5d85d8af06c.png","嫌弃":"de4c0783aaa60ec03de0a2b90858927bfad7154b.png","大哭":"2caafee2e5db4db72104650d87810cc2c123fc86.png","害羞":"9d2ec4e1fbd6cb1b4d12d2bbbdd124ccb83ddfda.png","疑惑":"b7840db4b1f9f4726b7cb23c0972720c1698d661.png","喜极而泣":"485a7e0c01c2d70707daae53bee4a9e2e31ef1ed.png","奸笑":"bb84906573472f0a84cebad1e9000eb6164a6f5a.png","笑":"81edf17314cea3b48674312b4364df44d5c01f17.png","偷笑":"6c49d226e76c42cd8002abc47b3112bc5a92f66a.png","惊讶":"f8e9a59cad52ae1a19622805696a35f0a0d853f3.png","捂脸":"6921bb43f0c634870b92f4a8ad41dada94a5296d.png","阴险":"ba8d5f8e7d136d59aab52c40fd3b8a43419eb03c.png","囧":"12e41d357a9807cc80ef1e1ed258127fcc791424.png","呆":"33ad6000d9f9f168a0976bc60937786f239e5d8c.png","抠鼻":"cb89184c97e3f6d50acfd7961c313ce50360d70f.png","大笑":"ca94ad1c7e6dac895eb5b33b7836b634c614d1c0.png","惊喜":"0afecaf3a3499479af946f29749e1a6c285b6f65.png","无语":"44667b7d9349957e903b1b62cb91fb9b13720f04.png","点赞":"1a67265993913f4c35d15a6028a30724e83e7d35.png","鼓掌":"895d1fc616b4b6c830cf96012880818c0e1de00d.png","尴尬":"cb321684ed5ce6eacdc2699092ab8fe7679e4fda.png","灵魂出窍":"43d3db7d97343c01b47e22cfabeca84b4251f35a.png","委屈":"d2f26cbdd6c96960320af03f5514c5b524990840.png","傲娇":"010540d0f61220a0db4922e4a679a1d8eca94f4e.png","疼":"905fd9a99ec316e353b9bd4ecd49a5f0a301eabf.png","冷":"cb0ebbd0668640f07ebfc0e03f7a18a8cd00b4ed.png","生病":"0f25ce04ae1d7baf98650986454c634f6612cb76.png","吓":"9c10c5ebc7bef27ec641b8a1877674e0c65fea5d.png","吐":"06946bfe71ac48a6078a0b662181bb5cad09decc.png","捂眼":"c5c6d6982e1e53e478daae554b239f2b227b172b.png","嘘声":"e64af664d20716e090f10411496998095f62f844.png","思考":"cfa9b7e89e4bfe04bbcd34ccb1b0df37f4fa905c.png","再见":"fc510306bae26c9aec7e287cdf201ded27b065b9.png","翻白眼":"eba54707c7168925b18f6f8b1f48d532fe08c2b1.png","哈欠":"888d877729cbec444ddbd1cf4c9af155a7a06086.png","奋斗":"bb2060c15dba7d3fd731c35079d1617f1afe3376.png","墨镜":"3a03aebfc06339d86a68c2d893303b46f4b85771.png","难过":"a651db36701610aa70a781fa98c07c9789b11543.png",tv_doge:"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png"}})</script></body></html>
+</script>
+<script src=https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js></script>
+<script>window.jQuery||document.write('<script src="js/jquery.min.js"><\/script>')</script>
+<script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js></script>
+<script>hljs.configure({tabReplace:'    ',classPrefix:''}),hljs.initHighlightingOnLoad()</script>
+<script src=https://liangkang233.github.io/js/application.min.a94ab19cb63a95c8d7fbd7b85cab3ddeea8c369bdf75b9cab6708787ead123af.js></script>
+<script src=https://liangkang233.github.io/js/plugin.min.19c5bcb2fb0789ab4f2b7834e5ceb5e92635645605bab902c1024b25f1502364.js></script>
+<script>(function(a){var b={TRANSLATION:{POSTS:'文章',PAGES:'页面',CATEGORIES:'分类',TAGS:'标签',UNTITLED:'(未命名)'},ROOT_URL:'https://liangkang233.github.io/',CONTENT_URL:'https://liangkang233.github.io//searchindex.json '};a.INSIGHT_CONFIG=b})(window)</script>
+<script type=text/javascript src=https://liangkang233.github.io/js/insight.min.4a2d52de4bfff73e0c688404fe3d17c9a3ae12d9888e1e1ac9c690e4890de2ded50fe55f2b819c2ba55435a76f396f3ea6805765f0b0af5635cdf74ea459eab0.js defer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js></script>
+<script>tocbot.init({tocSelector:'.js-toc',contentSelector:'.js-toc-content',headingSelector:'h1, h2, h3',hasInnerContainers:!0})</script>
+<script async src=https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script>
+<script src=https://cdn1.lncld.net/static/js/3.0.4/av-min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/valine></script>
+<script type=text/javascript>var GUEST=['nick','mail','link'],meta='nick,mail';meta=meta.split(',').filter(function(a){return GUEST.indexOf(a)>-1}),new Valine({el:'#vcomments',verify:null,notify:null,appId:'2A2wQX1Rs6bncdlrRguNq27J-gzGzoHsz',appKey:'hFOX6badEuckpc33uwYqWFDk',placeholder:'评论框上方可以留下联系邮箱，评论支持MD语法',avatar:'retro',meta,pageSize:'10'||10,visitor:!1,emojiCDN:'//i0.hdslb.com/bfs/emote/',emojiMaps:{"藏狐":"ba0937ef6f3ccca85e2e0047e6263f3b4da37201.png",doge:"3087d273a78ccaff4bb1e9972e2ba2a7583c9f11.png","微笑":"685612eadc33f6bc233776c6241813385844f182.png",OK:"4683fd9ffc925fa6423110979d7dcac5eda297f4.png","星星眼":"63c9d1a31c0da745b61cdb35e0ecb28635675db2.png","妙啊":"b4cb77159d58614a9b787b91b1cd22a81f383535.png","辣眼睛":"35d62c496d1e4ea9e091243fa812866f5fecc101.png","吃瓜":"4191ce3c44c2b3df8fd97c33f85d3ab15f4f3c84.png","滑稽":"d15121545a99ac46774f1f4465b895fe2d1411c3.png","呲牙":"b5a5898491944a4268360f2e7a84623149672eb6.png","打call":"431432c43da3ee5aab5b0e4f8931953e649e9975.png","歪嘴":"4384050fbab0586259acdd170b510fe262f08a17.png","调皮":"8290b7308325e3179d2154327c85640af1528617.png","嗑瓜子":"28a91da1685d90124cfeead74622e1ebb417c0eb.png","笑哭":"c3043ba94babf824dea03ce500d0e73763bf4f40.png","脱单doge":"bf7e00ecab02171f8461ee8cf439c73db9797748.png","给心心":"1597302b98827463f5b75c7cac1f29ea6ce572c4.png","嘟嘟":"abd7404537d8162720ccbba9e0a8cdf75547e07a.png","喜欢":"8a10a4d73a89f665feff3d46ca56e83dc68f9eb8.png","酸了":"92b1c8cbceea3ae0e8e32253ea414783e8ba7806.png","哦呼":"362bded07ea5434886271d23fa25f5d85d8af06c.png","嫌弃":"de4c0783aaa60ec03de0a2b90858927bfad7154b.png","大哭":"2caafee2e5db4db72104650d87810cc2c123fc86.png","害羞":"9d2ec4e1fbd6cb1b4d12d2bbbdd124ccb83ddfda.png","疑惑":"b7840db4b1f9f4726b7cb23c0972720c1698d661.png","喜极而泣":"485a7e0c01c2d70707daae53bee4a9e2e31ef1ed.png","奸笑":"bb84906573472f0a84cebad1e9000eb6164a6f5a.png","笑":"81edf17314cea3b48674312b4364df44d5c01f17.png","偷笑":"6c49d226e76c42cd8002abc47b3112bc5a92f66a.png","惊讶":"f8e9a59cad52ae1a19622805696a35f0a0d853f3.png","捂脸":"6921bb43f0c634870b92f4a8ad41dada94a5296d.png","阴险":"ba8d5f8e7d136d59aab52c40fd3b8a43419eb03c.png","囧":"12e41d357a9807cc80ef1e1ed258127fcc791424.png","呆":"33ad6000d9f9f168a0976bc60937786f239e5d8c.png","抠鼻":"cb89184c97e3f6d50acfd7961c313ce50360d70f.png","大笑":"ca94ad1c7e6dac895eb5b33b7836b634c614d1c0.png","惊喜":"0afecaf3a3499479af946f29749e1a6c285b6f65.png","无语":"44667b7d9349957e903b1b62cb91fb9b13720f04.png","点赞":"1a67265993913f4c35d15a6028a30724e83e7d35.png","鼓掌":"895d1fc616b4b6c830cf96012880818c0e1de00d.png","尴尬":"cb321684ed5ce6eacdc2699092ab8fe7679e4fda.png","灵魂出窍":"43d3db7d97343c01b47e22cfabeca84b4251f35a.png","委屈":"d2f26cbdd6c96960320af03f5514c5b524990840.png","傲娇":"010540d0f61220a0db4922e4a679a1d8eca94f4e.png","疼":"905fd9a99ec316e353b9bd4ecd49a5f0a301eabf.png","冷":"cb0ebbd0668640f07ebfc0e03f7a18a8cd00b4ed.png","生病":"0f25ce04ae1d7baf98650986454c634f6612cb76.png","吓":"9c10c5ebc7bef27ec641b8a1877674e0c65fea5d.png","吐":"06946bfe71ac48a6078a0b662181bb5cad09decc.png","捂眼":"c5c6d6982e1e53e478daae554b239f2b227b172b.png","嘘声":"e64af664d20716e090f10411496998095f62f844.png","思考":"cfa9b7e89e4bfe04bbcd34ccb1b0df37f4fa905c.png","再见":"fc510306bae26c9aec7e287cdf201ded27b065b9.png","翻白眼":"eba54707c7168925b18f6f8b1f48d532fe08c2b1.png","哈欠":"888d877729cbec444ddbd1cf4c9af155a7a06086.png","奋斗":"bb2060c15dba7d3fd731c35079d1617f1afe3376.png","墨镜":"3a03aebfc06339d86a68c2d893303b46f4b85771.png","难过":"a651db36701610aa70a781fa98c07c9789b11543.png",tv_doge:"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png"}})</script>
+</body>
+</html>
