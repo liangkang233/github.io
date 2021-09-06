@@ -1,7 +1,7 @@
 <!doctype html><html lang=zh>
 <head>
 <title>
-Pthon读写文件 - LK233's Blog
+SHELL脚本语法示例 - LK233's Blog
 </title>
 <meta charset=utf-8>
 <meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
@@ -14,27 +14,27 @@ Pthon读写文件 - LK233's Blog
 <meta name=format-detection content="telephone=no,email=no,adress=no">
 <meta name=theme-color content="#000000">
 <meta http-equiv=window-target content="_top">
-<meta name=description content="python下修改配置文件参数">
+<meta name=description content="关于shell脚本语法awk等学习的记录">
 <link rel=apple-touch-icon sizes=180x180 href=/web/social.ico>
 <link rel=icon type=ico/png href=/web/GitHub-Mark-32px.png sizes=32x32>
 <meta name=generator content="Hugo 0.88.1 with theme pure">
-<title>Pthon读写文件 - LK233's Blog</title>
+<title>SHELL脚本语法示例 - LK233's Blog</title>
 <link rel=stylesheet href=https://liangkang233.github.io/css/style.min.911fc455aff286fbb0796ca516874da5dbf4b20cf101ff5f78329dc97ed7c711.css>
 <link rel=stylesheet href=https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css async>
 <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css async>
-<meta property="og:title" content="Pthon读写文件">
-<meta property="og:description" content="python下修改配置文件参数">
+<meta property="og:title" content="SHELL脚本语法示例">
+<meta property="og:description" content="关于shell脚本语法awk等学习的记录">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://liangkang233.github.io/2021/03/python%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2021-03-27T00:00:00+00:00">
-<meta property="article:modified_time" content="2021-03-27T00:00:00+00:00">
-<meta itemprop=name content="Pthon读写文件">
-<meta itemprop=description content="python下修改配置文件参数"><meta itemprop=datePublished content="2021-03-27T00:00:00+00:00">
-<meta itemprop=dateModified content="2021-03-27T00:00:00+00:00">
-<meta itemprop=wordCount content="999">
-<meta itemprop=keywords content="python,"><meta name=twitter:card content="summary">
-<meta name=twitter:title content="Pthon读写文件">
-<meta name=twitter:description content="python下修改配置文件参数"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<meta property="og:url" content="https://liangkang233.github.io/2021/08/shell%E8%84%9A%E6%9C%AC%E7%A4%BA%E4%BE%8B/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2021-08-15T00:00:00+00:00">
+<meta property="article:modified_time" content="2021-08-15T00:00:00+00:00">
+<meta itemprop=name content="SHELL脚本语法示例">
+<meta itemprop=description content="关于shell脚本语法awk等学习的记录"><meta itemprop=datePublished content="2021-08-15T00:00:00+00:00">
+<meta itemprop=dateModified content="2021-08-15T00:00:00+00:00">
+<meta itemprop=wordCount content="2053">
+<meta itemprop=keywords content="linux,"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="SHELL脚本语法示例">
+<meta name=twitter:description content="关于shell脚本语法awk等学习的记录"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
 </head>
 <body class="main-center theme-black" itemscope itemtype=http://schema.org/WebPage><header class=header itemscope itemtype=http://schema.org/WPHeader>
@@ -219,22 +219,22 @@ Pthon读写文件 - LK233's Blog
 <article id=- class="article article-type-" itemscope itemtype=http://schema.org/BlogPosting>
 <div class=article-header>
 <h1 itemprop=name>
-<a class=article-title href=/2021/03/python%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/>Pthon读写文件</a>
+<a class=article-title href=/2021/08/shell%E8%84%9A%E6%9C%AC%E7%A4%BA%E4%BE%8B/>SHELL脚本语法示例</a>
 </h1>
 <div class=article-meta>
 <span class=article-date>
 <i class="icon icon-calendar-check"></i>&nbsp;
-<a href=https://liangkang233.github.io/2021/03/python%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/ class=article-date>
-<time datetime="2021-03-27 00:00:00 +0000 UTC" itemprop=datePublished>2021-03-27</time>
+<a href=https://liangkang233.github.io/2021/08/shell%E8%84%9A%E6%9C%AC%E7%A4%BA%E4%BE%8B/ class=article-date>
+<time datetime="2021-08-15 00:00:00 +0000 UTC" itemprop=datePublished>2021-08-15</time>
 </a>
 </span>
 <span class=article-category>
 <i class="icon icon-folder"></i>&nbsp;
-<a class=article-category-link href=/categories/%E5%AD%A6%E4%B9%A0/> 学习 </a>
+<a class=article-category-link href=/categories/%E5%B7%A5%E5%85%B7/> 工具 </a>
 </span>
 <span class=article-tag>
 <i class="icon icon-tags"></i>&nbsp;
-<a class=article-tag-link href=/tags/python/> python </a>
+<a class=article-tag-link href=/tags/linux/> linux </a>
 </span>
 <span class="article-read hidden-xs">
 <i class="icon icon-eye-fill" aria-hidden=true></i>
@@ -242,97 +242,248 @@ Pthon读写文件 - LK233's Blog
 <span id=busuanzi_value_page_pv>0</span>
 </span>
 </span>
-<span class=post-comment><i class="icon icon-comment"></i>&nbsp;<a href=/2021/03/python%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/#comments class=article-comment-link>评论</a></span>
-<span class="post-wordcount hidden-xs" itemprop=wordCount>字数统计: 999字</span>
+<span class=post-comment><i class="icon icon-comment"></i>&nbsp;<a href=/2021/08/shell%E8%84%9A%E6%9C%AC%E7%A4%BA%E4%BE%8B/#comments class=article-comment-link>评论</a></span>
+<span class="post-wordcount hidden-xs" itemprop=wordCount>字数统计: 2053字</span>
 </div>
 </div>
 <div class="article-entry marked-body js-toc-content" itemprop=articleBody>
-<h1 id=功能>功能</h1>
-<p>由于刚好有需求要更改配置文件参数，想到python简单易用的特点，所以边学边做了这个程序帮助修改参数。该程序功能为读取一个二进制文本其中的参数按照指定格式修改。</p>
-<h2 id=参考教程>参考教程</h2>
-<p><a href=https://www.liaoxuefeng.com/wiki/1016959663602400/1017607179232640/>文件读写教程</a>.
-<a href=https://www.liaoxuefeng.com/wiki/1016959663602400/1017639890281664>正则表达式教程</a>.
-python的很多基础都是在廖雪峰老师这学的，写的很详细不错，所以后面的分析就不详细说了。</p>
-<h1 id=源码>源码</h1>
-<pre><code class=language-python>    #!/usr/bin/python3
-    # coding: utf-8
-    speed = int(input(&quot;Please enter the adjustment speed: &quot;))
-
-    #修改test.config文件
-    with open('test.config', 'r', encoding='utf-8') as o_config :
-        lines = o_config.readlines()         # readlines返回每行字符串组成的list
-        flen=len(lines)
-        for i in range(flen):
-            if lines[i].startswith(&quot;SIMULATION-TIME&quot;) :
-                config_value = lines[i].split(' ')
-                value = int( config_value[1][0:-2:1] )  # 用切片删去S和回车转成值         
-                value = int(3600 / speed)
-                lines[i] = config_value[0] + ' ' + str(value) + 'S\n'
-                break
-            else :
-                continue
-    with open('test.config','w', encoding='utf-8') as new_config :   
-        new_config.writelines(lines)
-
-    #修改test.nodes文件
-    with open('test.nodes', 'r', encoding='utf-8') as o_config :
-        lines = o_config.readlines()         # readlines返回每行字符串组成的list
-        flen=len(lines)
-        for i in range(flen):
-            if lines[i] == '\n' :
-                break
-            node_value = lines[i].split(' ', 2)
-            if node_value[1] == '0' :
-                continue
-            else :
-                value = int( node_value[1][0: -1:1] )
-                value = int( value / speed )
-                lines[i] = node_value[0] + ' ' + str(value) + 'S ' + node_value[2] 
-    with open('test.nodes','w', encoding='utf-8') as new_nodes :   
-        new_nodes.writelines(lines)
-
-    print(&quot;Modified to complete&quot;)
-</code></pre>
-<h2 id=代码分析>代码分析</h2>
+<p>shell脚本在linux使用用的十分广泛，写篇总结学习性的文章做记录。</p>
+<p>这个<a href=https://github.com/liquanzhou/ops_doc>运维手册</a>写的比较详细，可以做参考。</p>
+<p>另一个比较全的<a href=https://www.yiibai.com/bash/bash-introduction.html>参考</a></p>
+<h1 id=基本语法>基本语法</h1>
 <ol>
-<li>python修改文本暂时没找到直接更改办法，<strong>上述代码都是先读取文本复制到内存中的列表，修改后再将列表写入文件。</strong></li>
-<li>修改test.config文件代码，使用readlines返回每行字符串组成的list。当然也可以用readline和while读取每一行来进行操作。</li>
-<li>使用startswith对每行行首判断寻找关键字符串类型，之后使用split空格分开为字符串列表后用切片提取出值对应的字符串。
-例如下图中config文件会读取到lines[8]这行有待寻找关键字，用split生成list[&lsquo;SIMULATION-TIME&rsquo;, &lsquo;3600S\n&rsquo;],
-进行切片操作[1:-2:1]得到字符串'3600' (回车\n也需要切片去除)，这样转化成int型处理完再转为字符串填充回原来列表中即可。</li>
+<li>if else：
+<pre><code class=language-bash># then 与 if 同一行时要加 ;
+if [ `whoami` != &quot;root&quot; ];then
+    echo &quot;Please run it as a superuser&quot;
+    exit 0
+elif $something -gt 2 ; then
+    echo &quot;else if&quot;
+else
+    echo &quot;else&quot;
+fi
+</code></pre>
+</li>
+<li>switch：
+<pre><code class=language-bash>read -p $'Please input a number...    \n1 means icmp,2 means udp ,3 means tcp '
+case $n in 
+1)
+    echo &quot;you will accept icmp data&quot;
+    tcpdump icmp -c 5 -i ens33 -l -w./aaa.cap &amp;
+    ;;
+2)
+    echo &quot;you will accept udp data&quot;
+    tcpdump udp -c 5 -i ens33
+    ;;
+3)
+    echo &quot;you will accept tcp data&quot;
+    tcpdump tcp -c 5 -i ens33 
+    ;;
+*)
+    echo &quot;invail command&quot;
+    ;;
+esac
+</code></pre>
+</li>
+<li>for：</li>
 </ol>
-<p><img src=https://img-blog.csdnimg.cn/2021032713570211.png alt=config文件></p>
-<ol start=4>
-<li>之后类似的对test.nodes进行操作!<br>
-<img src=https://img-blog.csdnimg.cn/20210327140343298.png alt=test.nodes文件></li>
+<pre><code class=language-bash>    datetime=`date +%F-%H:%M:%S`
+    i=1
+    while [ $i -lt 5 ];do
+        echo &quot;start NO.$i capture data&quot;
+        # sudo tcpdump icmp -i ens33 -w ./$datetime.cap &amp;
+        # sudo tcpdump icmp -i ens33 -w ./`date +%F-%H:%M:%S` &amp;
+        tdid=`pgrep tcpdump`
+        sleep 10s
+        echo &quot;$tdid&quot;
+        kill -9 $tdid
+        ((i++))
+    done
+
+
+    for i in ${!IdArry[@]}
+    do
+        echo ${IdArry[i]:1}
+        # echo ${IdArry[i]:i:j} 表示打印第i位到第j位数据，j省略表示第i位到最后一位
+    done
+</code></pre>
+<h1 id=关系运算符如下>关系运算符，如下：</h1>
+<blockquote>
+<p>注意： 使用 [] 就可以使用c中常用的关系符, # [ ]符号旁必须有空格，否则会被shell认为是命令执行</p>
+</blockquote>
+<ol>
+<li>-gt：大于，greater than。</li>
+<li>-eq：等于，equal。</li>
+<li>-lt：小于，less than。</li>
+<li>-ge：大于等于，greater than or equal。</li>
+<li>-le：小于等于，less than or equal。</li>
+<li>-ne：不等于，not equal。</li>
 </ol>
-<p>此处，由于其配置文件规则简单由空格区分，所以处理起来只需要split和列表切片，若是复杂的字符串数据还是得用上面教程中的正则表达式来处理。
-此外，如果需要更改参数精度更好的案例这里也提供一份</p>
-<pre><code class=language-python>#!/usr/bin/python3
-#coding: utf-8
+<p>连接符，如下：</p>
+<ol>
+<li>-a：且，and。</li>
+<li>-o：或，or。</li>
+</ol>
+<p>条件判断，逻辑运算符，如下：</p>
+<ol>
+<li>&&：用来执行条件成立后执行的命令。</li>
+<li>||：用来执行条件不成立后的执行命令。</li>
+</ol>
+<h1 id=函数传参返回值>函数、传参、返回值</h1>
+<pre><code>给定的参数以$1，$2，$3,...$n的形式访问，对应于函数名后参数的位置。$0变量的值是函数的名称。
+$? 表示上次运行的结果，非0表示异常
+$# 变量用于保存赋予函数的位置自变量/参数的数量。其中 $* 和 $@ 变量用于保存赋予函数的所有参数。
 
-#修改 1.nodes文件
-speed = 100
-with open('1.nodes', 'r', encoding='utf-8') as o_config :
-    lines = o_config.readlines()         # readlines返回每行字符串组成的list
-    flen=len(lines)
-    for i in range(flen):
-        if lines[i] == '\n' :
-            break
-        node_value = lines[i].split(' ', 5)
+传参时，若$cmd中带空格需要加&quot;&quot; , 不加双引号会自动以空格为分割符号传参
+数组传参数使用 ${Mymap[*]} 或 ${Mymap[@]}，区别为${Mymap[*]} 是传入一个参数，
+例如“1 2 3”${Mymap[@]} 是传入多个参数，例如&quot;1&quot;,&quot;2&quot;,&quot;3&quot;
+</code></pre>
+<pre><code class=language-bash># 声明函数的语法有两种格式定义：
+# 第一种方法：以函数名称开头，后跟括号。这是最优选且最常用的方法，语法如下：
+function_name () {  
+   commands  
+}
+# 单行语法如下：
+function_name () { commands; }
 
-        valuex = round( float( node_value[2][1: -1:1]) / speed,14 )
-        valuey = round( float( node_value[3][1: -1:1]) / speed,14 )
-        valuez = round( float( node_value[4][1: -1:1]) / speed,14 )
-        # lines[i] = node_value[0] + ' ' + node_value[1] + ' (' + \
-        #     str(valuex) + ', ' + str(valuey) + ', ' + str(valuez) + ') ' + node_value[5]
-        lines[i] = node_value[0] + ' ' + node_value[1] + ' (' + \
-            '%.014f'%valuex + ', ' + '%.014f'%valuey + ', ' + '%.014f'%valuez + ') ' + node_value[5]
-with open('1.nodes','w', encoding='utf-8') as new_nodes :   
-    new_nodes.writelines(lines)
+# 第二种方法：以函数保留字开头，后跟函数名称：
+function function_name {  
+    commands  
+}
+# 单行语法如下：
+function_name () { commands; }
+</code></pre>
+<h1 id=数组关联数组字典变量>数组、关联数组（字典）变量</h1>
+<blockquote>
+<p>索引-1是最后一个元素的参考</p>
+</blockquote>
+<p>declare -a ARRAY_NA 声明数组
+declare -A ARRAY_NAME 声明关联数组
+local temp 声明局部变量</p>
+<blockquote>
+<p>注意脚本中哪怕函数内定义变量默认是全局的，在函数内定义的local变量会结束作用域后销毁。</p>
+</blockquote>
+<p>关联数组用法示例:</p>
+<pre><code class=language-bash># 访问元素类似数组
+Mymap[${NameArry}]
 
-print(&quot;Modified to complete&quot;)
+# 添加元素
+Mymap[${NameArry}] = 12
 
+# 删除元素
+unset Mymap[$findkey] 删除操作
+
+# 遍历元素
+for i in ${IdArry[@]}
+do
+    echo i
+done
+
+# ${!Mymap[@]}为数组或字典全部index   ${Mymap[@]}为全部value
+#
+</code></pre>
+<h2 id=-与-区别>&() 与 ｀｀区别</h2>
+<p>在操作上，这两者都是达到相应的效果。在bash中，$( )与｀｀（反引号,博客格式有问题，这里打中文的代替）都是用来作命令替换的。命令替换与变量替换差不多，都是用来重组命令行的，先完成引号里的命令行，然后将其结果替换出来，再重组成新的命令行。</p>
+<pre><code class=language-bash>$ echo today is $(date &quot;+%Y-%m-%d&quot;)
+today is 2021-08-01
+</code></pre>
+<p>在多层次的复合替换中，｀｀必须要额外的跳脱处理（反斜线），而$( )比较直观。
+最后，$( )的弊端是，并不是所有的类unix系统都支持这种方式，但反引号是肯定支持的。</p>
+<pre><code class=language-bash># 将cmd1执行结果作为cmd2参数，再将cmd2结果作为cmd3的参数
+cmd3 $(cmd2 $(cmd1))
+# 如果是用反引号，直接引用是不行的，还需要作跳脱处理
+cmd3 `cmd2 \`cmd1\``
+</code></pre>
+<h1 id=trap>trap</h1>
+<p>详细<a href=https://www.junmajinlong.com/shell/script_course/shell_trap/>trap介绍</a></p>
+<p>在shell中，使用内置命令trap(中文就翻译为陷阱、圈套)也可以布置所谓的陷阱，这个陷阱当然不是捕老鼠的，而是捕捉信号。</p>
+<p>通常trap都在脚本中使用，主要有2种功能：</p>
+<p>(1).忽略信号。当运行中的脚本进程接收到某信号时(例如误按了CTRL+C)，可以将其忽略，免得脚本执行到一半就被终止
+(2).捕捉到信号后做相应处理。主要是清理一些脚本创建的临时文件，然后退出</p>
+<p>进程结束临时文件销毁示例</p>
+<pre><code class=language-bash># XXX会被随即字符代替保证唯一，-d生成目录，-t表示生成在/temp中，
+# 脚本临时文件全部存在此处，程序捕获到EXIT后执行finish删除临时文件夹
+scratch=$(mktemp -d -t coretmp.XXX)
+function finish {
+  rm -rf &quot;$scratch&quot;
+}
+trap finish EXIT
+</code></pre>
+<h1 id=调用core-api示例>调用core api示例</h1>
+<p>awk grep sed 是处理文本的三大利器，后面示例用到了用到了awk，直接将其返回一个变量会传输到数组中。</p>
+<pre><code class=language-bash>#!/bin/bash
+scratch=$(mktemp -d -t coretmp.XXX)
+function finish {
+  rm -rf &quot;$scratch&quot;
+}
+trap finish EXIT
+
+function ApiCall {
+  local nodeId=$1; 
+  local cmd=$2;
+  # tee一边重定向到文件一边打印，防止等待response卡死，也方便打印报错信息 
+  coresendmsg execute flags=tty node=$nodeId number=1001 command=&quot;$cmd&quot; -l | tee $scratch/core_msg
+  res=$(awk -F ': ' '{if($1 ~ /RESULT/) print $2}' $scratch/core_msg)
+  if [ &quot;$res&quot; == &quot;&quot; ]; then
+    exit 0
+  else 
+      echo -e &quot;excute core api command: \n$res\n&quot;
+  fi
+  eval $res
+}
+
+function SetMap {
+  file=$1
+  Mymap=$2
+  local IdArry=(`awk '$1==&quot;node&quot; {print $2}' $file`)
+  local NameArry=(`awk '$1==&quot;hostname&quot; {print $2}' $file`)
+
+  for i in ${!IdArry[@]}
+  do
+    Mymap[${NameArry[i]}]=${IdArry[i]:1}
+  done
+  # echo ${!Mymap[@]} ${Mymap[@]}
+}
+
+# 默认命令、场景文件参数
+nodeId='1'
+protocol='icmp'
+interface='eth0'
+imnPwd=$(echo $HOME/.core/configs/)
+scene='sample1'
+declare -A Mymap
+
+# 读取参数
+if [ $# == 0 ]; then
+  echo -e &quot;The required parameters are imn scenario name and node name\n\
+When \$3 is CMD, \$4 is the command to execute...
+Otherwise, \$3 indicates the NIC ID and \$4 indicates the packet capture protocol (optional).\n\
+!! default: nodename=n1, interface=$interface, protocol=$protocol(options) !!
+sense file: echo $imnPwd$scene.imn&quot;
+else
+  scene=$1
+  file=$(echo $imnPwd$scene.imn)
+  echo -e &quot;sense file: $file&quot;
+  SetMap $file ${Mymap[*]}  
+  # echo &quot;场景节点名: ${!Mymap[@]} \n 场景节点id: ${Mymap[@]}&quot;
+  nodeId=${Mymap[$2]}
+  interface=$3
+  protocol=$4
+  if [ ! -n &quot;$nodeId&quot; ]; then
+    echo &quot;node name error!&quot;
+    exit 0
+  fi
+fi
+
+if [ &quot;$3&quot; == &quot;cmd&quot; ] ; then
+  ApiCall $nodeId &quot;$4&quot;
+elif [ $# -ge 3 ] || [ $# == 0 ];  then
+  cmd=$(echo tcpdump $protocol -i $interface -l)
+  ApiCall $nodeId &quot;$cmd&quot;
+else 
+  echo &quot;Invalid input parameter&quot;
+  exit 0
+fi
 </code></pre>
 </div>
 <div class=article-footer>
@@ -360,10 +511,10 @@ print(&quot;Modified to complete&quot;)
 <div class=bar-inner>
 <ul class="pager pull-left">
 <li class=prev>
-<a href=https://liangkang233.github.io/2020/12/hello-world/ title="Hello World"><i class="icon icon-angle-left" aria-hidden=true></i><span>&nbsp;&nbsp;下一篇</span></a>
+<a href=https://liangkang233.github.io/2021/07/linux%E4%B8%BB%E6%9C%BA%E8%B7%AF%E7%94%B1%E8%BD%AC%E5%8F%91/ title=linux配置主机路由转发><i class="icon icon-angle-left" aria-hidden=true></i><span>&nbsp;&nbsp;下一篇</span></a>
 </li>
 <li class=next>
-<a href=https://liangkang233.github.io/2021/04/%E6%89%B9%E9%87%8F%E8%AF%AD%E9%9F%B3%E8%BD%AC%E5%AD%97%E7%AC%A6/ title=批量语音转文字><span>上一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden=true></i></a>
+<a href=https://liangkang233.github.io/2021/08/%E5%B8%B8%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/ title=编程题中常见技巧><span>上一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden=true></i></a>
 </li>
 <li class=toggle-toc>
 <a class="toggle-btn collapsed" data-toggle=collapse href=#collapseToc aria-expanded=false title=文章目录 role=button>
