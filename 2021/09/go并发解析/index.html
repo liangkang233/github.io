@@ -1,0 +1,558 @@
+<!doctype html><html lang=zh>
+<head>
+<title>
+Go并发解析 - LK233's Blog
+</title>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui">
+<meta name=renderer content="webkit">
+<meta http-equiv=cache-control content="no-transform">
+<meta http-equiv=cache-control content="no-siteapp">
+<meta name=apple-mobile-web-app-capable content="yes">
+<meta name=apple-mobile-web-app-status-bar-style content="black">
+<meta name=format-detection content="telephone=no,email=no,adress=no">
+<meta name=theme-color content="#000000">
+<meta http-equiv=window-target content="_top">
+<meta name=description content="根据go的学习积累些go语言中常见的面试问题">
+<link rel=apple-touch-icon sizes=180x180 href=/web/social.ico>
+<link rel=icon type=ico/png href=/web/GitHub-Mark-32px.png sizes=32x32>
+<meta name=generator content="Hugo 0.88.1 with theme pure">
+<title>Go并发解析 - LK233's Blog</title>
+<link rel=stylesheet href=https://liangkang233.github.io/css/style.min.911fc455aff286fbb0796ca516874da5dbf4b20cf101ff5f78329dc97ed7c711.css>
+<link rel=stylesheet href=https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css async>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css async>
+<meta property="og:title" content="Go并发解析">
+<meta property="og:description" content="根据go的学习积累些go语言中常见的面试问题">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://liangkang233.github.io/2021/09/go%E5%B9%B6%E5%8F%91%E8%A7%A3%E6%9E%90/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2021-09-07T00:00:00+00:00">
+<meta property="article:modified_time" content="2021-09-07T00:00:00+00:00">
+<meta itemprop=name content="Go并发解析">
+<meta itemprop=description content="根据go的学习积累些go语言中常见的面试问题"><meta itemprop=datePublished content="2021-09-07T00:00:00+00:00">
+<meta itemprop=dateModified content="2021-09-07T00:00:00+00:00">
+<meta itemprop=wordCount content="4120">
+<meta itemprop=keywords content="go,"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="Go并发解析">
+<meta name=twitter:description content="根据go的学习积累些go语言中常见的面试问题"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
+</head>
+<body class="main-center theme-black" itemscope itemtype=http://schema.org/WebPage><header class=header itemscope itemtype=http://schema.org/WPHeader>
+<div class=slimContent>
+<div class=navbar-header>
+<div class="profile-block text-center">
+<a id=avatar href=https://github.com/liangkang233 target=_blank>
+<img class="img-circle img-rotate" src=https://liangkang233.github.io/web/head.png width=200 height=200>
+</a>
+<h2 id=name class="hidden-xs hidden-sm">LK233</h2>
+<h3 id=title class="hidden-xs hidden-sm hidden-md">三无 青年</h3>
+<small id=location class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>现居 重庆</small>
+</div><div class=search id=search-form-wrap>
+<form class="search-form sidebar-form">
+<div class=input-group>
+<input type=text class="search-form-input form-control" placeholder=搜索>
+<span class=input-group-btn>
+<button type=submit class="search-form-submit btn btn-flat" onclick=return!1><i class="icon icon-search"></i></button>
+</span>
+</div>
+<div class=ins-search>
+<div class=ins-search-mask></div>
+<div class=ins-search-container>
+<div class=ins-input-wrapper>
+<input type=text class=ins-search-input placeholder=想要查找什么... x-webkit-speech>
+<button type=button class="close ins-close ins-selectable" data-dismiss=modal aria-label=Close><span aria-hidden=true>×</span></button>
+</div>
+<div class=ins-section-wrapper>
+<div class=ins-section-container></div>
+</div>
+</div>
+</div>
+</form>
+</div>
+<button class="navbar-toggle collapsed" type=button data-toggle=collapse data-target=#main-navbar aria-controls=main-navbar aria-expanded=false>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+</button>
+</div>
+<nav id=main-navbar class="collapse navbar-collapse" itemscope itemtype=http://schema.org/SiteNavigationElement role=navigation>
+<ul class="nav navbar-nav main-nav">
+<li class="menu-item menu-item-home">
+<a href=/>
+<i class="icon icon-home-fill"></i>
+<span class=menu-title>主页</span>
+</a>
+</li>
+<li class="menu-item menu-item-books">
+<a href=/posts/>
+<i class="icon icon-book-fill"></i>
+<span class=menu-title>文章</span>
+</a>
+</li>
+<li class="menu-item menu-item-email">
+<a href=mailto:liangkang233@outlook.com>
+<i class="icon icon-email"></i>
+<span class=menu-title>邮箱</span>
+</a>
+</li>
+<li class="menu-item menu-item-github">
+<a href=https://github.com/liangkang233>
+<i class="icon icon-github-fill"></i>
+<span class=menu-title>github</span>
+</a>
+</li>
+<li class="menu-item menu-item-about">
+<a href=/about/>
+<i class="icon icon-cup-fill"></i>
+<span class=menu-title>关于</span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</header>
+<aside class=sidebar itemscope itemtype=http://schema.org/WPSideBar>
+<div class=slimContent>
+<div class=widget>
+<h3 class=widget-title>^_^</h3>
+<div class=widget-body>
+<div id=board>
+<div class=content><p>记录学习、生活的个人博客</p>
+</div>
+</div>
+</div>
+</div>
+<div class=widget>
+<h3 class=widget-title> 标签</h3>
+<div id=tag-cloud-list class=widget-body>
+<a href=https://liangkang233.github.io/tags/blog-test/ class=tag-list-link rel=1>blog-test<span class=tag-list-count>1</span></a>
+<a href=https://liangkang233.github.io/tags/c/c++/ class=tag-list-link rel=3>c/c++<span class=tag-list-count>3</span></a>
+<a href=https://liangkang233.github.io/tags/go/ class=tag-list-link rel=3>go<span class=tag-list-count>3</span></a>
+<a href=https://liangkang233.github.io/tags/linux/ class=tag-list-link rel=3>linux<span class=tag-list-count>3</span></a>
+<a href=https://liangkang233.github.io/tags/network/ class=tag-list-link rel=2>network<span class=tag-list-count>2</span></a>
+<a href=https://liangkang233.github.io/tags/python/ class=tag-list-link rel=3>python<span class=tag-list-count>3</span></a>
+<a href=https://liangkang233.github.io/tags/%E4%BB%BF%E7%9C%9F/ class=tag-list-link rel=3>仿真<span class=tag-list-count>3</span></a>
+<a href=https://liangkang233.github.io/tags/%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/ class=tag-list-link rel=2>问题记录<span class=tag-list-count>2</span></a>
+</div>
+<script>document.onreadystatechange=()=>{document.readyState==='complete'&&tagCloud('#tag-cloud-list a',8,20)};function tagCloud(c,d,e){let b=0,a=0;$(c).each(function(){let c=Number($(this).attr("rel"));b<c&&(b=c),(a>c||a==0)&&(a=c)});let f=(e-d)/(b-a);$(c).each(function(){let b=$(this).attr("rel")-a;$(this).css({"font-size":d+b*f+'px'})})}</script>
+</div>
+<div class=widget>
+<h3 class=widget-title> 分类</h3>
+<div class=widget-body>
+<ul class=category-list>
+<li class=category-list-item><a href=https://liangkang233.github.io/categories/core/ class=category-list-link>core</a><span class=category-list-count>8</span></li>
+<li class=category-list-item><a href=https://liangkang233.github.io/categories/%E5%AD%A6%E4%B9%A0/ class=category-list-link>学习</a><span class=category-list-count>5</span></li>
+<li class=category-list-item><a href=https://liangkang233.github.io/categories/%E5%B7%A5%E5%85%B7/ class=category-list-link>工具</a><span class=category-list-count>4</span></li>
+<li class=category-list-item><a href=https://liangkang233.github.io/categories/%E6%9D%82%E8%B0%88/ class=category-list-link>杂谈</a><span class=category-list-count>1</span></li>
+<li class=category-list-item><a href=https://liangkang233.github.io/categories/%E7%AE%97%E6%B3%95/ class=category-list-link>算法</a><span class=category-list-count>1</span></li>
+<li class=category-list-item><a href=https://liangkang233.github.io/categories/%E8%AE%B0%E5%BD%95/ class=category-list-link>记录</a><span class=category-list-count>3</span></li>
+</ul>
+</div>
+</div>
+<div class=widget>
+<h3 class=widget-title>最新文章</h3>
+<div class=widget-body>
+<ul class="recent-post-list list-unstyled no-thumbnail">
+<li>
+<div class=item-inner>
+<p class=item-title>
+<a href=https://liangkang233.github.io/2021/09/%E7%BD%91%E5%86%85%E5%AD%98%E6%B4%BB%E8%8A%82%E7%82%B9%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/ class=title>网内存活节点测试工具</a>
+</p>
+<p class=item-date>
+<time datetime="2021-09-30 00:00:00 +0000 UTC" itemprop=datePublished>2021-09-30</time>
+</p>
+</div>
+</li>
+<li>
+<div class=item-inner>
+<p class=item-title>
+<a href=https://liangkang233.github.io/2021/09/ubuntu%E5%88%86%E5%8C%BA%E6%89%A9%E5%AE%B9/ class=title>Ubuntu分区扩容</a>
+</p>
+<p class=item-date>
+<time datetime="2021-09-19 00:00:00 +0000 UTC" itemprop=datePublished>2021-09-19</time>
+</p>
+</div>
+</li>
+<li>
+<div class=item-inner>
+<p class=item-title>
+<a href=https://liangkang233.github.io/2021/09/go%E5%B9%B6%E5%8F%91%E8%A7%A3%E6%9E%90/ class=title>Go并发解析</a>
+</p>
+<p class=item-date>
+<time datetime="2021-09-07 00:00:00 +0000 UTC" itemprop=datePublished>2021-09-07</time>
+</p>
+</div>
+</li>
+<li>
+<div class=item-inner>
+<p class=item-title>
+<a href=https://liangkang233.github.io/2021/08/%E5%B8%B8%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/ class=title>编程题中常见技巧</a>
+</p>
+<p class=item-date>
+<time datetime="2021-08-29 00:00:00 +0000 UTC" itemprop=datePublished>2021-08-29</time>
+</p>
+</div>
+</li>
+<li>
+<div class=item-inner>
+<p class=item-title>
+<a href=https://liangkang233.github.io/2021/08/shell%E8%84%9A%E6%9C%AC%E7%A4%BA%E4%BE%8B/ class=title>SHELL脚本语法示例</a>
+</p>
+<p class=item-date>
+<time datetime="2021-08-15 00:00:00 +0000 UTC" itemprop=datePublished>2021-08-15</time>
+</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</aside>
+<aside class="sidebar sidebar-toc collapse" id=collapseToc itemscope itemtype=http://schema.org/WPSideBar>
+<div class=slimContent>
+<h4 class=toc-title>文章目录</h4>
+<nav id=toc class="js-toc toc">
+</nav>
+</div>
+</aside>
+<main class=main role=main><div class=content>
+<article id=- class="article article-type-" itemscope itemtype=http://schema.org/BlogPosting>
+<div class=article-header>
+<h1 itemprop=name>
+<a class=article-title href=/2021/09/go%E5%B9%B6%E5%8F%91%E8%A7%A3%E6%9E%90/>Go并发解析</a>
+</h1>
+<div class=article-meta>
+<span class=article-date>
+<i class="icon icon-calendar-check"></i>&nbsp;
+<a href=https://liangkang233.github.io/2021/09/go%E5%B9%B6%E5%8F%91%E8%A7%A3%E6%9E%90/ class=article-date>
+<time datetime="2021-09-07 00:00:00 +0000 UTC" itemprop=datePublished>2021-09-07</time>
+</a>
+</span>
+<span class=article-category>
+<i class="icon icon-folder"></i>&nbsp;
+<a class=article-category-link href=/categories/%E5%AD%A6%E4%B9%A0/> 学习 </a>
+</span>
+<span class=article-tag>
+<i class="icon icon-tags"></i>&nbsp;
+<a class=article-tag-link href=/tags/go/> go </a>
+</span>
+<span class="article-read hidden-xs">
+<i class="icon icon-eye-fill" aria-hidden=true></i>
+<span id=busuanzi_container_page_pv>
+<span id=busuanzi_value_page_pv>0</span>
+</span>
+</span>
+<span class=post-comment><i class="icon icon-comment"></i>&nbsp;<a href=/2021/09/go%E5%B9%B6%E5%8F%91%E8%A7%A3%E6%9E%90/#comments class=article-comment-link>评论</a></span>
+<span class="post-wordcount hidden-xs" itemprop=wordCount>字数统计: 4120字</span>
+</div>
+</div>
+<div class="article-entry marked-body js-toc-content" itemprop=articleBody>
+<p>对go的基础学习中，也了解了些相关热点问题。</p>
+<p>发现篇非常好的<a href=https://draveness.me/golang/docs/part3-runtime/ch06-concurrency/golang-context/>文章</a>详细介绍了go中的并发设计原理、内存模型。写些读后感。</p>
+<h1 id=并发编程>并发编程</h1>
+<h2 id=上下文>上下文</h2>
+<p>上下文简单的理解为代码运行的环境，上下文 context.Context 在 Go 语言中用来设置截止日期、同步信号，传递请求相关值的结构体。context.Context是 Go 语言在 1.7 版本中引入标准库的接口，该接口定义了四个需要实现的方法，其中包括：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>概述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Deadline</td>
+<td>返回 context.Context 被取消的时间，也就是完成工作的截止日期；</td>
+</tr>
+<tr>
+<td>Done</td>
+<td>返回一个 Channel，这个 Channel 会在当前工作完成或者上下文被取消后关闭，多次调用 Done 方法会返回同一个 Channel；</td>
+</tr>
+<tr>
+<td>Err</td>
+<td>返回 context.Context 结束的原因，它只会在 Done 方法对应的 Channel 关闭时返回非空的值；如果 context.Context 被取消，会返回 Canceled 错误；如果 context.Context 超时，会返回 DeadlineExceeded 错误；</td>
+</tr>
+<tr>
+<td>Value</td>
+<td>如果 context.Context 超时，会返回 DeadlineExceeded 错误；从 context.Context 中获取键对应的值，对于同一个上下文来说，多次调用 Value 并传入相同的 Key 会返回相同的结果，该方法可以用来传递请求特定的数据；</td>
+</tr>
+</tbody>
+</table>
+<p>Go 语言中的 context.Context 的<strong>主要作用还是在多个 Goroutine 组成的树中同步取消信号以减少对资源的消耗和占用</strong>，例如使用context.WithCancel 函数能够从 context.Context 中衍生出一个新的子上下文并返回用于取消该上下文的函数。一旦我们执行返回的取消函数，当前上下文以及它的子上下文都会被取消，所有的 Goroutine 都会同步收到这一取消信号，父上下文取消时子上下文也会被取消。虽然它也有传值的功能，但是这个功能我们还是很少用到。</p>
+<p>在真正使用传值的功能时我们也应该非常谨慎，使用 context.Context 传递请求的所有参数一种非常差的设计，比较常见的使用场景是传递请求对应用户的认证令牌以及用于进行分布式追踪的请求 ID。</p>
+<h2 id=channel>channel</h2>
+<p><strong>channel</strong>常用来做协程间的信息同步，是个建立时设定缓冲区（默认是0）用于共享消息先入先出的队列。</p>
+<pre><code class=language-go>type hchan struct {
+	qcount   uint	// Channel 中的元素个数；
+	dataqsiz uint	// Channel 中的循环队列的长度；
+	buf      unsafe.Pointer // Channel 的缓冲区数据指针；
+	elemsize uint16
+	closed   uint32
+	elemtype *_type
+	sendx    uint	// Channel 的发送操作处理到的位置
+	recvx    uint	// Channel 的发送操作处理到的位置
+	recvq    waitq
+	sendq    waitq
+
+	lock mutex
+}
+</code></pre>
+<p>具体细节网上资料很详细，这里记录几个易错点：</p>
+<ul>
+<li>
+<p>当一个<strong>channel被关闭</strong>后，再向该channel发送数据将导致panic异常。当一个被关闭的channel中已经发送的数据都被成功接收后，后续的接收操作将不再阻塞，它们会立即返回一个零值。关闭上面例子中的naturals变量对应的channel并不能终止循环，它依然会收到一个永无休止的零值序列，然后将它们发送给打印者goroutine。</p>
+<p>没有办法直接测试一个channel是否被关闭，但是接收操作有一个变体形式：它多接收一个结果，多接收的第二个结果是一个布尔值ok，ture表示成功从channels接收到值，false表示channels已经被关闭并且里面没有值可接收。使用这个特性，我们可以修改squarer函数中的循环代码，当naturals对应的channel被关闭并没有值可接收时跳出循环，并且也关闭squares对应的channel.</p>
+<pre><code class=language-go>go func() {
+  for {
+        x, ok := &lt;-naturals
+        if !ok {
+        break // channel was closed and drained
+    }
+    squares &lt;- x * x
+  }
+  close(squares)
+}()
+</code></pre>
+<p>因为上面的语法是笨拙的，而且这种处理模式很常见，因此Go语言的range循环可直接在channels上面迭代。使用range循环是上面处理模式的简洁语法，它依次从channel接收数据，当channel被关闭并且没有值可接收时跳出循环。<strong>（channel不关闭 将一直堵塞在range处）</strong></p>
+<pre><code class=language-go> go func() {
+    for x := range naturals {
+        squares &lt;- x * x
+    }
+    close(squares)
+  }()
+</code></pre>
+</li>
+<li>
+<p>chan要用make生成，对空值的ch调用会造成堵塞</p>
+<p>例如var tick &lt;-chan time.Time tick就是一个空值的channel（nil）对其写入或读取操作都会造成堵塞</p>
+</li>
+<li>
+<p>函数形参的单向channel 就是普通 channel 由编辑器检查传输方向来确保单向而实现的，传参会进行隐式转换 双向变为单向 单向不可变为双向</p>
+<p>naturals := make(chan int) 无缓存 缓存为0</p>
+<p>naturals := make(chan int, 3) 缓存为3 cap(naturals)=3 len(naturals)=0</p>
+<p>举例： out in 为形参名</p>
+<table>
+<thead>
+<tr>
+<th>参数：只发送 ch</th>
+<th>func count (out chan &lt;- int) {}</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>参数：只接收 ch</td>
+<td>func counter (in &lt;- chan int) {}</td>
+</tr>
+<tr>
+<td>参数：普通双向</td>
+<td>func counter (chan int) {}</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h2 id=共享变量>共享变量</h2>
+<p>Go 语言也有类似unix中实现的那些共享变量的内容。在 <a href=https://golang.org/pkg/sync/><code>sync</code></a> 包中提供了用于同步的一些基本原语，包括常见的 <a href=https://draveness.me/golang/tree/sync.Mutex><code>sync.Mutex</code></a>、<a href=https://draveness.me/golang/tree/sync.RWMutex><code>sync.RWMutex</code></a>、<a href=https://draveness.me/golang/tree/sync.WaitGroup><code>sync.WaitGroup</code></a>、<a href=https://draveness.me/golang/tree/sync.Once><code>sync.Once</code></a> 和 <a href=https://draveness.me/golang/tree/sync.Cond><code>sync.Cond</code></a>。</p>
+<p>只要在<strong>go build，go run或者go test命令后面加上-race的flag</strong>，就会使编译器创建一个你的应用的“修改”版或者一个附带了能够记录所有运行期对共享变量访问工具的test，并且会记录下每一个读或者写共享变量的goroutine的身份信息。另外，修改版的程序会记录下所有的同步事件，比如go语句，channel操作，以及对<code>(*sync.Mutex).Lock</code>，<code>(*sync.WaitGroup).Wait</code>等等的调用。</p>
+<p>这些互斥锁与c中的一样，且都不支持重入锁，再次上锁会死锁。这些锁主要是应对竞争条件下对变量的读写，介绍几个常见的锁用法：</p>
+<ul>
+<li>
+<p>sync.Mutex互斥锁</p>
+<pre><code class=language-go>var mu sync.Mutex 
+    mu.Lock()
+    mu.Unlock()
+// 锁记得要释放
+</code></pre>
+</li>
+<li>
+<p>sync.RWMutex读写锁</p>
+<pre><code class=language-go>// 其允许多个只读操作并行执行，但写操作会完全互斥。
+var mu sync.RWMutex
+    mu.RLock() // readers lock
+    mu.RUnlock()
+// 调用了RLock和RUnlock方法来获取和释放一个读取或者共享锁。(上锁时，RLock不堵塞)
+    mu.Lock()
+    mu.Unlock()
+// 调用mu.Lock和mu.Unlock方法来获取和释放一个写或互斥锁。（上锁时其他任何锁堵塞）
+</code></pre>
+</li>
+<li>
+<p>sync.Once单次锁</p>
+<pre><code class=language-go>// 一般用于初始化，只上锁一次
+var loadIconsOnce sync.Once
+var icons map[string]image.Image
+// Concurrency-safe.
+func Icon(name string) image.Image {
+    loadIconsOnce.Do(loadIcons)	//loadIcons为调用的其他函数
+    return icons[name]
+}
+</code></pre>
+</li>
+<li>
+<p>sync.WaitGroup 等待开锁组</p>
+<pre><code class=language-go>// 递增的计数器，这个计数器需要在多个goroutine操作时做到安全并且提供在其完成之前一直等待。
+var wg sync.WaitGroup // number of working goroutines
+wg.Add(1)
+wg.Done()
+wg.Wait() //堵塞等待上锁组内全部done 
+</code></pre>
+</li>
+</ul>
+<h2 id=gorutine与线程>gorutine与线程</h2>
+<p>协程英文名Coroutine。但在 Go 语言中，协程的英文名是：gorutine。它常常被用于进行多任务，即并发作业。</p>
+<p>协程的特点：</p>
+<ul>
+<li>多个协程可由一个或多个线程管理，协程的调度发生在其所在的线程中。</li>
+<li>可以被调度，调度策略由应用层代码定义，即可被高度自定义实现。</li>
+<li>执行效率高。</li>
+<li>占用内存少。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>线程</strong></th>
+<th><strong>协程</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据存储</td>
+<td>内核态的内存空间</td>
+<td>一般是线程提供的用户态内存空间</td>
+</tr>
+<tr>
+<td>切换操作</td>
+<td>操作最终在内核层完成，应用层需要调用内核层提供的 syscall 底层函数</td>
+<td>应用层使用代码进行简单的现场保存和恢复即可</td>
+</tr>
+<tr>
+<td>任务调度</td>
+<td>由内核实现，抢占方式，依赖各种锁</td>
+<td>由用户态的实现的具体调度器进行。例如 go 协程的调度器</td>
+</tr>
+<tr>
+<td>语音支持程度</td>
+<td>绝大部分编程语言</td>
+<td>部分语言：Lua，Go，Python &mldr;</td>
+</tr>
+<tr>
+<td>实现规范</td>
+<td>按照现代操作系统规范实现</td>
+<td>无统一规范。在应用层由开发者实现，高度自定义，比如只支持单线程的线程。不同的调度策略，等等</td>
+</tr>
+</tbody>
+</table>
+<p>OS线程会被操作系统内核调度。每几毫秒，一个硬件计时器会中断处理器，这会调用一个叫作scheduler的内核函数。这个函数会挂起当前执行的线程并将它的寄存器内容保存到内存中，检查线程列表并决定下一次哪个线程可以被运行，并从内存中恢复该线程的寄存器信息，然后恢复执行该线程的现场并开始执行线程。因为操作系统线程是被内核所调度，所以从一个线程向另一个“移动”需要完整的上下文切换，也就是说，保存一个用户线程的状态到内存，恢复另一个线程的到寄存器，然后更新调度器的数据结构。这几步操作很慢，因为其局部性很差需要几次内存访问，并且会增加运行的cpu周期。</p>
+<p>Go的运行时包含了其自己的调度器，这个调度器使用了一些技术手段，比如m:n调度，因为其会在n个操作系统线程上多工（调度）m个goroutine。Go调度器的工作和内核的调度是相似的，但是这个调度器只关注单独的Go程序中的goroutine（译注：按程序独立）。</p>
+<p>和操作系统的线程调度不同的是，Go调度器并不是用一个硬件定时器，而是被Go语言“建筑”本身进行调度的。例如当一个goroutine调用了time.Sleep，或者被channel调用或者mutex操作阻塞时，调度器会使其进入休眠并开始执行另一个goroutine，直到时机到了再去唤醒第一个goroutine。因为这种调度方式不需要进入内核的上下文，所以重新调度一个goroutine比调度一个线程代价要低得多。</p>
+<p>go拥有其协程调度器，调度器的三个基本对象：</p>
+<ul>
+<li>
+<p>G (Goroutine)，代表协程，也就是每次代码中使用 go 关键词时候会创建的一个对象</p>
+</li>
+<li>
+<p>M (Work Thread)，工作线程</p>
+</li>
+<li>
+<p>P (Processor)，代表一个处理器，又称上下文</p>
+</li>
+</ul>
+<p>每一个运行的 M 都必须绑定一个 P，线程M 创建后会去检查并执行G (goroutine)对象。每一个 P 保存着一个协程G 的队列。除了每个 P 自身保存的 G 的队列外，调度器还拥有一个全局的 G 队列。M 从队列中提取 G，并执行P 的个数就是GOMAXPROCS（最大256），启动时固定的，一般不修改。（ go 1.5 版本之前的 GOMAXPROCS 默认是 1，<strong>go 1.5 版本之后的 GOMAXPROCS 默认是 Num of cpu</strong>）M 的个数和 P 的个数不一定一样多（会有休眠的M 或 P不绑定M ）（最大10000）。P 是用一个全局数组（255）来保存的，并且维护着一个全局的 P 空闲链表</p>
+<p><img src=https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2018/8/20/165571c8bad93973~tplv-t2oaga2asx-watermark.awebp alt=img></p>
+<p>GOMAXPROCS 就是 go 中 runtime 包的一个函数。它设置了 P 的最多的个数。这也就直接导致了 M 最多的个数是多少，而 M 的个数就决定了各个 G 队列能同时被多少个 M 线程来进行调取执行！如下演示</p>
+<pre><code class=language-go>for{
+   gofmt.Print(0)
+   fmt.Print(1)
+ }
+// $ GOMAXPROCS=1gorun hacker-cliché.go111111111111111111110000000000000000000011111...
+// $ GOMAXPROCS=2gorun hacker-cliché.go010101010101010101011001100101011010010100110...
+</code></pre>
+<p>在第一次执行时，最多同时只能有一个goroutine被执行。初始情况下只有main goroutine被执行，所以会打印很多1。过了一段时间后，GO调度器会将其置为休眠，并唤醒另一个goroutine，这时候就开始打印很多0了，在打印的时候，goroutine是被调度到操作系统线程上的。在第二次执行时，我们使用了两个操作系统线程，所以两个goroutine可以一起被执行，以同样的频率交替打印0和1。我们必须强调的是goroutine的调度是受很多因子影响的，而runtime也是在不断地发展演进的，所以这里的你实际得到的结果可能会因为版本的不同而与我们运行的结果有所不同。</p>
+</div>
+<div class=article-footer>
+<div class="panel panel-default panel-badger">
+<div class=panel-body>
+<figure class=media>
+<div class=media-left>
+<a href=https://github.com/liangkang233 target=_blank class="img-burn thumb-sm visible-lg">
+<img src=https://liangkang233.github.io/web/head.png class="img-rounded w-full" alt>
+</a>
+</div>
+<div class=media-body>
+<h3 class=media-heading></h3><a href=https://github.com/liangkang233 target=_blank></a><span class=text-dark>LK233</span></a></h3>
+<div>Segment error maker :(</div>
+</div>
+</figure>
+</div>
+</div>
+</div>
+</article>
+<section id=comments>
+<div id=vcomments></div>
+</section>
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+<div class=bar-inner>
+<ul class="pager pull-left">
+<li class=prev>
+<a href=https://liangkang233.github.io/2021/08/%E5%B8%B8%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/ title=编程题中常见技巧><i class="icon icon-angle-left" aria-hidden=true></i><span>&nbsp;&nbsp;下一篇</span></a>
+</li>
+<li class=next>
+<a href=https://liangkang233.github.io/2021/09/ubuntu%E5%88%86%E5%8C%BA%E6%89%A9%E5%AE%B9/ title=Ubuntu分区扩容><span>上一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden=true></i></a>
+</li>
+<li class=toggle-toc>
+<a class="toggle-btn collapsed" data-toggle=collapse href=#collapseToc aria-expanded=false title=文章目录 role=button>
+<span>[&nbsp;</span><span>文章目录</span>
+<i class="text-collapsed icon icon-anchor"></i>
+<i class="text-in icon icon-close"></i>
+<span>]</span>
+</a>
+</li>
+</ul>
+<div class=bar-right>
+<div class=share-component data-sites=qq,wechat,facebook,twitter data-mobile-sites=qq,wechat,facebook,twitter></div>
+</div>
+</div>
+</nav>
+</main><footer class=footer itemscope itemtype=http://schema.org/WPFooter>
+<ul class=social-links>
+<li><a href=https://www.linkedin.com/in/kang-liang-79b3b5216/ target=_blank title=linkedin data-toggle=tooltip data-placement=top>
+<i class="icon icon-linkedin"></i></a></li>
+<li><a href="http://wpa.qq.com/msgrd?v=3&uin=3479202458&site=qq&menu=yes" target=_blank title=qq data-toggle=tooltip data-placement=top>
+<i class="icon icon-qq"></i></a></li>
+</ul>
+<div class=copyright>
+&copy;2020 -
+2021 <a href=https://github.com/liangkang233 target=_blank> LK233 </a>
+<div class=post-copyright-license>
+<strong>License: </strong>
+<a href=http://creativecommons.org/licenses/by/4.0/deed.zh target=_blank rel=external>CC BY 4.0 CN</a>
+</div>
+</div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type=text/x-mathjax-config>
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+<script src=https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js></script>
+<script>window.jQuery||document.write('<script src="js/jquery.min.js"><\/script>')</script>
+<script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js></script>
+<script>hljs.configure({tabReplace:'    ',classPrefix:''}),hljs.initHighlightingOnLoad()</script>
+<script src=https://liangkang233.github.io/js/application.min.a94ab19cb63a95c8d7fbd7b85cab3ddeea8c369bdf75b9cab6708787ead123af.js></script>
+<script src=https://liangkang233.github.io/js/plugin.min.19c5bcb2fb0789ab4f2b7834e5ceb5e92635645605bab902c1024b25f1502364.js></script>
+<script>(function(a){var b={TRANSLATION:{POSTS:'文章',PAGES:'页面',CATEGORIES:'分类',TAGS:'标签',UNTITLED:'(未命名)'},ROOT_URL:'https://liangkang233.github.io/',CONTENT_URL:'https://liangkang233.github.io//searchindex.json '};a.INSIGHT_CONFIG=b})(window)</script>
+<script type=text/javascript src=https://liangkang233.github.io/js/insight.min.4a2d52de4bfff73e0c688404fe3d17c9a3ae12d9888e1e1ac9c690e4890de2ded50fe55f2b819c2ba55435a76f396f3ea6805765f0b0af5635cdf74ea459eab0.js defer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js></script>
+<script>tocbot.init({tocSelector:'.js-toc',contentSelector:'.js-toc-content',headingSelector:'h1, h2, h3',hasInnerContainers:!0})</script>
+<script async src=https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script>
+<script src=https://cdn1.lncld.net/static/js/3.0.4/av-min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/valine></script>
+<script type=text/javascript>var GUEST=['nick','mail','link'],meta='nick,mail';meta=meta.split(',').filter(function(a){return GUEST.indexOf(a)>-1}),new Valine({el:'#vcomments',verify:null,notify:null,appId:'2A2wQX1Rs6bncdlrRguNq27J-gzGzoHsz',appKey:'hFOX6badEuckpc33uwYqWFDk',placeholder:'评论框上方可以留下联系邮箱，评论支持MD语法',avatar:'retro',meta,pageSize:'10'||10,visitor:!1,emojiCDN:'//i0.hdslb.com/bfs/emote/',emojiMaps:{"藏狐":"ba0937ef6f3ccca85e2e0047e6263f3b4da37201.png",doge:"3087d273a78ccaff4bb1e9972e2ba2a7583c9f11.png","微笑":"685612eadc33f6bc233776c6241813385844f182.png",OK:"4683fd9ffc925fa6423110979d7dcac5eda297f4.png","星星眼":"63c9d1a31c0da745b61cdb35e0ecb28635675db2.png","妙啊":"b4cb77159d58614a9b787b91b1cd22a81f383535.png","辣眼睛":"35d62c496d1e4ea9e091243fa812866f5fecc101.png","吃瓜":"4191ce3c44c2b3df8fd97c33f85d3ab15f4f3c84.png","滑稽":"d15121545a99ac46774f1f4465b895fe2d1411c3.png","呲牙":"b5a5898491944a4268360f2e7a84623149672eb6.png","打call":"431432c43da3ee5aab5b0e4f8931953e649e9975.png","歪嘴":"4384050fbab0586259acdd170b510fe262f08a17.png","调皮":"8290b7308325e3179d2154327c85640af1528617.png","嗑瓜子":"28a91da1685d90124cfeead74622e1ebb417c0eb.png","笑哭":"c3043ba94babf824dea03ce500d0e73763bf4f40.png","脱单doge":"bf7e00ecab02171f8461ee8cf439c73db9797748.png","给心心":"1597302b98827463f5b75c7cac1f29ea6ce572c4.png","嘟嘟":"abd7404537d8162720ccbba9e0a8cdf75547e07a.png","喜欢":"8a10a4d73a89f665feff3d46ca56e83dc68f9eb8.png","酸了":"92b1c8cbceea3ae0e8e32253ea414783e8ba7806.png","哦呼":"362bded07ea5434886271d23fa25f5d85d8af06c.png","嫌弃":"de4c0783aaa60ec03de0a2b90858927bfad7154b.png","大哭":"2caafee2e5db4db72104650d87810cc2c123fc86.png","害羞":"9d2ec4e1fbd6cb1b4d12d2bbbdd124ccb83ddfda.png","疑惑":"b7840db4b1f9f4726b7cb23c0972720c1698d661.png","喜极而泣":"485a7e0c01c2d70707daae53bee4a9e2e31ef1ed.png","奸笑":"bb84906573472f0a84cebad1e9000eb6164a6f5a.png","笑":"81edf17314cea3b48674312b4364df44d5c01f17.png","偷笑":"6c49d226e76c42cd8002abc47b3112bc5a92f66a.png","惊讶":"f8e9a59cad52ae1a19622805696a35f0a0d853f3.png","捂脸":"6921bb43f0c634870b92f4a8ad41dada94a5296d.png","阴险":"ba8d5f8e7d136d59aab52c40fd3b8a43419eb03c.png","囧":"12e41d357a9807cc80ef1e1ed258127fcc791424.png","呆":"33ad6000d9f9f168a0976bc60937786f239e5d8c.png","抠鼻":"cb89184c97e3f6d50acfd7961c313ce50360d70f.png","大笑":"ca94ad1c7e6dac895eb5b33b7836b634c614d1c0.png","惊喜":"0afecaf3a3499479af946f29749e1a6c285b6f65.png","无语":"44667b7d9349957e903b1b62cb91fb9b13720f04.png","点赞":"1a67265993913f4c35d15a6028a30724e83e7d35.png","鼓掌":"895d1fc616b4b6c830cf96012880818c0e1de00d.png","尴尬":"cb321684ed5ce6eacdc2699092ab8fe7679e4fda.png","灵魂出窍":"43d3db7d97343c01b47e22cfabeca84b4251f35a.png","委屈":"d2f26cbdd6c96960320af03f5514c5b524990840.png","傲娇":"010540d0f61220a0db4922e4a679a1d8eca94f4e.png","疼":"905fd9a99ec316e353b9bd4ecd49a5f0a301eabf.png","冷":"cb0ebbd0668640f07ebfc0e03f7a18a8cd00b4ed.png","生病":"0f25ce04ae1d7baf98650986454c634f6612cb76.png","吓":"9c10c5ebc7bef27ec641b8a1877674e0c65fea5d.png","吐":"06946bfe71ac48a6078a0b662181bb5cad09decc.png","捂眼":"c5c6d6982e1e53e478daae554b239f2b227b172b.png","嘘声":"e64af664d20716e090f10411496998095f62f844.png","思考":"cfa9b7e89e4bfe04bbcd34ccb1b0df37f4fa905c.png","再见":"fc510306bae26c9aec7e287cdf201ded27b065b9.png","翻白眼":"eba54707c7168925b18f6f8b1f48d532fe08c2b1.png","哈欠":"888d877729cbec444ddbd1cf4c9af155a7a06086.png","奋斗":"bb2060c15dba7d3fd731c35079d1617f1afe3376.png","墨镜":"3a03aebfc06339d86a68c2d893303b46f4b85771.png","难过":"a651db36701610aa70a781fa98c07c9789b11543.png",tv_doge:"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png"}})</script>
+</body>
+</html>
