@@ -14,27 +14,27 @@ Ubuntu分区扩容 - LK233's Blog
 <meta name=format-detection content="telephone=no,email=no,adress=no">
 <meta name=theme-color content="#000000">
 <meta http-equiv=window-target content="_top">
-<meta name=description content="解决挂载分区磁盘过小问题">
+<meta name=description content="解决挂载分区磁盘的问题记录">
 <link rel=apple-touch-icon sizes=180x180 href=/web/social.ico>
 <link rel=icon type=ico/png href=/web/GitHub-Mark-32px.png sizes=32x32>
-<meta name=generator content="Hugo 0.88.1 with theme pure">
+<meta name=generator content="Hugo 0.89.4 with theme pure">
 <title>Ubuntu分区扩容 - LK233's Blog</title>
 <link rel=stylesheet href=https://liangkang233.github.io/css/style.min.911fc455aff286fbb0796ca516874da5dbf4b20cf101ff5f78329dc97ed7c711.css>
 <link rel=stylesheet href=https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css async>
 <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css async>
 <meta property="og:title" content="Ubuntu分区扩容">
-<meta property="og:description" content="解决挂载分区磁盘过小问题">
+<meta property="og:description" content="解决挂载分区磁盘的问题记录">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://liangkang233.github.io/2021/09/ubuntu%E5%88%86%E5%8C%BA%E6%89%A9%E5%AE%B9/"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2021-09-19T00:00:00+00:00">
 <meta property="article:modified_time" content="2021-09-19T00:00:00+00:00">
 <meta itemprop=name content="Ubuntu分区扩容">
-<meta itemprop=description content="解决挂载分区磁盘过小问题"><meta itemprop=datePublished content="2021-09-19T00:00:00+00:00">
+<meta itemprop=description content="解决挂载分区磁盘的问题记录"><meta itemprop=datePublished content="2021-09-19T00:00:00+00:00">
 <meta itemprop=dateModified content="2021-09-19T00:00:00+00:00">
-<meta itemprop=wordCount content="1573">
+<meta itemprop=wordCount content="1574">
 <meta itemprop=keywords content="linux,"><meta name=twitter:card content="summary">
 <meta name=twitter:title content="Ubuntu分区扩容">
-<meta name=twitter:description content="解决挂载分区磁盘过小问题"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<meta name=twitter:description content="解决挂载分区磁盘的问题记录"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
 </head>
 <body class="main-center theme-black" itemscope itemtype=http://schema.org/WebPage><header class=header itemscope itemtype=http://schema.org/WPHeader>
@@ -129,12 +129,12 @@ Ubuntu分区扩容 - LK233's Blog
 <a href=https://liangkang233.github.io/tags/blog-test/ class=tag-list-link rel=1>blog-test<span class=tag-list-count>1</span></a>
 <a href=https://liangkang233.github.io/tags/c/c++/ class=tag-list-link rel=6>c/c++<span class=tag-list-count>6</span></a>
 <a href=https://liangkang233.github.io/tags/go/ class=tag-list-link rel=4>go<span class=tag-list-count>4</span></a>
-<a href=https://liangkang233.github.io/tags/linux/ class=tag-list-link rel=3>linux<span class=tag-list-count>3</span></a>
+<a href=https://liangkang233.github.io/tags/linux/ class=tag-list-link rel=4>linux<span class=tag-list-count>4</span></a>
 <a href=https://liangkang233.github.io/tags/network/ class=tag-list-link rel=2>network<span class=tag-list-count>2</span></a>
 <a href=https://liangkang233.github.io/tags/python/ class=tag-list-link rel=3>python<span class=tag-list-count>3</span></a>
 <a href=https://liangkang233.github.io/tags/%E4%BB%BF%E7%9C%9F/ class=tag-list-link rel=3>仿真<span class=tag-list-count>3</span></a>
-<a href=https://liangkang233.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/ class=tag-list-link rel=3>数据结构<span class=tag-list-count>3</span></a>
-<a href=https://liangkang233.github.io/tags/%E7%AE%97%E6%B3%95/ class=tag-list-link rel=1>算法<span class=tag-list-count>1</span></a>
+<a href=https://liangkang233.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/ class=tag-list-link rel=2>数据结构<span class=tag-list-count>2</span></a>
+<a href=https://liangkang233.github.io/tags/%E7%AE%97%E6%B3%95/ class=tag-list-link rel=2>算法<span class=tag-list-count>2</span></a>
 </div>
 <script>document.onreadystatechange=()=>{document.readyState==='complete'&&tagCloud('#tag-cloud-list a',8,20)};function tagCloud(c,d,e){let b=0,a=0;$(c).each(function(){let c=Number($(this).attr("rel"));b<c&&(b=c),(a>c||a==0)&&(a=c)});let f=(e-d)/(b-a);$(c).each(function(){let b=$(this).attr("rel")-a;$(this).css({"font-size":d+b*f+'px'})})}</script>
 </div>
@@ -147,7 +147,7 @@ Ubuntu分区扩容 - LK233's Blog
 <li class=category-list-item><a href=https://liangkang233.github.io/categories/%E5%B7%A5%E5%85%B7/ class=category-list-link>工具</a><span class=category-list-count>5</span></li>
 <li class=category-list-item><a href=https://liangkang233.github.io/categories/%E6%9D%82%E8%B0%88/ class=category-list-link>杂谈</a><span class=category-list-count>1</span></li>
 <li class=category-list-item><a href=https://liangkang233.github.io/categories/%E7%BC%96%E7%A8%8B/ class=category-list-link>编程</a><span class=category-list-count>4</span></li>
-<li class=category-list-item><a href=https://liangkang233.github.io/categories/%E8%AE%B0%E5%BD%95/ class=category-list-link>记录</a><span class=category-list-count>3</span></li>
+<li class=category-list-item><a href=https://liangkang233.github.io/categories/%E8%AE%B0%E5%BD%95/ class=category-list-link>记录</a><span class=category-list-count>4</span></li>
 </ul>
 </div>
 </div>
@@ -155,6 +155,26 @@ Ubuntu分区扩容 - LK233's Blog
 <h3 class=widget-title>最新文章</h3>
 <div class=widget-body>
 <ul class="recent-post-list list-unstyled no-thumbnail">
+<li>
+<div class=item-inner>
+<p class=item-title>
+<a href=https://liangkang233.github.io/2021/11/%E5%8D%8E%E4%B8%BA%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95/ class=title>华为云服务器折腾记录</a>
+</p>
+<p class=item-date>
+<time datetime="2021-11-14 00:00:00 +0000 UTC" itemprop=datePublished>2021-11-14</time>
+</p>
+</div>
+</li>
+<li>
+<div class=item-inner>
+<p class=item-title>
+<a href=https://liangkang233.github.io/2021/11/%E4%BA%94%E5%A4%A7%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/ class=title>五大基本算法</a>
+</p>
+<p class=item-date>
+<time datetime="2021-11-04 00:00:00 +0000 UTC" itemprop=datePublished>2021-11-04</time>
+</p>
+</div>
+</li>
 <li>
 <div class=item-inner>
 <p class=item-title>
@@ -182,26 +202,6 @@ Ubuntu分区扩容 - LK233's Blog
 </p>
 <p class=item-date>
 <time datetime="2021-10-05 00:00:00 +0000 UTC" itemprop=datePublished>2021-10-05</time>
-</p>
-</div>
-</li>
-<li>
-<div class=item-inner>
-<p class=item-title>
-<a href=https://liangkang233.github.io/2021/09/%E7%BD%91%E5%86%85%E5%AD%98%E6%B4%BB%E8%8A%82%E7%82%B9%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/ class=title>网内存活节点测试工具</a>
-</p>
-<p class=item-date>
-<time datetime="2021-09-30 00:00:00 +0000 UTC" itemprop=datePublished>2021-09-30</time>
-</p>
-</div>
-</li>
-<li>
-<div class=item-inner>
-<p class=item-title>
-<a href=https://liangkang233.github.io/2021/09/ubuntu%E5%88%86%E5%8C%BA%E6%89%A9%E5%AE%B9/ class=title>Ubuntu分区扩容</a>
-</p>
-<p class=item-date>
-<time datetime="2021-09-19 00:00:00 +0000 UTC" itemprop=datePublished>2021-09-19</time>
 </p>
 </div>
 </li>
@@ -245,7 +245,7 @@ Ubuntu分区扩容 - LK233's Blog
 </span>
 </span>
 <span class=post-comment><i class="icon icon-comment"></i>&nbsp;<a href=/2021/09/ubuntu%E5%88%86%E5%8C%BA%E6%89%A9%E5%AE%B9/#comments class=article-comment-link>评论</a></span>
-<span class="post-wordcount hidden-xs" itemprop=wordCount>字数统计: 1573字</span>
+<span class="post-wordcount hidden-xs" itemprop=wordCount>字数统计: 1574字</span>
 </div>
 </div>
 <div class="article-entry marked-body js-toc-content" itemprop=articleBody>
@@ -254,7 +254,11 @@ Ubuntu分区扩容 - LK233's Blog
 </blockquote>
 <h1 id=问题分析>问题分析</h1>
 <p>Ubuntu的图形界面非常直观，上手难度也不大，所以使用VM虚拟机装了个Ubuntu系统，搭建专门跑实验室的一些linux软件环境，用到后面 <strong>/</strong> 挂载的磁盘仅剩500M不到，根本不够用就很难受。但是重配环境又很麻烦所以还是决定扩容分区。</p>
-<p>扩容首先得有空间，虚拟机就直接如下图般添加空间即可（需要删除所有快照），如果有未分配的空间直接拿来用不用此步。物理机的话就准备新的硬盘挂载分区。实在不行也可以从其他分区挤出些空间。注意除非是windows的动态磁盘，否则分区物理分配逻辑是从左到右的顺序，不可以跨分区分配给其他空间。</p>
+<p>扩容首先得有空间，虚拟机就直接如下图般添加空间即可（需要删除所有快照），如果有未分配的空间直接拿来用不用此步。</p>
+<p>物理机的话就准备新的硬盘挂载分区。实在不行也可以从其他分区挤出些空间。</p>
+<blockquote>
+<p>注意除非是windows的动态磁盘，否则分区物理分配逻辑是从左到右的顺序，不可以跨分区分配给其他空间。</p>
+</blockquote>
 <p><img src=/other/20210922134655.png alt></p>
 <p>Ubuntu有图形分区工具 <strong>gparted</strong> ,我这里添加了20g的空间（固态空间剩的不多了，所以也没扩多少）</p>
 <p>所以搞过windows分区的话看起来很快就能搞定，图形界面点两下就完事了。</p>
@@ -329,7 +333,7 @@ tmpfs          tmpfs     391M   40K  391M    1% /run/user/1000
 <p>​ 您可以在GParted FAQ中学习如何修复启动配置。http://gparted.org/faq.php。我使用的mbr分区表没有uefi启动分区，bios是单独的扇区挂载上去的所以可以放心操作。</p>
 </li>
 </ul>
-<p>最后扩容就完成了，图形界面的操作没啥说的。只能感叹linux的强大，windows to go要是也能如此功能强大配置方便就好了。</p>
+<p>最后扩容就完成了，图形界面的操作没啥说的。只能感叹linux的强大，windows to go要是也能如此功能强大、配置方便就好了。</p>
 </div>
 <div class=article-footer>
 <div class="panel panel-default panel-badger">

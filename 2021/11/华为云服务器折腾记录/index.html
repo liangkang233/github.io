@@ -1,7 +1,7 @@
 <!doctype html><html lang=zh>
 <head>
 <title>
-树相关 - LK233's Blog
+华为云服务器折腾记录 - LK233's Blog
 </title>
 <meta charset=utf-8>
 <meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
@@ -14,24 +14,27 @@
 <meta name=format-detection content="telephone=no,email=no,adress=no">
 <meta name=theme-color content="#000000">
 <meta http-equiv=window-target content="_top">
-<meta name=description content="树相关的数据结构及算法,长期更新">
+<meta name=description content="如题">
 <link rel=apple-touch-icon sizes=180x180 href=/web/social.ico>
 <link rel=icon type=ico/png href=/web/GitHub-Mark-32px.png sizes=32x32>
-<meta name=generator content="Hugo 0.88.1 with theme pure">
-<title>树相关 - LK233's Blog</title>
+<meta name=generator content="Hugo 0.89.4 with theme pure">
+<title>华为云服务器折腾记录 - LK233's Blog</title>
 <link rel=stylesheet href=https://liangkang233.github.io/css/style.min.911fc455aff286fbb0796ca516874da5dbf4b20cf101ff5f78329dc97ed7c711.css>
 <link rel=stylesheet href=https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css async>
 <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css async>
-<meta property="og:title" content="树相关">
-<meta property="og:description" content="树相关的数据结构及算法,长期更新">
+<meta property="og:title" content="华为云服务器折腾记录">
+<meta property="og:description" content="如题">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://liangkang233.github.io/1/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A0%91%E7%9B%B8%E5%85%B3/"><meta property="article:section" content="posts">
-<meta itemprop=name content="树相关">
-<meta itemprop=description content="树相关的数据结构及算法,长期更新">
-<meta itemprop=wordCount content="1764">
-<meta itemprop=keywords content="C/C++,数据结构,"><meta name=twitter:card content="summary">
-<meta name=twitter:title content="树相关">
-<meta name=twitter:description content="树相关的数据结构及算法,长期更新"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<meta property="og:url" content="https://liangkang233.github.io/2021/11/%E5%8D%8E%E4%B8%BA%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2021-11-14T00:00:00+00:00">
+<meta property="article:modified_time" content="2021-11-14T00:00:00+00:00">
+<meta itemprop=name content="华为云服务器折腾记录">
+<meta itemprop=description content="如题"><meta itemprop=datePublished content="2021-11-14T00:00:00+00:00">
+<meta itemprop=dateModified content="2021-11-14T00:00:00+00:00">
+<meta itemprop=wordCount content="2057">
+<meta itemprop=keywords content="linux,"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="华为云服务器折腾记录">
+<meta name=twitter:description content="如题"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
 </head>
 <body class="main-center theme-black" itemscope itemtype=http://schema.org/WebPage><header class=header itemscope itemtype=http://schema.org/WPHeader>
@@ -126,12 +129,12 @@
 <a href=https://liangkang233.github.io/tags/blog-test/ class=tag-list-link rel=1>blog-test<span class=tag-list-count>1</span></a>
 <a href=https://liangkang233.github.io/tags/c/c++/ class=tag-list-link rel=6>c/c++<span class=tag-list-count>6</span></a>
 <a href=https://liangkang233.github.io/tags/go/ class=tag-list-link rel=4>go<span class=tag-list-count>4</span></a>
-<a href=https://liangkang233.github.io/tags/linux/ class=tag-list-link rel=3>linux<span class=tag-list-count>3</span></a>
+<a href=https://liangkang233.github.io/tags/linux/ class=tag-list-link rel=4>linux<span class=tag-list-count>4</span></a>
 <a href=https://liangkang233.github.io/tags/network/ class=tag-list-link rel=2>network<span class=tag-list-count>2</span></a>
 <a href=https://liangkang233.github.io/tags/python/ class=tag-list-link rel=3>python<span class=tag-list-count>3</span></a>
 <a href=https://liangkang233.github.io/tags/%E4%BB%BF%E7%9C%9F/ class=tag-list-link rel=3>仿真<span class=tag-list-count>3</span></a>
-<a href=https://liangkang233.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/ class=tag-list-link rel=3>数据结构<span class=tag-list-count>3</span></a>
-<a href=https://liangkang233.github.io/tags/%E7%AE%97%E6%B3%95/ class=tag-list-link rel=1>算法<span class=tag-list-count>1</span></a>
+<a href=https://liangkang233.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/ class=tag-list-link rel=2>数据结构<span class=tag-list-count>2</span></a>
+<a href=https://liangkang233.github.io/tags/%E7%AE%97%E6%B3%95/ class=tag-list-link rel=2>算法<span class=tag-list-count>2</span></a>
 </div>
 <script>document.onreadystatechange=()=>{document.readyState==='complete'&&tagCloud('#tag-cloud-list a',8,20)};function tagCloud(c,d,e){let b=0,a=0;$(c).each(function(){let c=Number($(this).attr("rel"));b<c&&(b=c),(a>c||a==0)&&(a=c)});let f=(e-d)/(b-a);$(c).each(function(){let b=$(this).attr("rel")-a;$(this).css({"font-size":d+b*f+'px'})})}</script>
 </div>
@@ -144,7 +147,7 @@
 <li class=category-list-item><a href=https://liangkang233.github.io/categories/%E5%B7%A5%E5%85%B7/ class=category-list-link>工具</a><span class=category-list-count>5</span></li>
 <li class=category-list-item><a href=https://liangkang233.github.io/categories/%E6%9D%82%E8%B0%88/ class=category-list-link>杂谈</a><span class=category-list-count>1</span></li>
 <li class=category-list-item><a href=https://liangkang233.github.io/categories/%E7%BC%96%E7%A8%8B/ class=category-list-link>编程</a><span class=category-list-count>4</span></li>
-<li class=category-list-item><a href=https://liangkang233.github.io/categories/%E8%AE%B0%E5%BD%95/ class=category-list-link>记录</a><span class=category-list-count>3</span></li>
+<li class=category-list-item><a href=https://liangkang233.github.io/categories/%E8%AE%B0%E5%BD%95/ class=category-list-link>记录</a><span class=category-list-count>4</span></li>
 </ul>
 </div>
 </div>
@@ -152,6 +155,26 @@
 <h3 class=widget-title>最新文章</h3>
 <div class=widget-body>
 <ul class="recent-post-list list-unstyled no-thumbnail">
+<li>
+<div class=item-inner>
+<p class=item-title>
+<a href=https://liangkang233.github.io/2021/11/%E5%8D%8E%E4%B8%BA%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95/ class=title>华为云服务器折腾记录</a>
+</p>
+<p class=item-date>
+<time datetime="2021-11-14 00:00:00 +0000 UTC" itemprop=datePublished>2021-11-14</time>
+</p>
+</div>
+</li>
+<li>
+<div class=item-inner>
+<p class=item-title>
+<a href=https://liangkang233.github.io/2021/11/%E4%BA%94%E5%A4%A7%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/ class=title>五大基本算法</a>
+</p>
+<p class=item-date>
+<time datetime="2021-11-04 00:00:00 +0000 UTC" itemprop=datePublished>2021-11-04</time>
+</p>
+</div>
+</li>
 <li>
 <div class=item-inner>
 <p class=item-title>
@@ -182,26 +205,6 @@
 </p>
 </div>
 </li>
-<li>
-<div class=item-inner>
-<p class=item-title>
-<a href=https://liangkang233.github.io/2021/09/%E7%BD%91%E5%86%85%E5%AD%98%E6%B4%BB%E8%8A%82%E7%82%B9%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/ class=title>网内存活节点测试工具</a>
-</p>
-<p class=item-date>
-<time datetime="2021-09-30 00:00:00 +0000 UTC" itemprop=datePublished>2021-09-30</time>
-</p>
-</div>
-</li>
-<li>
-<div class=item-inner>
-<p class=item-title>
-<a href=https://liangkang233.github.io/2021/09/ubuntu%E5%88%86%E5%8C%BA%E6%89%A9%E5%AE%B9/ class=title>Ubuntu分区扩容</a>
-</p>
-<p class=item-date>
-<time datetime="2021-09-19 00:00:00 +0000 UTC" itemprop=datePublished>2021-09-19</time>
-</p>
-</div>
-</li>
 </ul>
 </div>
 </div>
@@ -218,17 +221,22 @@
 <article id=- class="article article-type-" itemscope itemtype=http://schema.org/BlogPosting>
 <div class=article-header>
 <h1 itemprop=name>
-<a class=article-title href=/1/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A0%91%E7%9B%B8%E5%85%B3/>树相关</a>
+<a class=article-title href=/2021/11/%E5%8D%8E%E4%B8%BA%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95/>华为云服务器折腾记录</a>
 </h1>
 <div class=article-meta>
+<span class=article-date>
+<i class="icon icon-calendar-check"></i>&nbsp;
+<a href=https://liangkang233.github.io/2021/11/%E5%8D%8E%E4%B8%BA%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95/ class=article-date>
+<time datetime="2021-11-14 00:00:00 +0000 UTC" itemprop=datePublished>2021-11-14</time>
+</a>
+</span>
 <span class=article-category>
 <i class="icon icon-folder"></i>&nbsp;
-<a class=article-category-link href=/categories/%E7%BC%96%E7%A8%8B/> 编程 </a>
+<a class=article-category-link href=/categories/%E8%AE%B0%E5%BD%95/> 记录 </a>
 </span>
 <span class=article-tag>
 <i class="icon icon-tags"></i>&nbsp;
-<a class=article-tag-link href=/tags/c/c++/> C/C++ </a>
-<a class=article-tag-link href=/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/> 数据结构 </a>
+<a class=article-tag-link href=/tags/linux/> linux </a>
 </span>
 <span class="article-read hidden-xs">
 <i class="icon icon-eye-fill" aria-hidden=true></i>
@@ -236,241 +244,170 @@
 <span id=busuanzi_value_page_pv>0</span>
 </span>
 </span>
-<span class=post-comment><i class="icon icon-comment"></i>&nbsp;<a href=/1/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A0%91%E7%9B%B8%E5%85%B3/#comments class=article-comment-link>评论</a></span>
-<span class="post-wordcount hidden-xs" itemprop=wordCount>字数统计: 1764字</span>
+<span class=post-comment><i class="icon icon-comment"></i>&nbsp;<a href=/2021/11/%E5%8D%8E%E4%B8%BA%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95/#comments class=article-comment-link>评论</a></span>
+<span class="post-wordcount hidden-xs" itemprop=wordCount>字数统计: 2057字</span>
 </div>
 </div>
 <div class="article-entry marked-body js-toc-content" itemprop=articleBody>
-<h1 id=二叉树>二叉树</h1>
-<p>二叉树（英语：Binary tree）是每个节点最多只有两个分支（即不存在分支度大于2的节点）的树结构。通常分支被称作“左子树”或“右子树”。二叉树的分支具有左右次序，不能随意颠倒。</p>
-<table>
-<thead>
-<tr>
-<th style=text-align:center></th>
-<th style=text-align:center><a href=https://zh.wikipedia.org/wiki/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91>完全二叉树</a></th>
-<th style=text-align:center>完美二叉树</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style=text-align:center>总节点k</td>
-<td style=text-align:center>$2^{h-1}$ &lt;= k &lt;= $2^{h} - 1$</td>
-<td style=text-align:center>k = $2^{h} - 1$</td>
-</tr>
-<tr>
-<td style=text-align:center>树高h</td>
-<td style=text-align:center>h = $log_{2}k + 1$</td>
-<td style=text-align:center>h = $log_{2}(k+1)$</td>
-</tr>
-</tbody>
-</table>
-<p>以此树为例：</p>
-<pre><code class=language-c>// 二叉树节点
-struct Node
-{
-	int value;
-	struct Node* left;
-	struct Node* right;
-	Node(int data) : value(data), left(nullptr), right(nullptr) {};
-};
+<p>最近在做一个关于应用上云的测试，于是看到有华为云的免费服务器试用就注册了一个，记录下操作备忘。</p>
+<p>个人用户实名注册即可领取一个低性能的2核4g的服务器，试用15天。<a href=https://activity.huaweicloud.com/free_test/index.html>领取链接</a></p>
+<h1 id=初始化操作>初始化操作</h1>
+<p>领取成功后，按照创建步骤即可。如果没有设定登录密码的，在控制台设置即可。弹性公网即为服务器的公网IP，与其链接通信试用这个ip。
+<img src=/other/20111114(6).png alt></p>
+<p>远程登录可以试用 CloudShell VNC Xshell shell 等登录，先使用VNC设置初始密码，网络安全组的入站等规则。
+<img src=/other/20111114(2).png alt></p>
+<p>此页面也可查询服务器详细一段时间内运行状态
+<img src=/other/20111114(3).png alt></p>
+<h2 id=需要的初步操作>需要的初步操作：</h2>
+<ol>
+<li>
+<p>添加普通用户</p>
+<p>root 用户权限太大，为了以防误操作和开发需要，需要新建一个有root权限的普通用户。</p>
+<pre><code class=language-bash># 创建用户
+sudo adduser username 
+## 命令将向你询问一系列的问题。密码是必需的，其他字段都是可选的。
+Enter new UNIX password: 
+Retype new UNIX password: 
+passwd: password updated successfully
+Changing the user information for username
+Enter the new value, or press ENTER for the default
+    Full Name []: 
+    Room Number []: 
+    Work Phone []: 
+    Home Phone []: 
+    Other []: 
+Is the information correct? [Y/n] 
+# 最后，输入Y确认信息是否正确。
+
+# 如果您希望新创建的用户具有管理权限，请将用户添加到sudo组：
+sudo usermod -aG sudo username
+
+# 您可以使用两个命令行工具来删除用户帐户：userdel和deluser。在Ubuntu上，建议您使用deluser命令，因为它比userdel 更友好。
+
+# 要删除用户而不删除用户文件，请运行：
+sudo deluser username
+
+# 如果要删除并且用户的家目录和邮件使用--remove-home选项：
+sudo deluser --remove-home username
 </code></pre>
-<h2 id=dfs-前中后-序>dfs 前中后 序</h2>
-<pre><code class=language-c>// 先序遍历
-void PreOrder(Node* head)
-{
-	if (head == nullptr)
-		return;
-	cout &lt;&lt; head-&gt;value &lt;&lt; &quot; &quot;;
-	PreOrder(head-&gt;left);
-	PreOrder(head-&gt;right);
-}
-
-// 中序遍历
-void InOrder(Node* head)
-{
-	if (head == nullptr)
-		return;
-	InOrder(head-&gt;left);
-	cout &lt;&lt; head-&gt;value &lt;&lt; &quot; &quot;;
-	InOrder(head-&gt;right);
-}
-
-// 后序遍历
-void PosOrder(Node* head)
-{
-	if (head == nullptr)
-		return;
-	PosOrder(head-&gt;left);
-	PosOrder(head-&gt;right);
-	cout &lt;&lt; head-&gt;value &lt;&lt; &quot; &quot;;
-}
+</li>
+<li>
+<p>ssh公钥免密登录</p>
+<p>我更习惯直接使用ssh登录远程服务器，所以设置免密登录很有必要</p>
+<pre><code class=language-bash>apt-get install  openssh-server openssh-client
+# 如果没有或者需要一个新公私钥的创建命令
+ssh-keygen -t rsa -f ~/.ssh/cloud
+# 复制公钥，需要登录那个用户就复制到哪
+ssh-copy-id -i ~/.ssh/cloud.pub root@弹性公网IP
 </code></pre>
-<h2 id=bfs-层次遍历>bfs 层次遍历</h2>
-<pre><code class=language-c>// 利用队列来做。
-void LevelOrder(Node* head)
-{
-	if (head) {
-		queue&lt;Node*&gt; queue;
-		queue.push(head);
-		Node* cur;
-		while (!queue.empty()) {
-			cur = queue.front();
-			queue.pop();
-			cout &lt;&lt; cur-&gt;value &lt;&lt; &quot; &quot;;
-			if (cur-&gt;left)
-				queue.push(cur-&gt;left);
-			if (cur-&gt;right)
-				queue.push(cur-&gt;right);
-		}
-	}
-}
+</li>
+<li>
+<p>X11图形界面允许</p>
+<p>如果需要符合传输X11协议的图形界面需要确保ssh登录后：</p>
+<pre><code class=language-bash>环境说明： A主机ssh连接B主机，A使用X11服务显示使用B主机的code等界面
+a. 首先确保A可以连接上B主机
+b. 设置主机A运行其他服务器的 X11 界面：
+    xhost +
+c. 设置主机A sudo vim /etc/ssh/ssh_config
+    ForwardAgent yes
+    ForwardX11 yes
+    ForwardX11Trusted yes
+d. 设置主机B的 daemon 配置X11转发
+    sudo vim /etc/ssh/sshd_config #补充下面这行,我这台服务器是已经配置好的。
+    X11Forwarding yes #确保正确后重启ssh daemon
+    sudo systemctl restart sshd
+最后连接B主机即可 ssh -X  username@B主机(IP)
 </code></pre>
-<h2 id=二叉树应用>二叉树应用：</h2>
-<p>蓝桥杯赛题：挑选工厂</p>
-<pre><code class=language-cpp>/* 问题描述
-　　最近，WYF正准备参观他的点卡工厂。WYF集团的经理氰垃圾需要帮助WYF设计参观路线。现在，氰垃圾知道一下几件事情：
-　　1.WYF的点卡工厂构成一颗二叉树。
-　　2.一共有n座工厂。
-　　3.他需要把这颗树上的点以后序遍历的方法列出来，才能绘制地图。
-　　还好，最近他的属下给了他先序遍历和中序遍历的数据。可是，氰垃圾最近还要帮㊎澤穻解决一些问题，没有时间。
-    请你帮帮他，替他完成这项任务。由于氰垃圾的一些特殊的要求，WYF的参观路线将会是这棵树的后序遍历。
-输入格式
-　　第一行一个整数n，表示一共又n座工厂。
-　　第二行n个整数，表示先序遍历。
-　　第三行n个整数，表示中序遍历。
-输出格式
-　　输出共一行，包含n个整数，为后序遍历。
-样例输入
-8
-1 2 4 5 7 3 6 8
-4 2 7 5 1 8 6 3
-样例输出
-4 7 5 2 8 6 3 1
-数据规模和约定
-　　0&lt;n&lt;100000,。保证先序遍历和中序遍历合法，且均为1～n。 */
-
-
-/*  此题即为由先、中序排列确定 后序排序; 首先要知道一个结论，前序/后序+中序序列可以唯一确定一棵二叉树，所以自然而然可以用来建树。
-    看一下前序和中序有什么特点，前序1,2,4,7,3,5,6,8 ，中序4,7,2,1,5,3,8,6；
-有如下特征：
-    前序中左起第一位1肯定是根结点，我们可以据此找到中序中根结点的位置rootin；（后序中最后一位肯定是根节点。）
-    中序中根结点左边就是左子树结点，右边就是右子树结点，即[左子树结点，根结点，右子树结点]，我们就可以得出左子树结点个数为int left = rootin - leftin;；
-    前序中结点分布应该是：[根结点，左子树结点，右子树结点]；（后序中分布：[左子树节点, 右子树节点, 根节点]）
-    根据前一步确定的左子树个数，可以确定前序中左子树结点和右子树结点的范围；
-    如果我们要前序遍历生成二叉树的话，下一层递归应该是：
-    左子树：root-&gt;left = pre_order; (前序左子树范围，中序左子树范围，前序序列，中序序列)
-    右子树：root-&gt;right = pre_order; (前序右子树范围，中序右子树范围，前序序列，中序序列)
-    每一层递归都要返回当前根结点root； 
-*/
-
-#include&lt;iostream&gt;
-#include&lt;vector&gt;
-using namespace std;
-
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode() : val(0), left(NULL), right(NULL) {}
-    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
-
-    
-TreeNode *OrderToTree(int L_Pre, int R_Pre, int L_In, int R_In, vector&lt;int&gt; &amp;Pre, vector&lt;int&gt; &amp;In) 
-{   
-    if (L_Pre &gt; R_Pre || L_In &gt; R_In)
-        return NULL;
-    TreeNode *root = new TreeNode(Pre[L_Pre]);   //前序排列中 最左位为根节点
-    int in_root = L_In;
-    while (In[in_root] != Pre[L_Pre]) {
-        in_root++; }
-    int left = in_root - L_In;
-    root-&gt;left = OrderToTree(L_Pre + 1, L_Pre + left, L_In, L_In + left, Pre, In); 
-    root-&gt;right = OrderToTree(L_Pre + left +1, R_Pre, L_In + left +1, R_In, Pre, In); 
-    return root;
-}
-
-//打印逆序排序
-void PosOrder (TreeNode* root)
-{
-    if(root == NULL)
-        return;
-    PosOrder(root-&gt;left);
-    PosOrder(root-&gt;right);
-    cout &lt;&lt; root-&gt;val &lt;&lt; ' ';
-}
-
-
-int main ()
-{
-    int n;  // 0&lt;n&lt;=1000000
-    // int PreNumber[100000] = {0}, InNumber[100000] = {0}, PosNumber[100000] = {0};
-    vector&lt;int&gt; PreNumber, InNumber, PosNumber;
-    cin &gt;&gt; n;
-    for (int i = 0; i &lt; n; i++) {
-        int j; 
-        cin &gt;&gt; j;
-        PreNumber.push_back(j);
-    }
-
-    for (int i = 0; i &lt; n; i++) {
-        int j; 
-        cin &gt;&gt; j;
-        InNumber.push_back(j);        
-    }
-
-    TreeNode *root  = OrderToTree(0, n-1, 0, n-1, PreNumber, InNumber); 
-    PosOrder (root);
-
-    return 0;
-}
+</li>
+<li>
+<p>更改主机名</p>
+<p>如果你在一个云实例上运行 Ubuntu，并且安装了cloud-init软件包，你也可以编辑/etc/cloud/cloud.cfg文件。这个软件包由云服务器厂商提供，通常默认被安装，并且它可以被用来处理云服务器实例的初始化。如果文件存在于你的系统上，打开它：<code>sudo nano /etc/cloud/cloud.cfg</code>搜索"preserve_hostname”,并且将值从false修改到true。</p>
+<pre><code class=language-bash>#This will cause the set+update hostname module to not operate (if true)
+preserve_hostname: true
+# 保存文件，并且关闭编辑器运行命令
+hostnamectl sethostname YOUR_define_name
 </code></pre>
-<p><a href=https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/>889. 根据前序和后序遍历构造二叉树 - 力扣（LeetCode</a></p>
-<pre><code class=language-CPP>struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
+</li>
+</ol>
+<h1 id=远程vscode>远程Vscode</h1>
+<p>虽然服务器自带vim等编辑器，但是还是vscode用的顺手，下面是配置远端登录vscode的记录。（用x11打开的vscode太卡，不推荐如此使用）</p>
+<p>打开本地主机的vscode扩展商店，搜索安装 <strong>Remote - SSH: Editing Configuration Files
+ms-vscode-remote.remote-ssh-edit</strong> 之后打开此扩展设定远程登录的IP和用户
+<img src=/other/20111114(4).png alt></p>
+<p>可是启动远程登录时ssh Server卡在Setting up SSH Host XX: Downloading VS Code Server</p>
+<p><img src=/other/20111114(5).png alt></p>
+<p>重新连接后有detail选项，打开显示的部分日志如下：</p>
+<pre><code class=language-bash>[14:30:07.314] Log Level: 2
+[14:30:07.317] remote-ssh@0.66.0
+[14:30:07.318] linux x64
+[14:30:07.321] SSH Resolver called for &quot;ssh-remote+cloud-huawei-root&quot;, attempt 1
+[14:30:07.322] &quot;remote.SSH.useLocalServer&quot;: true
+[14:30:07.322] &quot;remote.SSH.path&quot;: undefined
+[14:30:07.322] &quot;remote.SSH.configFile&quot;: undefined
+[14:30:07.322] &quot;remote.SSH.useFlock&quot;: true
+[14:30:07.323] &quot;remote.SSH.lockfilesInTmp&quot;: false
+[14:30:07.323] &quot;remote.SSH.localServerDownload&quot;: auto
+[14:30:07.323] &quot;remote.SSH.remoteServerListenOnSocket&quot;: false
+[14:30:07.323] &quot;remote.SSH.showLoginTerminal&quot;: false
+[14:30:07.324] &quot;remote.SSH.defaultExtensions&quot;: []
+[14:30:07.324] &quot;remote.SSH.loglevel&quot;: 2
+[14:30:07.325] SSH Resolver called for host: cloud-huawei-root
+[14:30:07.325] Setting up SSH remote &quot;cloud-huawei-root&quot;
+[14:30:07.331] Acquiring local install lock: /tmp/vscode-remote-ssh-fd33cb2f-install.lock
+[14:30:07.352] Looking for existing server data file at /home/lk233/.config/Code/User/globalStorage/ms-vscode-remote.remote-ssh/vscode-ssh-host-fd33cb2f-b4c1bd0a9b03c749ea011b06c6d2676c8091a70c-0.66.0/data.json
+[14:30:07.356] Using commit id &quot;b4c1bd0a9b03c749ea011b06c6d2676c8091a70c&quot; and quality &quot;stable&quot; for server
+[14:30:07.368] Install and start server if needed
+[14:30:07.379] PATH: /home/lk233/.local/bin:/home/lk233/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/lk233/.local/bin:/home/lk233/go/bin:/usr/local/go/bin:/home/lk233/.local/bin:/home/lk233/.local/bin
+[14:30:07.380] Checking ssh with &quot;ssh -V&quot;
+[14:30:07.418] &gt; OpenSSH_7.6p1 Ubuntu-4ubuntu0.3, OpenSSL 1.0.2n  7 Dec 2017
 
-// @lc code=start
-#include &lt;iostream&gt;
-#include &lt;vector&gt;
-using namespace std;
-
-// 注意题中说明 二叉树中的各个值不相同,不需要考虑不成立的情况
-// 前序/后序+中序序列可以唯一确定一棵二叉树，只知道前序和后序不唯一确定
-// 前序是 root + 左树节点 + 右树节点
-// 后序是 左树节点 + 右树节点 + root
-// 所以后序的倒数第二个是前序中右树的根节点 前序的第二个是后续的前树的根节点最后一位 如此递推就有规律
-class Solution {
-public:
-    // l1 r1限定pre的子树区域，l2 r2限定post的子树区域。
-    // 此法默认优先生成左子树（即只有一边子树时默认是左子树）
-    TreeNode* build_tree(vector&lt;int&gt;&amp; pre, vector&lt;int&gt;&amp; post, int l1, int r1, int l2, int r2) {
-        if(l1 &gt; r1)
-            return nullptr;
-        TreeNode *root = new TreeNode(pre[l1]); //或post[r2]
-        for (int i = r2-1; i &gt;= l2; i--) {
-            if(pre[l1+1] == post[i]) {
-                int len = i - l2;
-                root-&gt;left = build_tree(pre, post, l1+1, l1+len+1, l2, i);         
-                root-&gt;right = build_tree(pre, post, l1+len+2, r1, i+1, r2-1);
-                break;
-            }
-        }
-        return root;
-    }
-    TreeNode* constructFromPrePost(vector&lt;int&gt;&amp; preorder, vector&lt;int&gt;&amp; postorder) {
-        TreeNode* ans = build_tree(preorder, postorder, 0, postorder.size()-1, 0, preorder.size()-1);
-        return ans;
-    }
-};
+[14:30:07.429] askpass server listening on /run/user/1000/vscode-ssh-askpass-40f6502d1f6ea56e214539b4c7f7cd72b715cc8b.sock
+[14:30:07.430] Spawning local server with {&quot;serverId&quot;:1,&quot;ipcHandlePath&quot;:&quot;/run/user/1000/vscode-ssh-askpass-2918dcdc514eef86200f16b5db8a75360fbea57c.sock&quot;,&quot;sshCommand&quot;:&quot;ssh&quot;,&quot;sshArgs&quot;:[&quot;-v&quot;,&quot;-T&quot;,&quot;-D&quot;,&quot;45283&quot;,&quot;-o&quot;,&quot;ConnectTimeout=15&quot;,&quot;cloud-huawei-root&quot;],&quot;dataFilePath&quot;:&quot;/home/lk233/.config/Code/User/globalStorage/ms-vscode-remote.remote-ssh/vscode-ssh-host-fd33cb2f-b4c1bd0a9b03c749ea011b06c6d2676c8091a70c-0.66.0/data.json&quot;}
+[14:30:07.430] Local server env: {&quot;DISPLAY&quot;:&quot;:0&quot;,&quot;ELECTRON_RUN_AS_NODE&quot;:&quot;1&quot;,&quot;SSH_ASKPASS&quot;:&quot;/home/lk233/.vscode/extensions/ms-vscode-remote.remote-ssh-0.66.0/out/local-server/askpass.sh&quot;,&quot;VSCODE_SSH_ASKPASS_NODE&quot;:&quot;/usr/share/code/code&quot;,&quot;VSCODE_SSH_ASKPASS_MAIN&quot;:&quot;/home/lk233/.vscode/extensions/ms-vscode-remote.remote-ssh-0.66.0/out/askpass-main.js&quot;,&quot;VSCODE_SSH_ASKPASS_HANDLE&quot;:&quot;/run/user/1000/vscode-ssh-askpass-40f6502d1f6ea56e214539b4c7f7cd72b715cc8b.sock&quot;}
+[14:30:07.447] Spawned 11142
+[14:30:07.653] &gt; local-server-1&gt; Spawned ssh, pid=11150
+[14:30:07.659] stderr&gt; OpenSSH_7.6p1 Ubuntu-4ubuntu0.3, OpenSSL 1.0.2n  7 Dec 2017
+[14:30:07.914] stderr&gt; debug1: Server host key: ecdsa-sha2-nistp256 SHA256:TeikcLf0gyEyeAnlAgObhrs6PKRrfQQeW6zLEFgFiA4
+[14:30:08.172] stderr&gt; Authenticated to 123.60.23.165 ([123.60.23.165]:22).
+[14:30:08.977] &gt; Welcome to Ubuntu 18.04.3 LTS (GNU/Linux 4.15.0-70-generic aarch64)
+&gt; 
+&gt;  * Documentation:  https://help.ubuntu.com
+&gt;  * Management:     https://landscape.canonical.com
+&gt;  * Support:        https://ubuntu.com/advantage
+&gt; 
+&gt;   System information as of Sun Nov 14 14:30:08 CST 2021
+&gt; 
+&gt;   System load:  0.05               Processes:           99
+&gt;   Usage of /:   10.2% of 38.63GB   Users logged in:     0
+&gt;   Memory usage: 6%                 IP address for eth0: 192.168.0.20
+&gt;   Swap usage:   0%
+&gt; 
+*****
 </code></pre>
-<h1 id=红黑树>红黑树</h1>
+<p>查了下果然是这个vscode-server包需要科学上网，所以云服务器无法连接上。
+只能按照<a href=https://stackoverflow.com/questions/56671520/how-can-i-install-vscode-server-in-linux-offline>How can I install vscode-server in linux offline</a>类似的安装了。不过里面问题提问的人的是x86架构的包，我使用的是ARM的包。</p>
+<p>上面日志可以看到有一句<strong>Using commit id &ldquo;b4c1bd0a9b03c749ea011b06c6d2676c8091a70c&rdquo; and quality &ldquo;stable&rdquo; for server</strong>，这个等价替换上面问题的解决方案的commitid即可。其实直接查看主机运行的code 相关进程即可看到：</p>
+<pre><code class=language-bash>root@cloud:~# ps aux | grep code
+root       507  0.0  0.1  11488  5940 ?        S    14:27   0:00 wget --tries=1 --connect-timeout=7 --dns-timeout=7 -nv -O vscode-server.tar.gz https://update.code.visualstudio.com/commit:b4c1bd0a9b03c749ea011b06c6d2676c8091a70c/server-linux-arm64/stable
+root      5321  0.0  0.0   5672   664 pts/0    S+   14:31   0:00 grep --color=auto code
+</code></pre>
+<p>总结下解决方案：</p>
+<ol>
+<li>本地下好对应包
+我的版本的 commit id = b4c1bd0a9b03c749ea011b06c6d2676c8091a70c，使用stable版本（inside预览不推荐）
+浏览器或wget下载<code>https://update.code.visualstudio.com/commit:b4c1bd0a9b03c749ea011b06c6d2676c8091a70c/server-linux-arm64/stable</code></li>
+<li>scp复制该压缩包上传云服务器
+<code>$ scp /home/localuser/vscode-server-linux-arm64.tar.gz user@123.60.23.165:/home/user/</code></li>
+<li>解压并设定状态
+如果之前下载失败了记得把commit对应文件夹清空，或者新建一个。user对应云服务器用户名一般为 <code>/root/.vscode-server-insiders/bin/${commit_id}</code> 或者 <code>/home/user/.vscode-server-insiders/bin/${commit_id}</code>
+<pre><code class=language-bash>tar zxvf ./vscode-server-linux-x64.tar.gz -C /home/user/.vscode-server-insiders/bin/${commit_id} --strip 1
+touch /home/user/.vscode-server-insiders/bin/${commit_id}/0
+</code></pre>
+</li>
+</ol>
+<p>最后，安装完毕，登录成功如下所示
+<img src=/other/20111114(1).png alt></p>
+<p>当然，要记得关闭后台更新。</p>
 </div>
 <div class=article-footer>
 <div class="panel panel-default panel-badger">
@@ -496,8 +433,8 @@ public:
 </div><nav class="bar bar-footer clearfix" data-stick-bottom>
 <div class=bar-inner>
 <ul class="pager pull-left">
-<li class=next>
-<a href=https://liangkang233.github.io/1/01/%E8%8F%9C%E9%B8%9F%E5%BB%BA%E6%A8%A1%E5%9B%A7%E4%BA%8B/ title><span>上一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden=true></i></a>
+<li class=prev>
+<a href=https://liangkang233.github.io/2021/11/%E4%BA%94%E5%A4%A7%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/ title=五大基本算法><i class="icon icon-angle-left" aria-hidden=true></i><span>&nbsp;&nbsp;下一篇</span></a>
 </li>
 <li class=toggle-toc>
 <a class="toggle-btn collapsed" data-toggle=collapse href=#collapseToc aria-expanded=false title=文章目录 role=button>
