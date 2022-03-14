@@ -1,0 +1,325 @@
+<!doctype html><html lang=zh><head><title>树 相关结构 (TODO) - LK233's Blog</title><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui"><meta name=renderer content="webkit"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="black"><meta name=format-detection content="telephone=no,email=no,adress=no"><meta name=theme-color content="#000000"><meta http-equiv=window-target content="_top"><meta name=description content="树相关的数据结构及算法,长期更新"><link rel=apple-touch-icon sizes=180x180 href=/web/social.ico><link rel=icon type=ico/png href=/web/GitHub-Mark-32px.png sizes=32x32><meta name=generator content="Hugo 0.94.2 with theme pure"><title>树 相关结构 (TODO) - LK233's Blog</title><link rel=stylesheet href=https://liangkang233.github.io/css/style.min.911fc455aff286fbb0796ca516874da5dbf4b20cf101ff5f78329dc97ed7c711.css><link rel=stylesheet href=https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css async><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css async><meta property="og:title" content="树 相关结构 (TODO)"><meta property="og:description" content="树相关的数据结构及算法,长期更新"><meta property="og:type" content="article"><meta property="og:url" content="https://liangkang233.github.io/2022/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A0%91%E7%9B%B8%E5%85%B3/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2022-01-07T00:00:00+00:00"><meta property="article:modified_time" content="2022-01-07T00:00:00+00:00"><meta itemprop=name content="树 相关结构 (TODO)"><meta itemprop=description content="树相关的数据结构及算法,长期更新"><meta itemprop=datePublished content="2022-01-07T00:00:00+00:00"><meta itemprop=dateModified content="2022-01-07T00:00:00+00:00"><meta itemprop=wordCount content="3322"><meta itemprop=keywords content="C/C++,数据结构,"><meta name=twitter:card content="summary"><meta name=twitter:title content="树 相关结构 (TODO)"><meta name=twitter:description content="树相关的数据结构及算法,长期更新"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body class="main-center theme-green" itemscope itemtype=http://schema.org/WebPage><header class=header itemscope itemtype=http://schema.org/WPHeader><div class=slimContent><div class=navbar-header><div class="profile-block text-center"><a id=avatar href=https://github.com/liangkang233 target=_blank><img class="img-circle img-rotate" src=https://liangkang233.github.io/web/head.png width=200 height=200></a><h2 id=name class="hidden-xs hidden-sm">LK233</h2><h3 id=title class="hidden-xs hidden-sm hidden-md">三无 青年</h3><small id=location class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>现居 重庆</small></div><div class=search id=search-form-wrap><form class="search-form sidebar-form"><div class=input-group><input type=text class="search-form-input form-control" placeholder=搜索>
+<span class=input-group-btn><button type=submit class="search-form-submit btn btn-flat" onclick=return!1><i class="icon icon-search"></i></button></span></div><div class=ins-search><div class=ins-search-mask></div><div class=ins-search-container><div class=ins-input-wrapper><input type=text class=ins-search-input placeholder=想要查找什么... x-webkit-speech>
+<button type=button class="close ins-close ins-selectable" data-dismiss=modal aria-label=Close><span aria-hidden=true>×</span></button></div><div class=ins-section-wrapper><div class=ins-section-container></div></div></div></div></form></div><button class="navbar-toggle collapsed" type=button data-toggle=collapse data-target=#main-navbar aria-controls=main-navbar aria-expanded=false>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+<span class=icon-bar></span></button></div><nav id=main-navbar class="collapse navbar-collapse" itemscope itemtype=http://schema.org/SiteNavigationElement role=navigation><ul class="nav navbar-nav main-nav"><li class="menu-item menu-item-home"><a href=/><i class="icon icon-home-fill"></i>
+<span class=menu-title>主页</span></a></li><li class="menu-item menu-item-books"><a href=/posts/><i class="icon icon-book-fill"></i>
+<span class=menu-title>文章</span></a></li><li class="menu-item menu-item-email"><a href=mailto:liangkang233@outlook.com><i class="icon icon-email"></i>
+<span class=menu-title>邮箱</span></a></li><li class="menu-item menu-item-github"><a href=https://github.com/liangkang233><i class="icon icon-github-fill"></i>
+<span class=menu-title>github</span></a></li><li class="menu-item menu-item-about"><a href=/about/><i class="icon icon-cup-fill"></i>
+<span class=menu-title>关于</span></a></li></ul></nav></div></header><aside class=sidebar itemscope itemtype=http://schema.org/WPSideBar><div class=slimContent><div class=widget><h3 class=widget-title>^_^</h3><div class=widget-body><div id=board><div class=content><p>记录学习的个人博客</p></div></div></div></div><div class=widget><h3 class=widget-title>标签</h3><div id=tag-cloud-list class=widget-body><a href=https://liangkang233.github.io/tags/blog-test/ class=tag-list-link rel=1>blog-test<span class=tag-list-count>1</span></a>
+<a href=https://liangkang233.github.io/tags/c/c++/ class=tag-list-link rel=7>c/c++<span class=tag-list-count>7</span></a>
+<a href=https://liangkang233.github.io/tags/go/ class=tag-list-link rel=5>go<span class=tag-list-count>5</span></a>
+<a href=https://liangkang233.github.io/tags/linux/ class=tag-list-link rel=5>linux<span class=tag-list-count>5</span></a>
+<a href=https://liangkang233.github.io/tags/network/ class=tag-list-link rel=3>network<span class=tag-list-count>3</span></a>
+<a href=https://liangkang233.github.io/tags/python/ class=tag-list-link rel=3>python<span class=tag-list-count>3</span></a>
+<a href=https://liangkang233.github.io/tags/%E4%BB%BF%E7%9C%9F/ class=tag-list-link rel=3>仿真<span class=tag-list-count>3</span></a>
+<a href=https://liangkang233.github.io/tags/%E5%AE%B9%E5%99%A8/ class=tag-list-link rel=1>容器<span class=tag-list-count>1</span></a>
+<a href=https://liangkang233.github.io/tags/%E5%BC%80%E5%8F%91/ class=tag-list-link rel=2>开发<span class=tag-list-count>2</span></a>
+<a href=https://liangkang233.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/ class=tag-list-link rel=3>数据结构<span class=tag-list-count>3</span></a>
+<a href=https://liangkang233.github.io/tags/%E7%AE%97%E6%B3%95/ class=tag-list-link rel=2>算法<span class=tag-list-count>2</span></a></div><script>document.onreadystatechange=()=>{document.readyState==="complete"&&tagCloud("#tag-cloud-list a",8,20)};function tagCloud(n,s,o){let t=0,e=0;$(n).each(function(){let n=Number($(this).attr("rel"));t<n&&(t=n),(e>n||e==0)&&(e=n)});let i=(o-s)/(t-e);$(n).each(function(){let t=$(this).attr("rel")-e;$(this).css({"font-size":s+t*i+"px"})})}</script></div><div class=widget><h3 class=widget-title>分类</h3><div class=widget-body><ul class=category-list><li class=category-list-item><a href=https://liangkang233.github.io/categories/core/ class=category-list-link>core</a><span class=category-list-count>8</span></li><li class=category-list-item><a href=https://liangkang233.github.io/categories/%E5%AD%A6%E4%B9%A0/ class=category-list-link>学习</a><span class=category-list-count>7</span></li><li class=category-list-item><a href=https://liangkang233.github.io/categories/%E5%B7%A5%E5%85%B7/ class=category-list-link>工具</a><span class=category-list-count>6</span></li><li class=category-list-item><a href=https://liangkang233.github.io/categories/%E6%9D%82%E8%B0%88/ class=category-list-link>杂谈</a><span class=category-list-count>2</span></li><li class=category-list-item><a href=https://liangkang233.github.io/categories/%E7%BC%96%E7%A8%8B/ class=category-list-link>编程</a><span class=category-list-count>5</span></li><li class=category-list-item><a href=https://liangkang233.github.io/categories/%E8%AE%B0%E5%BD%95/ class=category-list-link>记录</a><span class=category-list-count>4</span></li></ul></div></div><div class=widget><h3 class=widget-title>最新文章</h3><div class=widget-body><ul class="recent-post-list list-unstyled no-thumbnail"><li><div class=item-inner><p class=item-title><a href=https://liangkang233.github.io/2022/03/qmsg%E6%B6%88%E6%81%AF%E5%8A%A9%E6%89%8B/ class=title>Qmsg消息推送助手</a></p><p class=item-date><time datetime="2022-03-01 00:00:00 +0000 UTC" itemprop=datePublished>2022-03-01</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://liangkang233.github.io/2022/02/%E6%9D%82%E8%B0%88-2022%E6%96%B0%E5%B9%B4%E8%AE%A1%E5%88%92/ class=title>杂谈-2022年度计划</a></p><p class=item-date><time datetime="2022-02-21 00:00:00 +0000 UTC" itemprop=datePublished>2022-02-21</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://liangkang233.github.io/2022/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A0%91%E7%9B%B8%E5%85%B3/ class=title>树 相关结构 (TODO)</a></p><p class=item-date><time datetime="2022-01-07 00:00:00 +0000 UTC" itemprop=datePublished>2022-01-07</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://liangkang233.github.io/2021/12/%E5%AE%B9%E5%99%A8%E7%9B%B8%E5%85%B3/ class=title>Docker容器相关</a></p><p class=item-date><time datetime="2021-12-24 00:00:00 +0000 UTC" itemprop=datePublished>2021-12-24</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://liangkang233.github.io/2021/12/ovs%E5%AD%A6%E4%B9%A0/ class=title>OVS 学习笔记</a></p><p class=item-date><time datetime="2021-12-12 00:00:00 +0000 UTC" itemprop=datePublished>2021-12-12</time></p></div></li></ul></div></div></div></aside><aside class="sidebar sidebar-toc collapse" id=collapseToc itemscope itemtype=http://schema.org/WPSideBar><div class=slimContent><h4 class=toc-title>文章目录</h4><nav id=toc class="js-toc toc"></nav></div></aside><main class=main role=main><div class=content><article id=- class="article article-type-" itemscope itemtype=http://schema.org/BlogPosting><div class=article-header><h1 itemprop=name><a class=article-title href=/2022/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A0%91%E7%9B%B8%E5%85%B3/>树 相关结构 (TODO)</a></h1><div class=article-meta><span class=article-date><i class="icon icon-calendar-check"></i>&nbsp;
+<a href=https://liangkang233.github.io/2022/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A0%91%E7%9B%B8%E5%85%B3/ class=article-date><time datetime="2022-01-07 00:00:00 +0000 UTC" itemprop=datePublished>2022-01-07</time></a></span>
+<span class=article-category><i class="icon icon-folder"></i>&nbsp;
+<a class=article-category-link href=/categories/%E7%BC%96%E7%A8%8B/>编程</a></span>
+<span class=article-tag><i class="icon icon-tags"></i>&nbsp;
+<a class=article-tag-link href=/tags/c/c++/>C/C++</a>
+<a class=article-tag-link href=/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/>数据结构</a></span>
+<span class=post-comment><i class="icon icon-comment"></i>&nbsp;<a href=/2022/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A0%91%E7%9B%B8%E5%85%B3/#comments class=article-comment-link>评论</a></span>
+<span class="post-wordcount hidden-xs" itemprop=wordCount>字数统计: 3322字</span></div></div><div class="article-entry marked-body js-toc-content" itemprop=articleBody><h1 id=树的概念>树的概念</h1><p>树由有限个节点，组成具有层次关系的集合。每个结点或者无子结点或者只有有限个子结点;</p><p>有一个特殊的结点,它没有父结点，称为根结点。每一个非根节点有且只有一个父节点。并且树里面没有环路。</p><ul><li><p>结点的度: 一个结点含有的子结点个数称为该结点的度;</p></li><li><p>树的度: 一棵树中，最大结点的度称为树的度;</p></li></ul><p>按照有序性，可以分为有序树和无序树：</p><p>无序树：树中任意节点的子结点之间没有顺序关系
+有序树：树中任意节点的子结点之间有顺序关系</p><p><strong>按照节点包含子树个数，可以分为<a href=#b%E6%A0%91>B树</a>和<a href=#%E4%BA%8C%E5%8F%89%E6%A0%91>二叉树</a></strong></p><h1 id=二叉树>二叉树</h1><p>二叉树（英语：Binary tree）是每个节点最多只有两个分支（即不存在分支度大于2的节点）的树结构。通常分支被称作“左子树”或“右子树”。二叉树的分支具有左右次序，不能随意颠倒。</p><p>二叉树可以分为以下几种：</p><ul><li><p>(完)满二叉树：</p><p>叶节点除外的所有节点均含有两个子树的树被称为满二叉树;</p></li><li><p>完全二叉树：</p><p>如果一颗二叉树除去最后一层节点为满二叉树，且最后一层的结点依次从左到右分布</p></li><li><p><a href=https://zhuanlan.zhihu.com/p/54714101>霍夫曼树：</a></p><p>带权路径最短的二叉树，哈夫曼树应用于通讯及数据传送中对信息的二进制编码。</p><p>在计算机数据处理中，霍夫曼编码使用变长编码表对源符号(如文件中的一个字母)进行编码，其中变长编码表是通过一种评估来源符号出现机率的方法得到的，出现机率高的字母使用较短的编码，反之出现机率低的则使用较长的编码，这便使编码之后的字符串的平均长度、期望值降低，从而达到无损压缩数据的目的。</p></li><li><p><a href=https://zh.wikipedia.org/wiki/%E4%BA%8C%E5%85%83%E6%90%9C%E5%B0%8B%E6%A8%B9>二叉查找树</a>：</p><p>首先它是一颗二叉树，若左子树不空，则左子树上所有结点的值均小于它的根结点的值;</p><p>若右子树不空，则右子树上所有结点的值均大于它的根结点的值;左、右子树也分别为二叉排序树;</p></li><li><p><a href=#%E7%BA%A2%E9%BB%91%E6%A0%91>红黑树：</a></p><p>红黑树是一颗特殊的二叉查找树，每个节点都是黑色或者红色，根节点、叶子节点是黑色。如果一个节点是红色的，则它的子节点必须是黑色的。</p></li><li><p><a href=#%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91>平衡二叉查找树(AVL)：</a></p><p>一棵空树或它的左右两个子树的高度差的绝对值不超过1，并且左右两个子树都是一棵平衡二叉树</p></li></ul><table><thead><tr><th style=text-align:center></th><th style=text-align:center><a href=https://zh.wikipedia.org/wiki/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91>完全二叉树</a></th><th style=text-align:center>完美二叉树</th></tr></thead><tbody><tr><td style=text-align:center>总节点k</td><td style=text-align:center>$2^{h-1}$ &lt;= k &lt;= $2^{h} - 1$</td><td style=text-align:center>k = $2^{h} - 1$</td></tr><tr><td style=text-align:center>树高h</td><td style=text-align:center>h = $log_{2}k + 1$</td><td style=text-align:center>h = $log_{2}(k+1)$</td></tr></tbody></table><h1 id=基础应用>基础应用：</h1><p>以此树为例：</p><pre><code class=language-c>// 二叉树节点
+struct Node
+{
+	int value;
+	struct Node* left;
+	struct Node* right;
+	Node(int data) : value(data), left(nullptr), right(nullptr) {};
+};
+</code></pre><h2 id=bfs-层次遍历>bfs 层次遍历</h2><pre><code class=language-c>// 利用队列来做。
+void LevelOrder(Node* head)
+{
+	if (head) {
+		queue&lt;Node*&gt; queue;
+		queue.push(head);
+		Node* cur;
+		while (!queue.empty()) {
+			cur = queue.front();
+			queue.pop();
+			cout &lt;&lt; cur-&gt;value &lt;&lt; &quot; &quot;;
+			if (cur-&gt;left)
+				queue.push(cur-&gt;left);
+			if (cur-&gt;right)
+				queue.push(cur-&gt;right);
+		}
+	}
+}
+</code></pre><h2 id=dfs-前中后-序>dfs 前中后 序</h2><pre><code class=language-c>// 先序遍历
+void PreOrder(Node* head)
+{
+	if (head == nullptr)
+		return;
+	cout &lt;&lt; head-&gt;value &lt;&lt; &quot; &quot;;
+	PreOrder(head-&gt;left);
+	PreOrder(head-&gt;right);
+}
+
+// 中序遍历
+void InOrder(Node* head)
+{
+	if (head == nullptr)
+		return;
+	InOrder(head-&gt;left);
+	cout &lt;&lt; head-&gt;value &lt;&lt; &quot; &quot;;
+	InOrder(head-&gt;right);
+}
+
+// 后序遍历
+void PosOrder(Node* head)
+{
+	if (head == nullptr)
+		return;
+	PosOrder(head-&gt;left);
+	PosOrder(head-&gt;right);
+	cout &lt;&lt; head-&gt;value &lt;&lt; &quot; &quot;;
+}
+</code></pre><h2 id=使用栈实现的前中后序遍历>使用栈实现的前中后序遍历</h2><pre><code class=language-c>vector&lt;int&gt; preorderTraversal(TreeNode* root) { 
+    vector&lt;int&gt; retvec;
+    stack&lt;TreeNode*&gt; stk;
+
+    while (root != NULL || !stk.empty()) {
+        while (root != NULL) {
+            retvec.push_back(root-&gt;val);
+            stk.push(root);
+            root = root-&gt;left;
+        }
+        root = stk.top();
+        stk.pop();
+        root = root-&gt;right;
+    }
+}
+
+// 中序遍历.
+vector&lt;int&gt; preorderTraversal(TreeNode* root) {
+    vector&lt;int&gt; retvec;
+    stack&lt;TreeNode*&gt; stk;
+
+    while (root != NULL || !stk.empty()) {
+        while (root != NULL) {
+            stk.push(root);
+            root = root-&gt;left;
+        }
+        root = stk.top();
+        stk.pop();
+        retvec.push_back(root-&gt;val);
+        root = root-&gt;right;
+    }
+}
+
+/* 补充: 后序遍历
+前序遍历 =&gt; 根, 左, 右.
+后序遍历 =&gt; 左, 右, 根.
+仿照前序遍历方法求解出 =&gt; 根, 右, 左.
+reverse =&gt; 得到后序遍历. */
+vector&lt;int&gt; postorderTraversal(TreeNode* root) {
+    stack&lt;TreeNode*&gt; stk;
+    vector&lt;int&gt; vec;
+    while (root != NULL || !stk.empty()) {
+        while (root != NULL) {
+            vec.push_back(root-&gt;val);
+            stk.push(root);
+            root = root-&gt;right;
+        }
+        root = stk.top();
+        stk.pop();
+        root = root-&gt;left;
+    }
+    reverse(vec.begin(), vec.end());
+    return vec;
+}
+</code></pre><h2 id=二叉树应用>二叉树应用：</h2><ul><li>蓝桥杯：挑选工厂</li></ul><pre><code class=language-cpp>/* 问题描述
+　　最近，WYF正准备参观他的点卡工厂。WYF集团的经理氰垃圾需要帮助WYF设计参观路线。现在，氰垃圾知道一下几件事情：
+　　1.WYF的点卡工厂构成一颗二叉树。
+　　2.一共有n座工厂。
+　　3.他需要把这颗树上的点以后序遍历的方法列出来，才能绘制地图。
+　　还好，最近他的属下给了他先序遍历和中序遍历的数据。可是，氰垃圾最近还要帮㊎澤穻解决一些问题，没有时间。
+    请你帮帮他，替他完成这项任务。由于氰垃圾的一些特殊的要求，WYF的参观路线将会是这棵树的后序遍历。
+输入格式
+　　第一行一个整数n，表示一共又n座工厂。
+　　第二行n个整数，表示先序遍历。
+　　第三行n个整数，表示中序遍历。
+输出格式
+　　输出共一行，包含n个整数，为后序遍历。
+样例输入
+8
+1 2 4 5 7 3 6 8
+4 2 7 5 1 8 6 3
+样例输出
+4 7 5 2 8 6 3 1
+数据规模和约定
+　　0&lt;n&lt;100000,。保证先序遍历和中序遍历合法，且均为1～n。 */
+
+
+/*  此题即为由先、中序排列确定 后序排序; 首先要知道一个结论，前序/后序+中序序列可以唯一确定一棵二叉树，所以自然而然可以用来建树。
+    看一下前序和中序有什么特点，前序1,2,4,7,3,5,6,8 ，中序4,7,2,1,5,3,8,6；
+有如下特征：
+    前序中左起第一位1肯定是根结点，我们可以据此找到中序中根结点的位置rootin；（后序中最后一位肯定是根节点。）
+    中序中根结点左边就是左子树结点，右边就是右子树结点，即[左子树结点，根结点，右子树结点]，我们就可以得出左子树结点个数为int left = rootin - leftin;；
+    前序中结点分布应该是：[根结点，左子树结点，右子树结点]；（后序中分布：[左子树节点, 右子树节点, 根节点]）
+    根据前一步确定的左子树个数，可以确定前序中左子树结点和右子树结点的范围；
+    如果我们要前序遍历生成二叉树的话，下一层递归应该是：
+    左子树：root-&gt;left = pre_order; (前序左子树范围，中序左子树范围，前序序列，中序序列)
+    右子树：root-&gt;right = pre_order; (前序右子树范围，中序右子树范围，前序序列，中序序列)
+    每一层递归都要返回当前根结点root； 
+*/
+
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+using namespace std;
+
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode() : val(0), left(NULL), right(NULL) {}
+    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+};
+
+    
+TreeNode *OrderToTree(int L_Pre, int R_Pre, int L_In, int R_In, vector&lt;int&gt; &amp;Pre, vector&lt;int&gt; &amp;In) 
+{   
+    if (L_Pre &gt; R_Pre || L_In &gt; R_In)
+        return NULL;
+    TreeNode *root = new TreeNode(Pre[L_Pre]);   //前序排列中 最左位为根节点
+    int in_root = L_In;
+    while (In[in_root] != Pre[L_Pre]) {
+        in_root++; }
+    int left = in_root - L_In;
+    root-&gt;left = OrderToTree(L_Pre + 1, L_Pre + left, L_In, L_In + left, Pre, In); 
+    root-&gt;right = OrderToTree(L_Pre + left +1, R_Pre, L_In + left +1, R_In, Pre, In); 
+    return root;
+}
+
+//打印逆序排序
+void PosOrder (TreeNode* root)
+{
+    if(root == NULL)
+        return;
+    PosOrder(root-&gt;left);
+    PosOrder(root-&gt;right);
+    cout &lt;&lt; root-&gt;val &lt;&lt; ' ';
+}
+
+
+int main ()
+{
+    int n;  // 0&lt;n&lt;=1000000
+    // int PreNumber[100000] = {0}, InNumber[100000] = {0}, PosNumber[100000] = {0};
+    vector&lt;int&gt; PreNumber, InNumber, PosNumber;
+    cin &gt;&gt; n;
+    for (int i = 0; i &lt; n; i++) {
+        int j; 
+        cin &gt;&gt; j;
+        PreNumber.push_back(j);
+    }
+
+    for (int i = 0; i &lt; n; i++) {
+        int j; 
+        cin &gt;&gt; j;
+        InNumber.push_back(j);        
+    }
+
+    TreeNode *root  = OrderToTree(0, n-1, 0, n-1, PreNumber, InNumber); 
+    PosOrder (root);
+
+    return 0;
+}
+</code></pre><ul><li><a href=https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/>889. 根据前序和后序遍历构造二叉树 - 力扣（LeetCode)</a></li></ul><pre><code class=language-CPP>struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode() : val(0), left(nullptr), right(nullptr) {}
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+};
+
+// @lc code=start
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+// 注意题中说明 二叉树中的各个值不相同,不需要考虑不成立的情况
+// 前序/后序+中序序列可以唯一确定一棵二叉树，只知道前序和后序不唯一确定
+// 前序是 root + 左树节点 + 右树节点
+// 后序是 左树节点 + 右树节点 + root
+// 所以后序的倒数第二个是前序中右树的根节点 前序的第二个是后续的前树的根节点最后一位 如此递推就有规律
+class Solution {
+public:
+    // l1 r1限定pre的子树区域，l2 r2限定post的子树区域。
+    // 此法默认优先生成左子树（即只有一边子树时默认是左子树）
+    TreeNode* build_tree(vector&lt;int&gt;&amp; pre, vector&lt;int&gt;&amp; post, int l1, int r1, int l2, int r2) {
+        if(l1 &gt; r1)
+            return nullptr;
+        TreeNode *root = new TreeNode(pre[l1]); //或post[r2]
+        for (int i = r2-1; i &gt;= l2; i--) {
+            if(pre[l1+1] == post[i]) {
+                int len = i - l2;
+                root-&gt;left = build_tree(pre, post, l1+1, l1+len+1, l2, i);         
+                root-&gt;right = build_tree(pre, post, l1+len+2, r1, i+1, r2-1);
+                break;
+            }
+        }
+        return root;
+    }
+    TreeNode* constructFromPrePost(vector&lt;int&gt;&amp; preorder, vector&lt;int&gt;&amp; postorder) {
+        TreeNode* ans = build_tree(preorder, postorder, 0, postorder.size()-1, 0, preorder.size()-1);
+        return ans;
+    }
+};
+</code></pre><ul><li><a href=https://leetcode-cn.com/problems/binary-search-tree-iterator/solution/>173. 二叉搜索树迭代器 - 力扣（LeetCode)</a></li></ul><pre><code class=language-c>class BSTIterator {
+private:
+    TreeNode* cur;
+    stack&lt;TreeNode*&gt; stk;
+public:
+    BSTIterator(TreeNode* root): cur(root) {}
+    
+    int next() {
+        while (cur != nullptr) {
+            stk.push(cur);
+            cur = cur-&gt;left;
+        }
+        cur = stk.top();
+        stk.pop();
+        int ret = cur-&gt;val;
+        cur = cur-&gt;right;
+        return ret;
+    }
+    
+    bool hasNext() {
+        return cur != nullptr || !stk.empty();
+    }
+};
+</code></pre><h1 id=红黑树>红黑树</h1><p><a href=https://zhuanlan.zhihu.com/p/273829162>图解红黑树</a></p><p><a href=https://blog.miracle.gold/archives/13-hong-hei-shu-hashsetmap>常用规则</a></p><p>红黑树是一种自平衡的二叉搜索树，并且其附加定义如下：</p><ul><li>节点有且只有两种颜色，红色和黑色</li><li>根节点和叶子节点必须是黑色，其中，叶子节点是虚拟存在的空节点NULL</li><li>红色节点的两个子节点必须是黑色</li><li>任意节点到叶子节点的路径上，必须包含相同数目的黑色节点</li></ul><p>map multimap 的底层是红黑树 中序遍历会是<strong>有序</strong>的，不是哈希表，但是std::set、std::multiset 依然使用哈希函数来做映射，只不过底层的符号表使用了红黑树来存储数据，</p><p>所以使用这些数据结构来解决映射问题的方法，我们依然称之为哈希法。 map也是一样的道理。</p><p>unordered_map 的底层是用哈希表来实现的 <strong>无序</strong>，通过key的哈希路由到每一个桶（即数组）用来存放内容。通过key来获取value的时间复杂度就是O（1）。</p><p>因为key的哈希容易碰撞，所以需要对碰撞做处理。map里的每一个数组（桶）里面存的其实是一个链表，key的哈希冲突以后会加到链表的尾部，</p><p>这是再通过key获取value的时间复杂度就变成O(n），当碰撞很多的时候查询就会变慢。为了优化这个时间复杂度，map的底层就把这个链表转换成了 平衡树，</p><p>这样虽然插入增加了复杂度，但提高了频繁哈希碰撞时的查询效率，使哈希碰撞时查询效率变成O(log n)。</p><h1 id=平衡二叉树>平衡二叉树</h1><p><a href=https://zhuanlan.zhihu.com/p/56066942>图解平衡二叉树</a></p><h1 id=b树>B树</h1><p><a href="https://www.bilibili.com/video/BV15V411p7pi?from=search&seid=1645873311644081535&spm_id_from=333.337.0.0">理解B+树 视频</a></p><p><a href=https://zhuanlan.zhihu.com/p/351240279>MySQL索引底层：B+树详解</a> 包含内容:</p><ul><li>B-树、B+树简介</li><li>B+树插入</li><li>B+树查找</li><li>B+树删除</li><li>B+树经典面试题</li></ul></div><div class=article-footer><div class="panel panel-default panel-badger"><div class=panel-body><figure class=media><div class=media-left><a href=https://github.com/liangkang233 target=_blank class="img-burn thumb-sm visible-lg"><img src=https://liangkang233.github.io/web/head.png class="img-rounded w-full" alt></a></div><div class=media-body><h3 class=media-heading></h3><a href=https://github.com/liangkang233 target=_blank></a><span class=text-dark>LK233</span></a></h3><div>Segment error maker :(</div></div></figure></div></div></div></article><section id=comments><div id=vcomments></div></section></div><nav class="bar bar-footer clearfix" data-stick-bottom><div class=bar-inner><ul class="pager pull-left"><li class=prev><a href=https://liangkang233.github.io/2021/12/%E5%AE%B9%E5%99%A8%E7%9B%B8%E5%85%B3/ title=Docker容器相关><i class="icon icon-angle-left" aria-hidden=true></i><span>&nbsp;&nbsp;下一篇</span></a></li><li class=next><a href=https://liangkang233.github.io/2022/02/%E6%9D%82%E8%B0%88-2022%E6%96%B0%E5%B9%B4%E8%AE%A1%E5%88%92/ title=杂谈-2022年度计划><span>上一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden=true></i></a></li><li class=toggle-toc><a class="toggle-btn collapsed" data-toggle=collapse href=#collapseToc aria-expanded=false title=文章目录 role=button><span>[&nbsp;</span><span>文章目录</span>
+<i class="text-collapsed icon icon-anchor"></i>
+<i class="text-in icon icon-close"></i>
+<span>]</span></a></li></ul><div class=bar-right><div class=share-component data-sites=qq,wechat,facebook,twitter data-mobile-sites=qq,wechat,facebook,twitter></div></div></div></nav></main><footer class=footer itemscope itemtype=http://schema.org/WPFooter><ul class=social-links><li><a href=https://www.linkedin.com/in/kang-liang-79b3b5216/ target=_blank title=linkedin data-toggle=tooltip data-placement=top><i class="icon icon-linkedin"></i></a></li><li><a href="http://wpa.qq.com/msgrd?v=3&uin=3479202458&site=qq&menu=yes" target=_blank title=qq data-toggle=tooltip data-placement=top><i class="icon icon-qq"></i></a></li></ul><div class=copyright>&copy;2020 -
+2022 <a href=https://github.com/liangkang233 target=_blank>LK233</a><div class=post-copyright-license><strong>License:</strong>
+<a href=http://creativecommons.org/licenses/by/4.0/deed.zh target=_blank rel=external>CC BY 4.0 CN</a></div></div></footer><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type=text/x-mathjax-config>
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js></script>
+<script>window.jQuery||document.write('<script src="js/jquery.min.js"><\/script>')</script><script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js></script>
+<script>hljs.configure({tabReplace:"    ",classPrefix:''}),hljs.initHighlightingOnLoad()</script><script src=https://liangkang233.github.io/js/application.min.e720b935330b2a176cfb4b8bd9a6cc632caf6b752f94e87c62152a9557ff6d15.js></script>
+<script src=https://liangkang233.github.io/js/plugin.min.334875d4d4a72afb866e446df61b5f4bf1f0a516d1303166f52f7804d17ef3ab.js></script>
+<script>(function(e){var t={TRANSLATION:{POSTS:"文章",PAGES:"页面",CATEGORIES:"分类",TAGS:"标签",UNTITLED:"(未命名)"},ROOT_URL:"https://liangkang233.github.io/",CONTENT_URL:"https://liangkang233.github.io//searchindex.json "};e.INSIGHT_CONFIG=t})(window)</script><script type=text/javascript src=https://liangkang233.github.io/js/insight.min.759e5002714e12761afcd512f103d39c86573165db51972dd3b24df6eddf238ed3e3e85c1988e96cba09419d1deccdeb68c15284f2c3d03049fad53c11774524.js defer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js></script>
+<script>tocbot.init({tocSelector:".js-toc",contentSelector:".js-toc-content",headingSelector:"h1, h2, h3",hasInnerContainers:!0})</script><script src=https://cdn1.lncld.net/static/js/3.0.4/av-min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/valine></script>
+<script type=text/javascript>var GUEST=["nick","mail","link"],meta="nick,mail";meta=meta.split(",").filter(function(e){return GUEST.indexOf(e)>-1}),new Valine({el:"#vcomments",verify:null,notify:null,appId:"2A2wQX1Rs6bncdlrRguNq27J-gzGzoHsz",appKey:"hFOX6badEuckpc33uwYqWFDk",placeholder:"评论框上方可以留下联系邮箱，评论支持MD语法",avatar:"retro",meta,pageSize:"10"||10,visitor:!1,emojiCDN:"//i0.hdslb.com/bfs/emote/",emojiMaps:{"藏狐":"ba0937ef6f3ccca85e2e0047e6263f3b4da37201.png",doge:"3087d273a78ccaff4bb1e9972e2ba2a7583c9f11.png","微笑":"685612eadc33f6bc233776c6241813385844f182.png",OK:"4683fd9ffc925fa6423110979d7dcac5eda297f4.png","星星眼":"63c9d1a31c0da745b61cdb35e0ecb28635675db2.png","妙啊":"b4cb77159d58614a9b787b91b1cd22a81f383535.png","辣眼睛":"35d62c496d1e4ea9e091243fa812866f5fecc101.png","吃瓜":"4191ce3c44c2b3df8fd97c33f85d3ab15f4f3c84.png","滑稽":"d15121545a99ac46774f1f4465b895fe2d1411c3.png","呲牙":"b5a5898491944a4268360f2e7a84623149672eb6.png","打call":"431432c43da3ee5aab5b0e4f8931953e649e9975.png","歪嘴":"4384050fbab0586259acdd170b510fe262f08a17.png","调皮":"8290b7308325e3179d2154327c85640af1528617.png","嗑瓜子":"28a91da1685d90124cfeead74622e1ebb417c0eb.png","笑哭":"c3043ba94babf824dea03ce500d0e73763bf4f40.png","脱单doge":"bf7e00ecab02171f8461ee8cf439c73db9797748.png","给心心":"1597302b98827463f5b75c7cac1f29ea6ce572c4.png","嘟嘟":"abd7404537d8162720ccbba9e0a8cdf75547e07a.png","喜欢":"8a10a4d73a89f665feff3d46ca56e83dc68f9eb8.png","酸了":"92b1c8cbceea3ae0e8e32253ea414783e8ba7806.png","哦呼":"362bded07ea5434886271d23fa25f5d85d8af06c.png","嫌弃":"de4c0783aaa60ec03de0a2b90858927bfad7154b.png","大哭":"2caafee2e5db4db72104650d87810cc2c123fc86.png","害羞":"9d2ec4e1fbd6cb1b4d12d2bbbdd124ccb83ddfda.png","疑惑":"b7840db4b1f9f4726b7cb23c0972720c1698d661.png","喜极而泣":"485a7e0c01c2d70707daae53bee4a9e2e31ef1ed.png","奸笑":"bb84906573472f0a84cebad1e9000eb6164a6f5a.png","笑":"81edf17314cea3b48674312b4364df44d5c01f17.png","偷笑":"6c49d226e76c42cd8002abc47b3112bc5a92f66a.png","惊讶":"f8e9a59cad52ae1a19622805696a35f0a0d853f3.png","捂脸":"6921bb43f0c634870b92f4a8ad41dada94a5296d.png","阴险":"ba8d5f8e7d136d59aab52c40fd3b8a43419eb03c.png","囧":"12e41d357a9807cc80ef1e1ed258127fcc791424.png","呆":"33ad6000d9f9f168a0976bc60937786f239e5d8c.png","抠鼻":"cb89184c97e3f6d50acfd7961c313ce50360d70f.png","大笑":"ca94ad1c7e6dac895eb5b33b7836b634c614d1c0.png","惊喜":"0afecaf3a3499479af946f29749e1a6c285b6f65.png","无语":"44667b7d9349957e903b1b62cb91fb9b13720f04.png","点赞":"1a67265993913f4c35d15a6028a30724e83e7d35.png","鼓掌":"895d1fc616b4b6c830cf96012880818c0e1de00d.png","尴尬":"cb321684ed5ce6eacdc2699092ab8fe7679e4fda.png","灵魂出窍":"43d3db7d97343c01b47e22cfabeca84b4251f35a.png","委屈":"d2f26cbdd6c96960320af03f5514c5b524990840.png","傲娇":"010540d0f61220a0db4922e4a679a1d8eca94f4e.png","疼":"905fd9a99ec316e353b9bd4ecd49a5f0a301eabf.png","冷":"cb0ebbd0668640f07ebfc0e03f7a18a8cd00b4ed.png","生病":"0f25ce04ae1d7baf98650986454c634f6612cb76.png","吓":"9c10c5ebc7bef27ec641b8a1877674e0c65fea5d.png","吐":"06946bfe71ac48a6078a0b662181bb5cad09decc.png","捂眼":"c5c6d6982e1e53e478daae554b239f2b227b172b.png","嘘声":"e64af664d20716e090f10411496998095f62f844.png","思考":"cfa9b7e89e4bfe04bbcd34ccb1b0df37f4fa905c.png","再见":"fc510306bae26c9aec7e287cdf201ded27b065b9.png","翻白眼":"eba54707c7168925b18f6f8b1f48d532fe08c2b1.png","哈欠":"888d877729cbec444ddbd1cf4c9af155a7a06086.png","奋斗":"bb2060c15dba7d3fd731c35079d1617f1afe3376.png","墨镜":"3a03aebfc06339d86a68c2d893303b46f4b85771.png","难过":"a651db36701610aa70a781fa98c07c9789b11543.png",tv_doge:"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png"}})</script></body></html>
