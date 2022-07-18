@@ -1,0 +1,325 @@
+node n1 {
+    type router
+    model PC
+    network-config {
+	hostname n1
+	!
+	interface eth0
+	 ip address 10.0.1.20/24
+	!
+    }
+    canvas c1
+    iconcoords {85.0 91.0}
+    labelcoords {85.0 123.0}
+    interface-peer {eth0 n4}
+}
+
+node n2 {
+    type router
+    model PC
+    network-config {
+	hostname n2
+	!
+	interface eth0
+	 ip address 10.0.2.20/24
+	!
+    }
+    canvas c1
+    iconcoords {406.0 460.0}
+    labelcoords {406.0 492.0}
+    interface-peer {eth0 n7}
+    services {DefaultRoute}
+}
+
+node n3 {
+    type router
+    model PC
+    network-config {
+	hostname n3
+	!
+	interface eth0
+	 ip address 10.0.3.20/24
+	!
+    }
+    canvas c1
+    iconcoords {851.0 320.0}
+    labelcoords {851.0 352.0}
+    interface-peer {eth0 n6}
+}
+
+node n4 {
+    type router
+    model router
+    network-config {
+	hostname n4
+	!
+	interface eth0
+	 ipv6 address 2001:0::1/64
+	 ip address 10.0.1.1/24
+	!
+	interface eth2
+	 ipv6 address 2001:5::2/64
+	!
+	interface eth1
+	 ipv6 address 2001:1::1/64
+	!
+    }
+    canvas c1
+    iconcoords {180.0 184.0}
+    labelcoords {180.0 216.0}
+    interface-peer {eth0 n1}
+    interface-peer {eth1 n5}
+    services {OSPFv3 zebra IPForward UserDefined}
+    interface-peer {eth2 n9}
+    custom-config {
+	custom-config-id service:UserDefined
+	custom-command UserDefined
+	config {
+	files=('srv6.sh', )
+	cmdup=('bash srv6.sh', )
+	}
+    }
+    custom-config {
+	custom-config-id service:UserDefined:srv6.sh
+	custom-command srv6.sh
+	config {
+	ip route add 10.0.2.0/24 encap seg6 mode encap  segs 2001:8:0:0:a::233,2001:6:0:0:a::233 dev eth0
+	ip -6 route add 2001:0:0:0:b::233/80 encap seg6local action End.DX4 nh4 10.0.1.20 dev eth1
+	}
+    }
+}
+
+node n5 {
+    type router
+    model router
+    network-config {
+	hostname n5
+	!
+	interface eth1
+	 ipv6 address 2001:2::1/64
+	!
+	interface eth0
+	 ipv6 address 2001:1::2/64
+	!
+    }
+    canvas c1
+    iconcoords {398.0 151.0}
+    labelcoords {398.0 183.0}
+    interface-peer {eth0 n4}
+    interface-peer {eth1 n6}
+    services {OSPFv3 zebra IPForward}
+    custom-image /usr/local/share/core/icons/normal/router_green.gif
+}
+
+node n6 {
+    type router
+    model router
+    network-config {
+	hostname n6
+	!
+	interface eth3
+	 ipv6 address 2001:8::1/64
+	!
+	interface eth1
+	 ipv6 address 2001:3::1/64
+	 ip address 10.0.3.1/24
+	!
+	interface eth2
+	 ipv6 address 2001:4::2/64
+	!
+	interface eth0
+	 ipv6 address 2001:2::2/64
+	!
+    }
+    canvas c1
+    iconcoords {643.0 189.0}
+    labelcoords {643.0 221.0}
+    interface-peer {eth0 n5}
+    interface-peer {eth1 n3}
+    interface-peer {eth2 n7}
+    services {OSPFv3 zebra IPForward UserDefined}
+    interface-peer {eth3 n8}
+    custom-config {
+	custom-config-id service:UserDefined
+	custom-command UserDefined
+	config {
+	files=('srv6.sh', )
+	cmdup=('bash srv6.sh', )
+	}
+    }
+    custom-config {
+	custom-config-id service:UserDefined:srv6.sh
+	custom-command srv6.sh
+	config {
+	ip -6 route add fc:8:0:0:aa::aa/80 via 2001:8::2
+	ip -6 route add 2001:8:0:0:a::233/80 encap seg6local action End.B6.Encaps srh segs fc:8:0:0:aa::aa,fc:4:0:0:aa::aa dev eth1
+	ip -6 route add fc:4:0:0:aa::aa/80 encap seg6local action End.DX6 nh6 :: dev eth1
+	}
+    }
+}
+
+node n7 {
+    type router
+    model router
+    network-config {
+	hostname n7
+	!
+	interface eth2
+	 ipv6 address 2001:6::1/64
+	 ip address 10.0.2.1/24
+	!
+	interface eth1
+	 ipv6 address 2001:7::2/64
+	!
+	interface eth0
+	 ipv6 address 2001:4::1/64
+	!
+    }
+    canvas c1
+    iconcoords {507.0 327.0}
+    labelcoords {501.0 305.0}
+    interface-peer {eth0 n6}
+    interface-peer {eth2 n2}
+    services {OSPFv3 zebra IPForward UserDefined}
+    interface-peer {eth1 n9}
+    custom-config {
+	custom-config-id service:UserDefined
+	custom-command UserDefined
+	config {
+	files=('srv6.sh', )
+	cmdup=('bash srv6.sh', )
+	}
+    }
+    custom-config {
+	custom-config-id service:UserDefined:srv6.sh
+	custom-command srv6.sh
+	config {
+	ip -6 route add 2001:6:0:0:a::233/80 encap seg6local action End.DX4 nh4 10.0.2.20 dev eth1
+	ip route add 10.0.1.0/24 encap seg6 mode encap  segs 2001:0:0:0:b::233 dev eth1
+	
+	}
+    }
+}
+
+node n8 {
+    type router
+    model router
+    network-config {
+	hostname n8
+	!
+	interface eth0
+	 ipv6 address 2001:8::2/64
+	!
+    }
+    canvas c1
+    iconcoords {862.0 103.0}
+    labelcoords {865.0 164.0}
+    interface-peer {eth0 n6}
+    services {OSPFv3 zebra IPForward UserDefined}
+    custom-config {
+	custom-config-id service:UserDefined
+	custom-command UserDefined
+	config {
+	files=('srv6.sh', )
+	cmdup=('bash srv6.sh', )
+	}
+    }
+    custom-config {
+	custom-config-id service:UserDefined:srv6.sh
+	custom-command srv6.sh
+	config {
+	ip route add fc:4:0:0:aa::aa via 2001:8::1
+	ip -6 route add fc:8:0:0:aa::aa encap seg6local action End dev eth0
+	
+	}
+    }
+    custom-image /home/lk233/.core/configs/server.png
+}
+
+node n9 {
+    type router
+    model router
+    network-config {
+	hostname n9
+	!
+	interface eth1
+	 ipv6 address 2001:7::1/64
+	!
+	interface eth0
+	 ipv6 address 2001:5::1/64
+	!
+    }
+    canvas c1
+    iconcoords {259.0 280.0}
+    labelcoords {250.0 313.0}
+    custom-image /usr/local/share/core/icons/normal/router_green.gif
+    interface-peer {eth0 n4}
+    interface-peer {eth1 n7}
+    services {OSPFv3 zebra IPForward}
+}
+
+link l1 {
+    nodes {n1 n4}
+    bandwidth 0
+}
+
+link l2 {
+    nodes {n4 n5}
+    bandwidth 0
+}
+
+link l3 {
+    nodes {n5 n6}
+    bandwidth 0
+}
+
+link l4 {
+    nodes {n6 n3}
+    bandwidth 0
+}
+
+link l5 {
+    nodes {n7 n6}
+    bandwidth 0
+}
+
+link l7 {
+    nodes {n7 n2}
+    bandwidth 0
+}
+
+link l9 {
+    nodes {n6 n8}
+    bandwidth 0
+}
+
+link l6 {
+    nodes {n9 n4}
+    bandwidth 0
+}
+
+link l8 {
+    nodes {n9 n7}
+    bandwidth 0
+}
+
+canvas c1 {
+    name {Canvas1}
+}
+
+option global {
+    interface_names no
+    ip_addresses yes
+    ipv6_addresses yes
+    node_labels yes
+    link_labels yes
+    show_api no
+    background_images no
+    annotations yes
+    grid yes
+    traffic_start 0
+}
+
+option session {
+}
+
