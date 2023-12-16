@@ -1,0 +1,402 @@
+<!doctype html><html lang=zh><head><title>openssl rsa cpp 相关接口示例 - LK233's Blog
+</title><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui"><meta name=renderer content="webkit"><meta http-equiv=Cache-Control content="no-transform"><meta http-equiv=Cache-Control content="no-siteapp"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="black"><meta name=format-detection content="telephone=no,email=no,adress=no"><meta name=theme-color content="#000000"><meta http-equiv=window-target content="_top"><meta name=description content="如题"><link rel=apple-touch-icon sizes=180x180 href=/web/social.ico><link rel=icon type=ico/png href=/web/GitHub-Mark-32px.png sizes=32x32><meta name=generator content="Hugo 0.121.1 with theme pure"><title>openssl rsa cpp 相关接口示例 - LK233's Blog</title>
+<link rel=stylesheet href=https://liangkang233.github.io/css/style.min.911fc455aff286fbb0796ca516874da5dbf4b20cf101ff5f78329dc97ed7c711.css><link rel=stylesheet href=https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css async><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css async><meta property="og:title" content="openssl rsa cpp 相关接口示例"><meta property="og:description" content="如题"><meta property="og:type" content="article"><meta property="og:url" content="https://liangkang233.github.io/2023/09/openssl_rsa%E6%8E%A5%E5%8F%A3%E7%9B%B8%E5%85%B3%E8%AE%B0%E5%BD%95/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2023-09-15T00:00:00+00:00"><meta property="article:modified_time" content="2023-09-15T00:00:00+00:00"><meta itemprop=name content="openssl rsa cpp 相关接口示例"><meta itemprop=description content="如题"><meta itemprop=datePublished content="2023-09-15T00:00:00+00:00"><meta itemprop=dateModified content="2023-09-15T00:00:00+00:00"><meta itemprop=wordCount content="2105"><meta itemprop=keywords content="openssl,cpp,"><meta name=twitter:card content="summary"><meta name=twitter:title content="openssl rsa cpp 相关接口示例"><meta name=twitter:description content="如题"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body class="main-center theme-black" itemscope itemtype=http://schema.org/WebPage><header class=header itemscope itemtype=http://schema.org/WPHeader><div class=slimContent><div class=navbar-header><div class="profile-block text-center"><a id=avatar href=https://github.com/liangkang233 target=_blank><img class="img-circle img-rotate" src=https://liangkang233.github.io/web/head.png width=200 height=200></a><h2 id=name class="hidden-xs hidden-sm">LK233</h2><h3 id=title class="hidden-xs hidden-sm hidden-md">三无 青年</h3><small id=location class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>现居 深圳</small></div><div class=search id=search-form-wrap><form class="search-form sidebar-form"><div class=input-group><input type=text class="search-form-input form-control" placeholder=搜索>
+<span class=input-group-btn><button type=submit class="search-form-submit btn btn-flat" onclick=return!1><i class="icon icon-search"></i></button></span></div><div class=ins-search><div class=ins-search-mask></div><div class=ins-search-container><div class=ins-input-wrapper><input type=text class=ins-search-input placeholder=想要查找什么... x-webkit-speech>
+<button type=button class="close ins-close ins-selectable" data-dismiss=modal aria-label=Close><span aria-hidden=true>×</span></button></div><div class=ins-section-wrapper><div class=ins-section-container></div></div></div></div></form></div><button class="navbar-toggle collapsed" type=button data-toggle=collapse data-target=#main-navbar aria-controls=main-navbar aria-expanded=false>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+<span class=icon-bar></span></button></div><nav id=main-navbar class="collapse navbar-collapse" itemscope itemtype=http://schema.org/SiteNavigationElement role=navigation><ul class="nav navbar-nav main-nav"><li class="menu-item menu-item-home"><a href=/><i class="icon icon-home-fill"></i>
+<span class=menu-title>主页</span></a></li><li class="menu-item menu-item-books"><a href=/posts/><i class="icon icon-book-fill"></i>
+<span class=menu-title>全部文章</span></a></li><li class="menu-item menu-item-leetcode_book"><a href=https://liangkang233.github.io/leetcode-cpp/><i class="icon icon-file"></i>
+<span class=menu-title>刷题笔记</span></a></li><li class="menu-item menu-item-email"><a href=mailto:liangkang233@outlook.com><i class="icon icon-email"></i>
+<span class=menu-title>联系邮箱</span></a></li><li class="menu-item menu-item-about"><a href=/about/><i class="icon icon-cup-fill"></i>
+<span class=menu-title>了解更多</span></a></li></ul></nav></div></header><aside class=sidebar itemscope itemtype=http://schema.org/WPSideBar><div class=slimContent><div class=widget><h3 class=widget-title>NEVER SETTLE !</h3><div class=widget-body><div id=board><div class=content><img src=/images/me1.jpg alt=me1.jpg width=55%! (missing)></div></div></div></div><div class=widget><h3 class=widget-title>标签</h3><div id=tag-cloud-list class=widget-body><a href=https://liangkang233.github.io/tags/blog-test/ class=tag-list-link rel=1>blog-test<span class=tag-list-count>1</span></a>
+<a href=https://liangkang233.github.io/tags/c/c++/ class=tag-list-link rel=14>c/c++<span class=tag-list-count>14</span></a>
+<a href=https://liangkang233.github.io/tags/cpp/ class=tag-list-link rel=3>cpp<span class=tag-list-count>3</span></a>
+<a href=https://liangkang233.github.io/tags/emane/ class=tag-list-link rel=3>emane<span class=tag-list-count>3</span></a>
+<a href=https://liangkang233.github.io/tags/go/ class=tag-list-link rel=5>go<span class=tag-list-count>5</span></a>
+<a href=https://liangkang233.github.io/tags/linux/ class=tag-list-link rel=9>linux<span class=tag-list-count>9</span></a>
+<a href=https://liangkang233.github.io/tags/network/ class=tag-list-link rel=5>network<span class=tag-list-count>5</span></a>
+<a href=https://liangkang233.github.io/tags/openssl/ class=tag-list-link rel=1>openssl<span class=tag-list-count>1</span></a>
+<a href=https://liangkang233.github.io/tags/python/ class=tag-list-link rel=6>python<span class=tag-list-count>6</span></a>
+<a href=https://liangkang233.github.io/tags/sdn/ class=tag-list-link rel=1>sdn<span class=tag-list-count>1</span></a>
+<a href=https://liangkang233.github.io/tags/%E4%BB%BF%E7%9C%9F/ class=tag-list-link rel=5>仿真<span class=tag-list-count>5</span></a>
+<a href=https://liangkang233.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/ class=tag-list-link rel=1>多线程<span class=tag-list-count>1</span></a>
+<a href=https://liangkang233.github.io/tags/%E5%AE%B9%E5%99%A8/ class=tag-list-link rel=3>容器<span class=tag-list-count>3</span></a>
+<a href=https://liangkang233.github.io/tags/%E6%94%B6%E8%97%8F/ class=tag-list-link rel=7>收藏<span class=tag-list-count>7</span></a>
+<a href=https://liangkang233.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/ class=tag-list-link rel=3>数据结构<span class=tag-list-count>3</span></a>
+<a href=https://liangkang233.github.io/tags/%E7%AE%97%E6%B3%95/ class=tag-list-link rel=3>算法<span class=tag-list-count>3</span></a>
+<a href=https://liangkang233.github.io/tags/%E9%80%9A%E4%BF%A1%E4%B8%AD%E9%97%B4%E4%BB%B6/ class=tag-list-link rel=1>通信中间件<span class=tag-list-count>1</span></a></div><script>document.onreadystatechange=()=>{document.readyState==="complete"&&tagCloud("#tag-cloud-list a",8,25)};function tagCloud(e,t,n){let o=0,s=0;$(e).each(function(){let e=Number($(this).attr("rel"));o<e&&(o=e),(s>e||s==0)&&(s=e)});let i=(n-t)/(o-s);$(e).each(function(){let e=$(this).attr("rel")-s;$(this).css({"font-size":t+e*i+"px"})})}</script></div><div class=widget><h3 class=widget-title>分类</h3><div class=widget-body><ul class=category-list><li class=category-list-item><a href=https://liangkang233.github.io/categories/core/ class=category-list-link>core</a><span class=category-list-count>8</span></li><li class=category-list-item><a href=https://liangkang233.github.io/categories/%E5%AD%A6%E4%B9%A0/ class=category-list-link>学习</a><span class=category-list-count>11</span></li><li class=category-list-item><a href=https://liangkang233.github.io/categories/%E5%B7%A5%E5%85%B7/ class=category-list-link>工具</a><span class=category-list-count>12</span></li><li class=category-list-item><a href=https://liangkang233.github.io/categories/%E6%9D%82%E8%B0%88/ class=category-list-link>杂谈</a><span class=category-list-count>1</span></li><li class=category-list-item><a href=https://liangkang233.github.io/categories/%E7%BC%96%E7%A8%8B/ class=category-list-link>编程</a><span class=category-list-count>6</span></li><li class=category-list-item><a href=https://liangkang233.github.io/categories/%E8%AE%B0%E5%BD%95/ class=category-list-link>记录</a><span class=category-list-count>9</span></li></ul></div></div></div></aside><aside class="sidebar sidebar-toc collapse" id=collapseToc itemscope itemtype=http://schema.org/WPSideBar><div class=slimContent><h4 class=toc-title>文章目录</h4><nav id=toc class="js-toc toc"></nav></div></aside><main class=main role=main><div class=content><article id=- class="article article-type-" itemscope itemtype=http://schema.org/BlogPosting><div class=article-header><h1 itemprop=name><a class=article-title href=/2023/09/openssl_rsa%E6%8E%A5%E5%8F%A3%E7%9B%B8%E5%85%B3%E8%AE%B0%E5%BD%95/>openssl rsa cpp 相关接口示例</a></h1><div class=article-meta><span class=article-date><i class="icon icon-calendar-check"></i>&nbsp;
+<a href=https://liangkang233.github.io/2023/09/openssl_rsa%E6%8E%A5%E5%8F%A3%E7%9B%B8%E5%85%B3%E8%AE%B0%E5%BD%95/ class=article-date><time datetime="2023-09-15 00:00:00 +0000 UTC" itemprop=datePublished>2023-09-15</time>
+</a></span><span class=article-category><i class="icon icon-folder"></i>&nbsp;
+<a class=article-category-link href=/categories/%E8%AE%B0%E5%BD%95/>记录 </a></span><span class=article-tag><i class="icon icon-tags"></i>&nbsp;
+<a class=article-tag-link href=/tags/openssl/>openssl </a><a class=article-tag-link href=/tags/cpp/>cpp </a></span><span class=post-comment><i class="icon icon-comment"></i>&nbsp;<a href=/2023/09/openssl_rsa%E6%8E%A5%E5%8F%A3%E7%9B%B8%E5%85%B3%E8%AE%B0%E5%BD%95/#comments class=article-comment-link>评论</a></span>
+<span class="post-wordcount hidden-xs" itemprop=wordCount>字数统计: 2105字</span></div></div><div class="article-entry marked-body js-toc-content" itemprop=articleBody><p>使用openssl进行开发时，发现网上找到的接口版本过时，特分享下一些简单demo避免踩坑。</p><h1 id=1-常用命令>1. 常用命令</h1><pre><code class=language-shell>#1. 生成RSA秘钥
+openssl genrsa -out test.key 2048
+#2. 生成服务器证书申请（用于请求证书才需要，自签可跳过）
+openssl req -new -sha256 -key test.key -out test.csr
+#3. 自己签发客服务器证书
+openssl req -new -x509 -key test.key -out test.dvc -days 1095
+
+
+# 私钥导出公钥
+openssl rsa -in private.key -pubout -out public.key
+# 证书导出公钥
+openssl x509 -in certificate.crt -pubkey -noout &gt; public.key
+
+# 查看公钥信息
+openssl rsa -in private.key -text -noout
+# 查看证书信息
+openssl x509 -in certificate.crt -text -noout
+
+# 导出bio信息
+openssl rsa -in rsa.key -outform PEM -out rsa.pem
+</code></pre><h1 id=2-基本常识>2. 基本常识：</h1><h2 id=21-非对称>2.1 非对称</h2><p>RSA是否为公钥取决于秘钥是否公布出来。理论上公钥和私钥是完全对称的.
+你可以随机选一个当私钥，另一个当公钥，他俩用一个推算出另一个的难度等同于暴力破解rsa。但在具体应用中：</p><ol><li>软件生成的私钥里面包含了生成公钥的信息，所以他俩就不对称了，如果公钥弄丢了，可以很轻松的从私钥再生成一个，就几秒钟的时间</li><li>在算法中为了提高加密速度并没有有意避免私钥暴力生成公钥，所以即使没有第1条所说的信息，从私钥暴力生成公钥的难度远远小于反过来</li></ol><h2 id=22-加解密及相关参数>2.2 加解密及相关参数</h2><ul><li>RSA签名填充模式 一般签名验签pss，加解密oaep 默认的padding不安全(每次计算结果相同)。</li><li><strong>RSA加解密、签名验签内容长度不可超过key长度</strong>，比较重要的参数 (公钥的 e指数 n模数)</li></ul><ol><li>e是加密指数，是一个随机数，满足1&lt;e&lt;n-1，并且e和(n-1)的最大公约数必须为 1。</li><li>n是模数，是p和q的乘积，计算公式为n=p*q。</li><li>d：解密指数，是e的逆元，可以通过e*d≡1(modφ(n))计算得到，其中φ(n)是n的欧拉函数。</li><li>p和q：这两个质数是n的因数，必须保密，只有知道p和q的值才能计算出n的值。</li><li>φ(n)：欧拉函数，是小于n且与n互质的正整数的个数，可以通过φ(n)=(p-1)(q-1)计算得到。</li><li>dp和dq：d关于p和q的指数，可通过dp=e^-1 mod (p-1)和dq=e^-1 mod (q-1)计算。</li><li>k：随机数，用于在加密过程中生成密文。</li></ol><ul><li>在线解析RSA公私钥模数指数等信息：</li></ul><blockquote><p>不要再使用 <code>RSA_public_encrypt</code> <code>RSA_private_decrypt</code> 这类使用 RSA* 的接口了，在新版编译时会报api弃用的警告
+现在都是创建 EVP_PKEY 包含了ecc等类型的key来做。下面是创建key的接口示例：</p></blockquote><pre><code class=language-cpp>// 通用接口
+#include &quot;openssl/engine.h&quot;
+#include &quot;openssl/err.h&quot;
+#include &quot;openssl/evp.h&quot;
+#include &quot;openssl/rsa.h&quot;
+#include &quot;openssl/ssl.h&quot;
+
+#include &lt;string.h&gt;
+
+# define FUNC_ERR 1234
+#define OPENSSL_FUNCTION_JUDGE(rv, function_name, label) \
+    if (rv) \
+    { \
+    char *error_str = ERR_error_string(ERR_get_error(), NULL); \
+    printf(&quot;    [%s:%d], %s Error: %s\n&quot;, __FILE__, __LINE__, #function_name, error_str); \
+    goto label; \
+    } \
+    else \
+    { \
+    if (verbose_flag) \
+        printf(#function_name&quot;: PASS\n&quot;); \
+    }
+
+typedef enum RsaType {
+	rsa_private_type,
+	rsa_public_type,
+	rsa_cert_type,
+} RsaTypeEnum;
+
+EVP_PKEY* get_rsa_key(const char* key, RsaTypeEnum type, int key_len) {
+    EVP_PKEY* evp_key = NULL;    
+    BIO* keybio = NULL ;    
+    keybio= BIO_new_mem_buf(key, key_len); // key_len = -1, use strlen(key)
+    if(keybio==NULL) {
+        printf(&quot;Failed to create key BIO\n&quot;);
+        return evp_key;   
+    }
+    if(type == rsa_private_type) {
+        evp_key= PEM_read_bio_PrivateKey(keybio, NULL, NULL, NULL);
+    } else if (type == rsa_public_type) {
+        evp_key = PEM_read_bio_PUBKEY(keybio, NULL, NULL, NULL);
+    } else {
+        X509* cert_x509 = PEM_read_bio_X509(keybio, NULL, 0, NULL);
+        evp_key = X509_get_pubkey(cert_x509);
+        X509_free(cert_x509);
+    }
+    if(evp_key== NULL) {
+        printf(&quot;Failed to create RSA\n&quot;);   
+    }
+    BIO_free(keybio);
+    return evp_key;
+}
+</code></pre><h1 id=3-公钥加密-私钥解密>3. 公钥加密 私钥解密</h1><pre><code class=language-cpp>unsigned long int rsa_public_encrypt(
+        unsigned char*      pPlain,
+        unsigned long int   PlainLen,
+        unsigned char*      pCipher,
+        unsigned long int*	pCipherLen) {
+    EVP_PKEY_CTX *ctx = NULL;
+    EVP_PKEY *pub_key = NULL;
+    int result = 0;
+    pub_key = get_rsa_key(rsa_public_key, rsa_public_type, strlen(rsa_public_key)); 
+    ctx = EVP_PKEY_CTX_new(pub_key, NULL); /* no engine */
+    OPENSSL_FUNCTION_JUDGE(ctx==NULL, EVP_PKEY_CTX_new, func_end);
+
+    result = EVP_PKEY_encrypt_init(ctx);
+    OPENSSL_FUNCTION_JUDGE(result&lt;=0, EVP_PKEY_encrypt_init, func_end);
+    result = EVP_PKEY_CTX_set_rsa_padding(ctx, RSA_PKCS1_OAEP_PADDING);
+    OPENSSL_FUNCTION_JUDGE(result&lt;=0, &quot;RSA_PKCS1_OAEP_PADDING&quot;, func_end);
+    result = EVP_PKEY_encrypt(ctx, pCipher, pCipherLen, pPlain, PlainLen);
+    OPENSSL_FUNCTION_JUDGE(result&lt;=0, EVP_PKEY_encrypt_init, func_end);
+
+    /* Encrypted data is outlen bytes written to buffer out */
+func_end:
+    EVP_PKEY_free(pub_key);
+    EVP_PKEY_CTX_free(ctx);
+    return result == 1 ? 0 : FUNC_ERR;
+}
+
+unsigned long int rsa_private_decrypt(
+		unsigned char*		pCipher,
+		unsigned long int	CipherLen,
+		unsigned char*		pPlain,
+		unsigned long int*	pPlainLen) {
+    EVP_PKEY_CTX *ctx = NULL;
+    EVP_PKEY *priv_key = NULL;
+    int result = 0;
+    priv_key = get_rsa_key(rsa_private_key, rsa_private_type, strlen(rsa_private_key)); 
+    ctx = EVP_PKEY_CTX_new(priv_key, NULL); /* no engine */
+    OPENSSL_FUNCTION_JUDGE(ctx==NULL, EVP_PKEY_CTX_new, func_end);
+
+    result = EVP_PKEY_decrypt_init(ctx);
+    OPENSSL_FUNCTION_JUDGE(result&lt;=0, EVP_PKEY_encrypt_init, func_end);
+    result = EVP_PKEY_CTX_set_rsa_padding(ctx, RSA_PKCS1_OAEP_PADDING);
+    OPENSSL_FUNCTION_JUDGE(result&lt;=0, &quot;RSA_PKCS1_OAEP_PADDING&quot;, func_end);
+    result = EVP_PKEY_decrypt(ctx, pPlain, pPlainLen, pCipher, CipherLen);
+    OPENSSL_FUNCTION_JUDGE(result&lt;=0, EVP_PKEY_decrypt, func_end);
+
+    /* Encrypted data is outlen bytes written to buffer out */
+func_end:
+    EVP_PKEY_free(priv_key);
+    EVP_PKEY_CTX_free(ctx);
+    return result == 1 ? 0 : FUNC_ERR;
+}
+</code></pre><h1 id=4-私钥签名加密-公钥验签解密>4. 私钥签名(加密) 公钥验签(解密)</h1><p>这里根据传入的哈希仅支持sha256 sha512,仅提供一个模板</p><pre><code class=language-cpp>unsigned long int rsa_private_sign(
+        const unsigned char*    hash,
+        unsigned long int       hash_len,
+        unsigned char*          sig,
+        unsigned long int*      p_sign_len) {
+    int result = 0;
+    EVP_PKEY_CTX *ctx = NULL;
+    EVP_PKEY *signing_key = NULL;
+    const EVP_MD* hash_type = NULL ;
+	switch (hash_len) {
+	case 256/8:
+		hash_type = EVP_sha256();
+        printf(&quot;use digest 256\n&quot;);
+		break;
+	case 512/8:
+		hash_type = EVP_sha512();
+        printf(&quot;use digest 512\n&quot;);
+		break;
+	default:
+        printf(&quot;    Error: invalid digest data\n&quot;);
+        goto func_end;
+	}
+
+    signing_key = get_rsa_key(rsa_private_key, rsa_private_type, strlen(rsa_private_key));
+    ctx = EVP_PKEY_CTX_new(signing_key, NULL); /* no engine */
+    OPENSSL_FUNCTION_JUDGE(ctx==NULL, EVP_PKEY_CTX_new, func_end);
+
+    result = EVP_PKEY_sign_init(ctx);
+    OPENSSL_FUNCTION_JUDGE(result&lt;=0, EVP_PKEY_sign_init, func_end);
+    result = RSA_pkey_ctx_ctrl(ctx, -1, EVP_PKEY_CTRL_RSA_PADDING, RSA_PKCS1_PSS_PADDING, NULL);
+    OPENSSL_FUNCTION_JUDGE(result&lt;=0, &quot;RSA_PKCS1_PSS_PADDING&quot;, func_end);
+    result = EVP_PKEY_CTX_set_signature_md(ctx, hash_type);
+    OPENSSL_FUNCTION_JUDGE(result&lt;=0, EVP_PKEY_CTX_set_signature_md, func_end);
+    result = EVP_PKEY_sign(ctx, sig, p_sign_len, hash, hash_len);
+    OPENSSL_FUNCTION_JUDGE(result&lt;=0, EVP_PKEY_sign, func_end);
+
+func_end:
+    EVP_PKEY_free(signing_key);
+    EVP_PKEY_CTX_free(ctx);
+    return result == 1 ? 0 : FUNC_ERR;
+}
+
+unsigned long int openssl_rsa_public_verify(
+        const unsigned char*    hash, 
+        unsigned long int       hash_len,
+        unsigned char*          sig, 
+        unsigned long int       sig_len) {
+    int result = 0;
+    EVP_PKEY_CTX *ctx = NULL;
+    EVP_PKEY *verify_key = NULL;
+    const EVP_MD* hash_type = NULL ;
+	switch (hash_len) {
+	case 256/8:
+		hash_type = EVP_sha256();
+		break;
+	case 512/8:
+		hash_type = EVP_sha512();
+		break;
+	default:
+        printf(&quot;    Error: invalid digest data\n&quot;);
+        goto func_end;
+	}
+
+    verify_key = get_rsa_key(rsa_public_key, rsa_public_type, strlen(rsa_public_key)); 
+    ctx = EVP_PKEY_CTX_new(verify_key, NULL); /* no engine */
+    OPENSSL_FUNCTION_JUDGE(ctx==NULL, EVP_PKEY_CTX_new, func_end);
+
+    result = EVP_PKEY_verify_init(ctx);
+    OPENSSL_FUNCTION_JUDGE(result&lt;=0, EVP_PKEY_verify_init, func_end);
+    result = RSA_pkey_ctx_ctrl(ctx, -1, EVP_PKEY_CTRL_RSA_PADDING, RSA_PKCS1_PSS_PADDING, NULL);
+    OPENSSL_FUNCTION_JUDGE(result&lt;=0, &quot;RSA_PKCS1_PSS_PADDING&quot;, func_end);
+    result = EVP_PKEY_CTX_set_signature_md(ctx, hash_type);
+    OPENSSL_FUNCTION_JUDGE(result&lt;=0, EVP_PKEY_CTX_set_signature_md, func_end);
+    result = EVP_PKEY_verify(ctx, sig, sig_len, hash, hash_len);
+    OPENSSL_FUNCTION_JUDGE(result&lt;=0, EVP_PKEY_verify, func_end);
+
+func_end:
+    EVP_PKEY_free(verify_key);
+    EVP_PKEY_CTX_free(ctx);
+    return result == 1 ? 0 : FUNC_ERR;
+}
+</code></pre><h1 id=5-rsa公私钥信息解析>5. RSA公私钥信息解析</h1><p>关于解析rsa公钥的模数、指数等操作可以通过<a href=http://tool.chacuo.net/cryptrsakeyparse>网页在线获取</a>，这里提供一个cpp的版本解析：</p><pre><code class=language-cpp>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdint.h&gt;
+#include &lt;string.h&gt;
+
+#include &lt;openssl/pem.h&gt;
+#include &lt;openssl/rsa.h&gt;
+
+void printBuffer(const char* name, unsigned char* pData, unsigned long int size)
+{
+	printf(&quot;--------------%s--------------\n&quot;, name);
+	printf(&quot; [00] &quot;);
+	for(CK_ULONG i = 0; i &lt; size; i++) {
+		if ((i % 16 == 0) &amp;&amp; (i != 0)) {
+			printf(&quot;\n [%02lu] &quot;, i);
+		}
+		printf(&quot;%02x &quot;, pData[i]);
+	}
+	printf(&quot;\n-----------------------------\n&quot;);
+}
+
+void test_write_pem() {
+    RSA* r = RSA_new();
+
+    BIGNUM* bne = BN_new();
+    BN_set_word(bne, RSA_3);
+    int ret = RSA_generate_key_ex(r, 512, bne, NULL);
+    printf(&quot;RSA_generate_key_ex ret:[%d] \n&quot;, ret);
+    BN_free(bne);
+
+    BIO* bioPri = BIO_new_file(&quot;private.pem&quot;, &quot;w&quot;);
+    ret = PEM_write_bio_RSAPrivateKey(bioPri, r, EVP_des_ede3_cbc(), NULL, 0, NULL, NULL);
+    printf(&quot;PEM_write_bio_RSAPrivateKey ret:[%d] \n&quot;, ret);
+    BIO_free(bioPri);
+
+    BIO* bioPub = BIO_new_file(&quot;public.pem&quot;, &quot;w&quot;);
+    ret = PEM_write_bio_RSAPublicKey(bioPub, r);
+    printf(&quot;PEM_write_bio_RSAPublicKey ret:[%d] \n&quot;, ret);
+    BIO_free(bioPub);
+
+    RSA_free(r);
+}
+
+void test_read_pem() {
+    BIO* bioPri = BIO_new_file(&quot;private.pem&quot;, &quot;r&quot;);
+    RSA* rPri = PEM_read_bio_RSAPrivateKey(bioPri, NULL, NULL, NULL);
+    printf(&quot;PEM_read_bio_RSAPrivateKey ret:[%p] \n&quot;, rPri);
+    BIO_free(bioPri);
+    RSA_free(rPri);
+
+    BIO* bioPub = BIO_new_file(&quot;public.pem&quot;, &quot;r&quot;);
+    RSA* rPub = PEM_read_bio_RSAPublicKey(bioPub, NULL, NULL, NULL);
+    printf(&quot;PEM_read_bio_RSAPublicKey ret:[%p] \n&quot;, rPub);
+    BIO_free(bioPub);
+    RSA_free(rPub);
+}
+
+// 0-9 0x30-0x39 
+// A-F 0x41-0x46
+// a-f 0x61-0x66
+#define hex2num(c) ((c &gt;'9'? c + 9 : c) &amp; 0x0f)
+int hex2byte(char* hex, unsigned char* Byte, int* p_Byte_len) {
+    int len = strlen(hex), i = 0, j = 0;
+    if(*p_Byte_len &lt; len || len == 0) {
+        return CKR_BUFFER_TOO_SMALL;
+    }
+    if(len % 2 == 0) {
+        Byte[i++] = hex2num(hex[j]) &lt;&lt; 4 | hex2num(hex[j+1]);
+        j+=2;
+    } else {
+        Byte[i++] = hex2num(hex[j]);
+        j++;
+    }
+    while(j &lt; len) {
+        Byte[i++] = hex2num(hex[j]) &lt;&lt; 4 | hex2num(hex[j+1]);
+        j+=2;
+    }
+    *p_Byte_len = i;
+    return 0;
+}
+
+// 这里可以 通过 BIO_new_file 读pem文件，或者 BIO_new_mem_buf 读取hex数组
+int ImportPubKey() {
+    int Result = 0;
+    int run_ok = 0;
+
+    BIO* PubBuf = NULL;
+    EVP_PKEY* EvpKey = NULL;
+    RSA* RSAPubKey = NULL;
+    const BIGNUM* RSA_PUB_N = NULL, * RSA_PUB_E = NULL; 
+    // key len 4096, N_hex len is 512, N_byte len is 256
+    unsigned char N_Byte[1024], E_Byte[16];
+    char* temp_hex = NULL;
+    int N_Byte_len = sizeof(N_Byte), E_Byte_len = sizeof(E_Byte);
+ 
+    // BIO* bioPub = BIO_new_file(&quot;public.pem&quot;, &quot;r&quot;);                   // get pem file data
+    PubBuf = BIO_new_mem_buf(rsa_public_key, strlen(rsa_public_key));   // key_len = -1, use strlen(key)
+    OPENSSL_FUNCTION_JUDGE(PubBuf == NULL, BIO_new_mem_buf, func_end);
+    EvpKey = PEM_read_bio_PUBKEY(PubBuf, NULL, NULL, NULL);
+    OPENSSL_FUNCTION_JUDGE(EvpKey == NULL, PEM_read_bio_PUBKEY, release1);
+    RSAPubKey = EVP_PKEY_get1_RSA(EvpKey);
+    OPENSSL_FUNCTION_JUDGE(RSAPubKey == NULL, EVP_PKEY_get1_RSA, release2);
+    
+    RSA_PUB_N = RSA_get0_n(RSAPubKey);
+    RSA_PUB_E = RSA_get0_e(RSAPubKey);
+    if(RSA_PUB_N == NULL || RSA_PUB_E == NULL) {
+        printf(&quot;    ERROR: cant get RSA public key N E information\n&quot;);
+        goto release3;
+    }
+
+    temp_hex = BN_bn2hex(RSA_PUB_N);
+    OPENSSL_FUNCTION_JUDGE(temp_hex == NULL, BN_bn2hex, release3);
+    Result = hex2byte(temp_hex, N_Byte, &amp;N_Byte_len);
+    if(Result != 0) {
+        goto release3;
+    }
+    printf(&quot;RSA_PUB_N: 0x%s\n&quot;, temp_hex);
+    printBuffer(&quot;N_Byte&quot;, N_Byte, N_Byte_len);
+    OPENSSL_free(temp_hex);
+
+    temp_hex = BN_bn2hex(RSA_PUB_E);
+    OPENSSL_FUNCTION_JUDGE(temp_hex == NULL, BN_bn2hex, release3);
+    Result = hex2byte(temp_hex, E_Byte, &amp;E_Byte_len);
+    if(Result != 0) {
+        goto release3;
+    }
+    printf(&quot;RSA_PUB_E: 0x%s\n&quot;, temp_hex);
+    printBuffer(&quot;E_Byte&quot;, E_Byte, E_Byte_len);
+    OPENSSL_free(temp_hex);
+
+release3:
+    RSA_free(RSAPubKey);
+release2:
+    EVP_PKEY_free(EvpKey);
+release1:
+    BIO_free(PubBuf); 
+func_end:
+    return run_ok == CK_TRUE ? CKR_OK : CKR_FUNCTION_FAILED;
+} 
+
+/* 密钥的信息类似获取 这里略
+    RSA_PRI_N = RSA_get0_n(RSAPriKey);
+    RSA_PRI_E = RSA_get0_e(RSAPriKey);
+    RSA_PRI_P = RSA_get0_p(RSAPriKey);
+    RSA_PRI_Q = RSA_get0_q(RSAPriKey);
+    RSA_PRI_D = RSA_get0_d(RSAPriKey);
+    RSA_PRI_DMP1 = RSA_get0_dmp1(RSAPriKey);
+    RSA_PRI_DMQ1 = RSA_get0_dmq1(RSAPriKey);
+    RSA_PRI_IQMP = RSA_get0_iqmp(RSAPriKey);
+*/
+</code></pre></div><div class=article-footer><div class="panel panel-default panel-badger"><div class=panel-body><figure class=media><div class=media-left><a href=https://github.com/liangkang233 target=_blank class="img-burn thumb-sm visible-lg"><img src=https://liangkang233.github.io/web/head.png class="img-rounded w-full" alt></a></div><div class=media-body><h3 class=media-heading></h3><a href=https://github.com/liangkang233 target=_blank></a><span class=text-dark>LK233</span></a></h3><div>闲时写点博客，人生需及时行乐。</div></div></figure></div></div></div></article><section id=comments><div id=vcomments></div></section></div><nav class="bar bar-footer clearfix" data-stick-bottom><div class=bar-inner><ul class="pager pull-left"><li class=prev><a href=https://liangkang233.github.io/2023/08/driveos_1/ title=DriveWorks学习（1）><i class="icon icon-angle-left" aria-hidden=true></i><span>&nbsp;&nbsp;下一篇</span></a></li><li class=next><a href=https://liangkang233.github.io/2023/10/%E9%80%92%E5%BD%92%E7%B1%BB%E7%9A%84%E4%BA%92%E7%9B%B8%E8%B0%83%E7%94%A8/ title=cpp嵌套类调用外部类接口实现方法><span>上一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden=true></i></a></li><li class=toggle-toc><a class="toggle-btn collapsed" data-toggle=collapse href=#collapseToc aria-expanded=false title=文章目录 role=button><span>[&nbsp;</span><span>文章目录</span>
+<i class="text-collapsed icon icon-anchor"></i>
+<i class="text-in icon icon-close"></i>
+<span>]</span></a></li></ul><div class=bar-right><div class=share-component data-sites=qq,wechat,facebook,twitter data-mobile-sites=qq,wechat,facebook,twitter></div></div></div></nav></main><footer class=footer itemscope itemtype=http://schema.org/WPFooter><ul class=social-links><li><a href="https://maimai.cn/contact/share/card?u=jbdpawibkoaa&_share_channel=copy_link" target=_blank title=comment data-toggle=tooltip data-placement=top><i class="icon icon-comment"></i></a></li><li><a href=https://github.com/liangkang233 target=_blank title=github data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li><li><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=3479202458&amp;site=qq&amp;menu=yes" target=_blank title=qq data-toggle=tooltip data-placement=top><i class="icon icon-qq"></i></a></li></ul><div class=copyright>&copy;2020 -
+2023 <a href=https://github.com/liangkang233 target=_blank>LK233</a><div class=post-copyright-license><strong>License: </strong><a href=http://creativecommons.org/licenses/by/4.0/deed.zh target=_blank rel=external>CC BY 4.0 CN</a></div></div></footer><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script><script type=text/x-mathjax-config>
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js></script><script>window.jQuery||document.write('<script src="js/jquery.min.js"><\/script>')</script><script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js></script><script>hljs.configure({tabReplace:"    ",classPrefix:""}),hljs.initHighlightingOnLoad()</script><script src=https://liangkang233.github.io/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js></script><script src=https://liangkang233.github.io/js/plugin.min.ba889b64780656626c83f08057000ed74aeebb8331bd2e679f2f4e37e4f98552.js></script><script>(function(e){var t={TRANSLATION:{POSTS:"文章",PAGES:"页面",CATEGORIES:"分类",TAGS:"标签",UNTITLED:"(未命名)"},ROOT_URL:"https://liangkang233.github.io/",CONTENT_URL:"https://liangkang233.github.io//searchindex.json "};e.INSIGHT_CONFIG=t})(window)</script><script type=text/javascript src=https://liangkang233.github.io/js/insight.min.716b0c6a00b68ccc31a2b65345f3412f4246ffa94a90f8e25d525528b4504f9937880692bbe619023233caba5d0a17ebe23d7cfb57cd3a88f23ea337ad5e4d00.js defer></script><script src=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js></script><script>tocbot.init({tocSelector:".js-toc",contentSelector:".js-toc-content",headingSelector:"h1, h2, h3",hasInnerContainers:!0})</script><script src=https://cdn1.lncld.net/static/js/3.0.4/av-min.js></script><script src=https://cdn.jsdelivr.net/npm/valine></script><script type=text/javascript>var GUEST=["nick","mail","link"],meta="nick,mail",meta=meta.split(",").filter(function(e){return GUEST.indexOf(e)>-1});new Valine({el:"#vcomments",verify:null,notify:null,appId:"2A2wQX1Rs6bncdlrRguNq27J-gzGzoHsz",appKey:"hFOX6badEuckpc33uwYqWFDk",placeholder:"评论框上方可以留下联系邮箱，评论支持MD语法",avatar:"retro",meta,pageSize:"10"||10,visitor:!1,emojiCDN:"//i0.hdslb.com/bfs/emote/",emojiMaps:{"藏狐":"ba0937ef6f3ccca85e2e0047e6263f3b4da37201.png",doge:"3087d273a78ccaff4bb1e9972e2ba2a7583c9f11.png","微笑":"685612eadc33f6bc233776c6241813385844f182.png",OK:"4683fd9ffc925fa6423110979d7dcac5eda297f4.png","星星眼":"63c9d1a31c0da745b61cdb35e0ecb28635675db2.png","妙啊":"b4cb77159d58614a9b787b91b1cd22a81f383535.png","辣眼睛":"35d62c496d1e4ea9e091243fa812866f5fecc101.png","吃瓜":"4191ce3c44c2b3df8fd97c33f85d3ab15f4f3c84.png","滑稽":"d15121545a99ac46774f1f4465b895fe2d1411c3.png","呲牙":"b5a5898491944a4268360f2e7a84623149672eb6.png","打call":"431432c43da3ee5aab5b0e4f8931953e649e9975.png","歪嘴":"4384050fbab0586259acdd170b510fe262f08a17.png","调皮":"8290b7308325e3179d2154327c85640af1528617.png","嗑瓜子":"28a91da1685d90124cfeead74622e1ebb417c0eb.png","笑哭":"c3043ba94babf824dea03ce500d0e73763bf4f40.png","脱单doge":"bf7e00ecab02171f8461ee8cf439c73db9797748.png","给心心":"1597302b98827463f5b75c7cac1f29ea6ce572c4.png","嘟嘟":"abd7404537d8162720ccbba9e0a8cdf75547e07a.png","喜欢":"8a10a4d73a89f665feff3d46ca56e83dc68f9eb8.png","酸了":"92b1c8cbceea3ae0e8e32253ea414783e8ba7806.png","哦呼":"362bded07ea5434886271d23fa25f5d85d8af06c.png","嫌弃":"de4c0783aaa60ec03de0a2b90858927bfad7154b.png","大哭":"2caafee2e5db4db72104650d87810cc2c123fc86.png","害羞":"9d2ec4e1fbd6cb1b4d12d2bbbdd124ccb83ddfda.png","疑惑":"b7840db4b1f9f4726b7cb23c0972720c1698d661.png","喜极而泣":"485a7e0c01c2d70707daae53bee4a9e2e31ef1ed.png","奸笑":"bb84906573472f0a84cebad1e9000eb6164a6f5a.png","笑":"81edf17314cea3b48674312b4364df44d5c01f17.png","偷笑":"6c49d226e76c42cd8002abc47b3112bc5a92f66a.png","惊讶":"f8e9a59cad52ae1a19622805696a35f0a0d853f3.png","捂脸":"6921bb43f0c634870b92f4a8ad41dada94a5296d.png","阴险":"ba8d5f8e7d136d59aab52c40fd3b8a43419eb03c.png","囧":"12e41d357a9807cc80ef1e1ed258127fcc791424.png","呆":"33ad6000d9f9f168a0976bc60937786f239e5d8c.png","抠鼻":"cb89184c97e3f6d50acfd7961c313ce50360d70f.png","大笑":"ca94ad1c7e6dac895eb5b33b7836b634c614d1c0.png","惊喜":"0afecaf3a3499479af946f29749e1a6c285b6f65.png","无语":"44667b7d9349957e903b1b62cb91fb9b13720f04.png","点赞":"1a67265993913f4c35d15a6028a30724e83e7d35.png","鼓掌":"895d1fc616b4b6c830cf96012880818c0e1de00d.png","尴尬":"cb321684ed5ce6eacdc2699092ab8fe7679e4fda.png","灵魂出窍":"43d3db7d97343c01b47e22cfabeca84b4251f35a.png","委屈":"d2f26cbdd6c96960320af03f5514c5b524990840.png","傲娇":"010540d0f61220a0db4922e4a679a1d8eca94f4e.png","疼":"905fd9a99ec316e353b9bd4ecd49a5f0a301eabf.png","冷":"cb0ebbd0668640f07ebfc0e03f7a18a8cd00b4ed.png","生病":"0f25ce04ae1d7baf98650986454c634f6612cb76.png","吓":"9c10c5ebc7bef27ec641b8a1877674e0c65fea5d.png","吐":"06946bfe71ac48a6078a0b662181bb5cad09decc.png","捂眼":"c5c6d6982e1e53e478daae554b239f2b227b172b.png","嘘声":"e64af664d20716e090f10411496998095f62f844.png","思考":"cfa9b7e89e4bfe04bbcd34ccb1b0df37f4fa905c.png","再见":"fc510306bae26c9aec7e287cdf201ded27b065b9.png","翻白眼":"eba54707c7168925b18f6f8b1f48d532fe08c2b1.png","哈欠":"888d877729cbec444ddbd1cf4c9af155a7a06086.png","奋斗":"bb2060c15dba7d3fd731c35079d1617f1afe3376.png","墨镜":"3a03aebfc06339d86a68c2d893303b46f4b85771.png","难过":"a651db36701610aa70a781fa98c07c9789b11543.png",tv_doge:"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png"}})</script></body></html>

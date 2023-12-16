@@ -1,0 +1,243 @@
+<!doctype html><html lang=zh><head><title>cpp多线程内容扫盲 - LK233's Blog
+</title><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui"><meta name=renderer content="webkit"><meta http-equiv=Cache-Control content="no-transform"><meta http-equiv=Cache-Control content="no-siteapp"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="black"><meta name=format-detection content="telephone=no,email=no,adress=no"><meta name=theme-color content="#000000"><meta http-equiv=window-target content="_top"><meta name=description content="记录下关于锁 原子 条件变量的基础用法"><link rel=apple-touch-icon sizes=180x180 href=/web/social.ico><link rel=icon type=ico/png href=/web/GitHub-Mark-32px.png sizes=32x32><meta name=generator content="Hugo 0.121.1 with theme pure"><title>cpp多线程内容扫盲 - LK233's Blog</title>
+<link rel=stylesheet href=https://liangkang233.github.io/css/style.min.911fc455aff286fbb0796ca516874da5dbf4b20cf101ff5f78329dc97ed7c711.css><link rel=stylesheet href=https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css async><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css async><meta property="og:title" content="cpp多线程内容扫盲"><meta property="og:description" content="记录下关于锁 原子 条件变量的基础用法"><meta property="og:type" content="article"><meta property="og:url" content="https://liangkang233.github.io/2023/11/cpp%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%86%85%E5%AE%B9%E6%89%AB%E7%9B%B2/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2023-11-23T00:00:00+00:00"><meta property="article:modified_time" content="2023-11-23T00:00:00+00:00"><meta itemprop=name content="cpp多线程内容扫盲"><meta itemprop=description content="记录下关于锁 原子 条件变量的基础用法"><meta itemprop=datePublished content="2023-11-23T00:00:00+00:00"><meta itemprop=dateModified content="2023-11-23T00:00:00+00:00"><meta itemprop=wordCount content="3811"><meta itemprop=keywords content="cpp,多线程,收藏,"><meta name=twitter:card content="summary"><meta name=twitter:title content="cpp多线程内容扫盲"><meta name=twitter:description content="记录下关于锁 原子 条件变量的基础用法"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body class="main-center theme-black" itemscope itemtype=http://schema.org/WebPage><header class=header itemscope itemtype=http://schema.org/WPHeader><div class=slimContent><div class=navbar-header><div class="profile-block text-center"><a id=avatar href=https://github.com/liangkang233 target=_blank><img class="img-circle img-rotate" src=https://liangkang233.github.io/web/head.png width=200 height=200></a><h2 id=name class="hidden-xs hidden-sm">LK233</h2><h3 id=title class="hidden-xs hidden-sm hidden-md">三无 青年</h3><small id=location class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>现居 深圳</small></div><div class=search id=search-form-wrap><form class="search-form sidebar-form"><div class=input-group><input type=text class="search-form-input form-control" placeholder=搜索>
+<span class=input-group-btn><button type=submit class="search-form-submit btn btn-flat" onclick=return!1><i class="icon icon-search"></i></button></span></div><div class=ins-search><div class=ins-search-mask></div><div class=ins-search-container><div class=ins-input-wrapper><input type=text class=ins-search-input placeholder=想要查找什么... x-webkit-speech>
+<button type=button class="close ins-close ins-selectable" data-dismiss=modal aria-label=Close><span aria-hidden=true>×</span></button></div><div class=ins-section-wrapper><div class=ins-section-container></div></div></div></div></form></div><button class="navbar-toggle collapsed" type=button data-toggle=collapse data-target=#main-navbar aria-controls=main-navbar aria-expanded=false>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+<span class=icon-bar></span></button></div><nav id=main-navbar class="collapse navbar-collapse" itemscope itemtype=http://schema.org/SiteNavigationElement role=navigation><ul class="nav navbar-nav main-nav"><li class="menu-item menu-item-home"><a href=/><i class="icon icon-home-fill"></i>
+<span class=menu-title>主页</span></a></li><li class="menu-item menu-item-books"><a href=/posts/><i class="icon icon-book-fill"></i>
+<span class=menu-title>全部文章</span></a></li><li class="menu-item menu-item-leetcode_book"><a href=https://liangkang233.github.io/leetcode-cpp/><i class="icon icon-file"></i>
+<span class=menu-title>刷题笔记</span></a></li><li class="menu-item menu-item-email"><a href=mailto:liangkang233@outlook.com><i class="icon icon-email"></i>
+<span class=menu-title>联系邮箱</span></a></li><li class="menu-item menu-item-about"><a href=/about/><i class="icon icon-cup-fill"></i>
+<span class=menu-title>了解更多</span></a></li></ul></nav></div></header><aside class=sidebar itemscope itemtype=http://schema.org/WPSideBar><div class=slimContent><div class=widget><h3 class=widget-title>NEVER SETTLE !</h3><div class=widget-body><div id=board><div class=content><img src=/images/me1.jpg alt=me1.jpg width=55%! (missing)></div></div></div></div><div class=widget><h3 class=widget-title>标签</h3><div id=tag-cloud-list class=widget-body><a href=https://liangkang233.github.io/tags/blog-test/ class=tag-list-link rel=1>blog-test<span class=tag-list-count>1</span></a>
+<a href=https://liangkang233.github.io/tags/c/c++/ class=tag-list-link rel=14>c/c++<span class=tag-list-count>14</span></a>
+<a href=https://liangkang233.github.io/tags/cpp/ class=tag-list-link rel=3>cpp<span class=tag-list-count>3</span></a>
+<a href=https://liangkang233.github.io/tags/emane/ class=tag-list-link rel=3>emane<span class=tag-list-count>3</span></a>
+<a href=https://liangkang233.github.io/tags/go/ class=tag-list-link rel=5>go<span class=tag-list-count>5</span></a>
+<a href=https://liangkang233.github.io/tags/linux/ class=tag-list-link rel=9>linux<span class=tag-list-count>9</span></a>
+<a href=https://liangkang233.github.io/tags/network/ class=tag-list-link rel=5>network<span class=tag-list-count>5</span></a>
+<a href=https://liangkang233.github.io/tags/openssl/ class=tag-list-link rel=1>openssl<span class=tag-list-count>1</span></a>
+<a href=https://liangkang233.github.io/tags/python/ class=tag-list-link rel=6>python<span class=tag-list-count>6</span></a>
+<a href=https://liangkang233.github.io/tags/sdn/ class=tag-list-link rel=1>sdn<span class=tag-list-count>1</span></a>
+<a href=https://liangkang233.github.io/tags/%E4%BB%BF%E7%9C%9F/ class=tag-list-link rel=5>仿真<span class=tag-list-count>5</span></a>
+<a href=https://liangkang233.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/ class=tag-list-link rel=1>多线程<span class=tag-list-count>1</span></a>
+<a href=https://liangkang233.github.io/tags/%E5%AE%B9%E5%99%A8/ class=tag-list-link rel=3>容器<span class=tag-list-count>3</span></a>
+<a href=https://liangkang233.github.io/tags/%E6%94%B6%E8%97%8F/ class=tag-list-link rel=7>收藏<span class=tag-list-count>7</span></a>
+<a href=https://liangkang233.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/ class=tag-list-link rel=3>数据结构<span class=tag-list-count>3</span></a>
+<a href=https://liangkang233.github.io/tags/%E7%AE%97%E6%B3%95/ class=tag-list-link rel=3>算法<span class=tag-list-count>3</span></a>
+<a href=https://liangkang233.github.io/tags/%E9%80%9A%E4%BF%A1%E4%B8%AD%E9%97%B4%E4%BB%B6/ class=tag-list-link rel=1>通信中间件<span class=tag-list-count>1</span></a></div><script>document.onreadystatechange=()=>{document.readyState==="complete"&&tagCloud("#tag-cloud-list a",8,25)};function tagCloud(e,t,n){let o=0,s=0;$(e).each(function(){let e=Number($(this).attr("rel"));o<e&&(o=e),(s>e||s==0)&&(s=e)});let i=(n-t)/(o-s);$(e).each(function(){let e=$(this).attr("rel")-s;$(this).css({"font-size":t+e*i+"px"})})}</script></div><div class=widget><h3 class=widget-title>分类</h3><div class=widget-body><ul class=category-list><li class=category-list-item><a href=https://liangkang233.github.io/categories/core/ class=category-list-link>core</a><span class=category-list-count>8</span></li><li class=category-list-item><a href=https://liangkang233.github.io/categories/%E5%AD%A6%E4%B9%A0/ class=category-list-link>学习</a><span class=category-list-count>11</span></li><li class=category-list-item><a href=https://liangkang233.github.io/categories/%E5%B7%A5%E5%85%B7/ class=category-list-link>工具</a><span class=category-list-count>12</span></li><li class=category-list-item><a href=https://liangkang233.github.io/categories/%E6%9D%82%E8%B0%88/ class=category-list-link>杂谈</a><span class=category-list-count>1</span></li><li class=category-list-item><a href=https://liangkang233.github.io/categories/%E7%BC%96%E7%A8%8B/ class=category-list-link>编程</a><span class=category-list-count>6</span></li><li class=category-list-item><a href=https://liangkang233.github.io/categories/%E8%AE%B0%E5%BD%95/ class=category-list-link>记录</a><span class=category-list-count>9</span></li></ul></div></div></div></aside><aside class="sidebar sidebar-toc collapse" id=collapseToc itemscope itemtype=http://schema.org/WPSideBar><div class=slimContent><h4 class=toc-title>文章目录</h4><nav id=toc class="js-toc toc"></nav></div></aside><main class=main role=main><div class=content><article id=- class="article article-type-" itemscope itemtype=http://schema.org/BlogPosting><div class=article-header><h1 itemprop=name><a class=article-title href=/2023/11/cpp%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%86%85%E5%AE%B9%E6%89%AB%E7%9B%B2/>cpp多线程内容扫盲</a></h1><div class=article-meta><span class=article-date><i class="icon icon-calendar-check"></i>&nbsp;
+<a href=https://liangkang233.github.io/2023/11/cpp%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%86%85%E5%AE%B9%E6%89%AB%E7%9B%B2/ class=article-date><time datetime="2023-11-23 00:00:00 +0000 UTC" itemprop=datePublished>2023-11-23</time>
+</a></span><span class=article-category><i class="icon icon-folder"></i>&nbsp;
+<a class=article-category-link href=/categories/%E8%AE%B0%E5%BD%95/>记录 </a></span><span class=article-tag><i class="icon icon-tags"></i>&nbsp;
+<a class=article-tag-link href=/tags/cpp/>cpp </a><a class=article-tag-link href=/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/>多线程 </a><a class=article-tag-link href=/tags/%E6%94%B6%E8%97%8F/>收藏 </a></span><span class=post-comment><i class="icon icon-comment"></i>&nbsp;<a href=/2023/11/cpp%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%86%85%E5%AE%B9%E6%89%AB%E7%9B%B2/#comments class=article-comment-link>评论</a></span>
+<span class="post-wordcount hidden-xs" itemprop=wordCount>字数统计: 3811字</span></div></div><div class="article-entry marked-body js-toc-content" itemprop=articleBody><p>最近写多线程的代码，闹了个笑话。这里做个简单归纳，详细细节直接看<a href=https://nj.gitbooks.io/c/content/>c++多线程实战</a>这本书即可</p><h1 id=1-多线程>1. 多线程</h1><h2 id=11-thread的基本用法>1.1 thread的基本用法</h2><pre><code class=language-cpp>void do_some_work();
+std::thread my_thread(do_some_work);
+my_thread.join();
+
+// 当然也可以传匿名函数  这里写个返回智能指针版本
+std::unique_ptr&lt;std::thread&gt; thread_ = std::make_unique&lt;std::thread&gt;([&amp;]() { fun(); });
+</code></pre><p><a href=https://nj.gitbooks.io/c/content/content/chapter9/chapter9-chinese.html>cpp线程池</a></p><h2 id=12-thread的封装>1.2 thread的封装</h2><p>相关内容:</p><h3 id=121-stdasync-与-stdfuture>1.2.1 std::async 与 std::future</h3><p>std::async会自动创建一个线程去调用 线程函数，它返回一个std::future，这个future中存储了线程函数返回的结果，当我们需要线程函数的结果时，直接从future中获取，解耦了线程的创建和执行。</p><p>async其实相当于封装了std::promise std::packaged_task std::thread。</p><p>即 async(Callback) 等价将输入的Callback 传入 packaged_task, 调用get_guture返回future，</p><p>而future的get()依赖promise set_value，该promise设置的值为callback的返回值</p><p>获取future结果有三种方式：get、wait、wait_for，其中get等待异步操作结束并返回结果，wait只是等待异步操作完成，没有返回值，wait_for是超时等待返回结果。返回结果：<code>std::future_status::deferred、timeout、ready</code></p><pre><code class=language-cpp>#include &lt;future&gt;
+#include &lt;string&gt;
+#include &lt;iostream&gt;
+
+
+int find_the_answer_to_ltuae();
+void do_other_stuff();
+int main() {
+  std::future&lt;int&gt; the_answer=std::async(find_the_answer_to_ltuae);
+  do_other_stuff();
+  std::cout&lt;&lt;&quot;The answer is &quot;&lt;&lt;the_answer.get()&lt;&lt;std::endl;
+  return 0;
+}
+</code></pre><p>async带参数示例</p><pre><code class=language-cpp>struct X {
+  void foo(int,std::string const&amp;);
+  std::string bar(std::string const&amp;);
+};
+struct Y {
+  double operator()(double);
+};
+class move_only {
+  public:
+  move_only();
+  move_only(move_only&amp;&amp;);
+  move_only(move_only const&amp;) = delete;
+  move_only&amp; operator=(move_only&amp;&amp;);
+  move_only&amp; operator=(move_only const&amp;) = delete;
+
+  void operator()();
+};
+
+int main () {
+  X x;
+  auto f1=std::async(&amp;X::foo,&amp;x,42,&quot;hello&quot;);  // 调用p-&gt;foo(42, &quot;hello&quot;)，p是指向x的指针
+  auto f2=std::async(&amp;X::bar,x,&quot;goodbye&quot;);  // 调用tmpx.bar(&quot;goodbye&quot;)， tmpx是x的拷贝副本
+
+  Y y;
+  auto f3=std::async(Y(),3.141);  // 调用tmpy(3.141)，tmpy通过Y的移动构造函数得到
+  auto f4=std::async(std::ref(y),2.718);  // 调用y(2.718)
+  X baz(X&amp;);
+  std::async(baz,std::ref(x));  // 调用baz(x)
+
+  auto f5=std::async(move_only());  // 调用tmp()，tmp是通过std::move(move_only())构造得到
+
+  auto f6=std::async(std::launch::async,Y(),1.2);  // 在新线程上执行
+  auto f7=std::async(std::launch::deferred,baz,std::ref(x));  // 在wait()或get()调用时执行
+  auto f8=std::async(
+              std::launch::deferred | std::launch::async,
+              baz,std::ref(x));  // 实现选择执行方式
+  auto f9=std::async(baz,std::ref(x));
+  f7.wait();  //  调用延迟函数
+}
+</code></pre><blockquote><p>注意：std::async 的析构函数里会等待任务完成，如果没有接住返回值，将创建完future对象就开始析构，导致没有异步效果。</p></blockquote><pre><code class=language-cpp>// async 可能产生的堵塞问题
+// 当直接async不取出future 则 @1 @2 堵塞等待future ready才会析构完毕 执行后面语句。
+
+void funasync() {
+  std::cout &lt;&lt; &quot;Test start&quot; &lt;&lt; std::endl;
+  // std::async(std::launch::async, [] {
+  auto fut1 = std::async(std::launch::async, [] {
+    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+    std::cout &lt;&lt; &quot;work done 1!\n&quot;;
+    return 1;
+  });
+  std::cout &lt;&lt; &quot;This shold show before work done 1&quot; &lt;&lt; std::endl; //@1
+  // std::async(std::launch::async, [] {
+  auto fut2 = std::async(std::launch::async, [] {
+    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+    std::cout &lt;&lt; &quot;work done 2!&quot; &lt;&lt; std::endl;
+  });
+  std::cout &lt;&lt; &quot;This shold show before work done 2&quot; &lt;&lt; std::endl; //@2
+}
+
+int funpack() {
+  std::thread th([]() {
+    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+    std::cout &lt;&lt; &quot;funpack start&quot; &lt;&lt; std::endl;
+    return 1;
+  });
+  th.detach();
+  return 0;
+}
+</code></pre><h3 id=122-stdpromisehttpswwwcnblogscomhaippyp3239248html>1.2.2 <a href=https://www.cnblogs.com/haippy/p/3239248.html>std::promise</a></h3><p>promise 用于future对象交互数据 案例如下:</p><pre><code class=language-cpp>#include &lt;iostream&gt;
+#include &lt;thread&gt;
+#include &lt;future&gt;
+
+// 异步执行任务并获取返回值的函数
+std::future&lt;int&gt; asyncTask() {
+    std::promise&lt;int&gt; p;
+    std::future&lt;int&gt; f = p.get_future();
+
+    std::thread t([&amp;] {
+        int result = 42;
+        p.set_value(result);
+    });
+
+    t.join();
+    return f;
+}
+
+int main() {
+    // 异步执行任务并获取返回值
+    std::future&lt;int&gt; future = asyncTask();
+    // 等待任务完成并获取返回值
+    int result = future.get();
+    // 输出任务的返回值
+    std::cout &lt;&lt; &quot;Task result: &quot; &lt;&lt; result &lt;&lt; std::endl;
+    return 0;
+}
+</code></pre><h3 id=123-packaged_taskhttpswwwcnblogscomhaippyp3279565html>1.2.3 <a href=https://www.cnblogs.com/haippy/p/3279565.html>packaged_task</a></h3><p>它和promise在某种程度上有点像，promise保存了一个共享状态的值，而packaged_task保存的是函数，通过get_future 得到future，该函数返回值调用get来获取，当然可以使用wait get等方式等待并获取返回结果。它的基本用法：</p><pre><code class=language-cpp>std::packaged_task&lt;int()&gt; task([](){ return 7; });
+    std::thread t1(std::ref(task)); 
+    std::future&lt;int&gt; f1 = task.get_future(); 
+    auto r1 = f1.get();
+</code></pre><p>简单案例：</p><pre><code class=language-cpp>#include &lt;chrono&gt;
+#include &lt;future&gt;
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+int main() {
+  std::packaged_task&lt;int(void)&gt; pt(funpack);
+  std::future&lt;int&gt; fu = pt.get_future();
+  // std::thread ts(std::move(pt));
+  pt();
+  std::future_status st = fu.wait_for(std::chrono::seconds(6));
+  // wait_for可设置超时时间，如果在超时时间之内任务完成则返回
+  // std::future_status::ready状态；如果在超时时间之内任务尚未完成，
+  // 则返回std::future_status::timeout状态
+
+  if (st == std::future_status::ready) {
+    std::cout &lt;&lt; &quot;~~~~&quot; &lt;&lt; std::endl;
+  } else if (st == std::future_status::timeout) {
+    std::cout &lt;&lt; &quot;·····&quot; &lt;&lt; std::endl;
+  } else if (st == std::future_status::deferred) {
+    std::cout &lt;&lt; &quot;11111&quot; &lt;&lt; std::endl;
+  }
+
+  int a = fu.get();
+  std::cout &lt;&lt; a &lt;&lt; std::endl;
+  std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+  std::cout &lt;&lt; &quot;end main&quot; &lt;&lt; std::endl;
+  return 0;
+}
+</code></pre><h1 id=2-互斥锁>2. 互斥锁</h1><p>多线程可以通过锁来进行同步，分为独占锁(mutex)和共享锁(shared_mutex)，共享锁就是读写锁，lock与unlock都是不能被多次上锁解锁的。</p><ul><li>避免死锁的几个准则：<ul><li>避免嵌套加锁</li><li>避免持有锁时执行未确定代码</li><li>使用固定顺序获取锁 (std::lock 可以同时获取多个锁)</li><li>实现并使用多层级的锁</li><li>锁的粒度要控制住，使用unique_lock提前解锁尽量避免获取锁后长时间处理其他部分。</li><li>只用于初始化的锁 单例模式使用std::once_flag和std::call_once</li></ul></li></ul><p>若另一线程已锁定互斥，则lock的调用线程将阻塞执行，直至获得锁。除了普通锁的<code>lock tye_lock ublock</code> 还具有共享锁定<code>lock_shared try_lock_shared unlock_shared</code>，即共享锁定可以被多个线程获取。
+若已以任何模式（共享或排他性）占有 mutex 的线程调用 lock ，则行为未定义。也就是说，已经获得读模式锁或者写模式锁的线程再次调用lock的话，行为是未定义的。 std::recursive_mutex 才允许嵌套上锁，且需要unlock同等次数。</p><p>通常不直接调用 lock() unlock() 而是用 <code>std::unique_lock std::lock_guard std::shared_lock</code> 管理排他性锁定。析构自动解锁。所以使用上述类来包装锁时，千万不要自行调用锁的lock unlock接口。使用如下所示：</p><pre><code class=language-cpp>std::mutex mtx;
+// lock_guard 类似简化的 unique 无法提前解锁，
+// 即不能拷贝、赋值、移动，只能通过构造函数初始化和析构函数销毁，
+// unique_lock 是可移动的，可以拷贝、赋值、移动。
+{
+  std::unique_lock&lt;std::mutex&gt; lck(mutex);
+  lck.unlock(); // 可提前解锁
+} //析构时会判断是否已解锁来进行解锁
+{
+  std::unique_lock&lt;std::mutex&gt; lck(mutex);
+}
+
+std::shared_mutex mutex_;
+{
+  //读者, 获取共享锁, 使用shared_lock
+  std::shared_lock&lt;std::shared_mutex&gt; lck(mutex_);//执行mutex_.lock_shared();
+}//lck 析构, 执行mutex_.unlock_shared();
+
+{
+  //写者, 获取独占锁, 使用unique_lock
+  std::unique_lock&lt;std::shared_mutex&gt; lck(mutex_);//执行mutex_.lock();
+}//lck 析构, 执行mutex_.unlock();
+</code></pre><h1 id=3-条件变量>3 条件变量</h1><ul><li><a href=https://www.apiref.com/cpp-zh/cpp/thread/condition_variable/wait.html>wait</a></li><li><a href=https://www.apiref.com/cpp-zh/cpp/thread/condition_variable/wait_for.html>wait_for</a></li><li><a href=https://www.apiref.com/cpp-zh/cpp/thread/condition_variable/wait_until.html>wait_unitl</a></li></ul><p>上述条件变量的执行时会先申请获取锁，执行完毕后自动解锁。</p><p>以wait为例，条件变量的wait(unique_lock& lck, Predicate pred);条件变量会被notify唤醒后确保lck无锁再执行pred函数为true时才解除堵塞。注意当最开始执行wait时会直接执行pred，如果为true不需要被notify就通过（相当于认为此时已经被notify）。
+这就是为什么用std::unique_lock而不使用std::lock_guard——等待中的线程必须在等待期间解锁互斥量，
+并在这之后对互斥量再次上锁，而std::lock_guard没有这么灵活。</p><h2 id=31-简易的可中断多线程sleep示例>3.1 简易的可中断多线程sleep示例</h2><pre><code class=language-cpp>class InterruptableSleeper {
+ public:
+  template &lt;typename... Duration&gt;
+  // duration will be passed to condition_variable::sleep_for
+  void SleepFor(Duration&amp;&amp;... duration) {
+    std::unique_lock lock(mutex_);
+
+    if (!interrupt_) {
+      condition_.wait_for(lock, std::forward&lt;Duration&gt;(duration)...);
+    }
+
+    interrupt_ = false;
+  }
+
+  void Interrupt() {
+    std::unique_lock lock(mutex_);
+    interrupt_ = true;
+    condition_.notify_all();
+  }
+
+ private:
+  std::mutex mutex_;
+  std::condition_variable condition_;
+  bool interrupt_ = false;
+};
+</code></pre><h1 id=4-原子>4 原子</h1><h2 id=41-原子变量>4.1 原子变量</h2><p>C++中原子变量（atomic）是一种多线程编程中常用的同步机制，它能够确保对共享变量的操作在执行时不会被其他线程的操作干扰，从而避免竞态条件（race condition）和死锁（deadlock）等问题。</p><p>原子变量可以看作是一种特殊的类型，它具有类似于普通变量的操作，但是这些操作都是原子级别的，即要么全部完成，要么全部未完成。C++标准库提供了丰富的原子类型，包括整型、指针、布尔值等，使用方法也非常简单，只需要通过std::atomic定义一个原子变量即可，其中T表示变量的类型。</p><p>在普通的变量中，并发的访问它可能会导致数据竞争，竞争的后果会导致操作过程不会按照正确的顺序进行操作。</p><h2 id=42-六类原子同步>4.2 六类原子同步</h2><p>std::memory_order_seq_cst比起其他内存序要简单的多，因为所有操作都将其作为总序。本章的所有例子，都是从std::memory_order_seq_cst开始，只有当基本操作正常工作的时候，才放宽内存序的选择。在这种情况下，使用其他内存序就是进行优化(早起可以不用这样做)。通常，当你看整套代码对数据结构的操作后，才能决定是否要放宽该操作的内存序选择。所以，尝试放宽选择，可能会让你轻松一些。在测试后的时候，工作的代码可能会很复杂(不过，不能完全保证内存序正确)。除非你有一个算法检查器，可以系统的测试，线程能看到的所有可能性组合，这样就能保证指定内存序的正确性(这样的测试的确存在)，仅是执行实现代码是远远不够的。</p><p>内存原子执行模型共6种，默认是memory_order_seq_cst;这是最严格的可用选项。</p><ul><li>顺序一致: 当前线程完全同步其他线程的操作,这就需要处理期间进行大量并且费时的信息交换.<ul><li>memory_order_seq_cst</li></ul></li><li>获得-释放: 操作仍然没有总的顺序，但比较松散引入了一些同步，不同线程的同一变量先 acq 再release<ul><li>memory_order_consume; 为数据添加依赖 可通过std::kill_dependency()显式取消</li><li>memory_order_acquire; load 获取 （常用同步手段）当前线程中的其他读写操作不允许重排到W之后，</li><li>memory_order_release; store 释放 （常用同步手段）当前线程中的其他读写操作不允许重排到R之前，</li><li>memory_order_acq_rel; 结合获取与释放，兼具上述功能</li></ul></li><li>松散: 完全不同步，执行顺序不确定交由系统执行。其他线程可能读到新值，也可能读到旧值。一般联合其他约束<ul><li>memory_order_relaxed;</li></ul></li></ul><h1 id=5-其他>5. 其他</h1><ul><li><p>thread_localthread_local 有点像是该线程的static变量，线程独占</p></li><li><p>std::thread 传参为引用时，使用std::ref (需要注意变量生命周期), 否则编译器不通过，编译器通过时会造成thread构造函数盲目的拷贝已提供变即传递给函数的参数是传参内部拷贝的引用，而非数据本身的引用。</p></li><li><p>std:&#x1f9f5;:hardware_concurrency() 返回当前进程并发线程数量，线程标识类型是std:&#x1f9f5;:id，可以通过调用对象的get_id()或std::this_thread::get_id()获取。默认值为std:&#x1f9f5;:type id允许排序比较。</p></li></ul></div><div class=article-footer><div class="panel panel-default panel-badger"><div class=panel-body><figure class=media><div class=media-left><a href=https://github.com/liangkang233 target=_blank class="img-burn thumb-sm visible-lg"><img src=https://liangkang233.github.io/web/head.png class="img-rounded w-full" alt></a></div><div class=media-body><h3 class=media-heading></h3><a href=https://github.com/liangkang233 target=_blank></a><span class=text-dark>LK233</span></a></h3><div>闲时写点博客，人生需及时行乐。</div></div></figure></div></div></div></article><section id=comments><div id=vcomments></div></section></div><nav class="bar bar-footer clearfix" data-stick-bottom><div class=bar-inner><ul class="pager pull-left"><li class=prev><a href=https://liangkang233.github.io/2023/10/%E9%80%92%E5%BD%92%E7%B1%BB%E7%9A%84%E4%BA%92%E7%9B%B8%E8%B0%83%E7%94%A8/ title=cpp嵌套类调用外部类接口实现方法><i class="icon icon-angle-left" aria-hidden=true></i><span>&nbsp;&nbsp;下一篇</span></a></li><li class=toggle-toc><a class="toggle-btn collapsed" data-toggle=collapse href=#collapseToc aria-expanded=false title=文章目录 role=button><span>[&nbsp;</span><span>文章目录</span>
+<i class="text-collapsed icon icon-anchor"></i>
+<i class="text-in icon icon-close"></i>
+<span>]</span></a></li></ul><div class=bar-right><div class=share-component data-sites=qq,wechat,facebook,twitter data-mobile-sites=qq,wechat,facebook,twitter></div></div></div></nav></main><footer class=footer itemscope itemtype=http://schema.org/WPFooter><ul class=social-links><li><a href="https://maimai.cn/contact/share/card?u=jbdpawibkoaa&_share_channel=copy_link" target=_blank title=comment data-toggle=tooltip data-placement=top><i class="icon icon-comment"></i></a></li><li><a href=https://github.com/liangkang233 target=_blank title=github data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li><li><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=3479202458&amp;site=qq&amp;menu=yes" target=_blank title=qq data-toggle=tooltip data-placement=top><i class="icon icon-qq"></i></a></li></ul><div class=copyright>&copy;2020 -
+2023 <a href=https://github.com/liangkang233 target=_blank>LK233</a><div class=post-copyright-license><strong>License: </strong><a href=http://creativecommons.org/licenses/by/4.0/deed.zh target=_blank rel=external>CC BY 4.0 CN</a></div></div></footer><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script><script type=text/x-mathjax-config>
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js></script><script>window.jQuery||document.write('<script src="js/jquery.min.js"><\/script>')</script><script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js></script><script>hljs.configure({tabReplace:"    ",classPrefix:""}),hljs.initHighlightingOnLoad()</script><script src=https://liangkang233.github.io/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js></script><script src=https://liangkang233.github.io/js/plugin.min.ba889b64780656626c83f08057000ed74aeebb8331bd2e679f2f4e37e4f98552.js></script><script>(function(e){var t={TRANSLATION:{POSTS:"文章",PAGES:"页面",CATEGORIES:"分类",TAGS:"标签",UNTITLED:"(未命名)"},ROOT_URL:"https://liangkang233.github.io/",CONTENT_URL:"https://liangkang233.github.io//searchindex.json "};e.INSIGHT_CONFIG=t})(window)</script><script type=text/javascript src=https://liangkang233.github.io/js/insight.min.716b0c6a00b68ccc31a2b65345f3412f4246ffa94a90f8e25d525528b4504f9937880692bbe619023233caba5d0a17ebe23d7cfb57cd3a88f23ea337ad5e4d00.js defer></script><script src=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js></script><script>tocbot.init({tocSelector:".js-toc",contentSelector:".js-toc-content",headingSelector:"h1, h2, h3",hasInnerContainers:!0})</script><script src=https://cdn1.lncld.net/static/js/3.0.4/av-min.js></script><script src=https://cdn.jsdelivr.net/npm/valine></script><script type=text/javascript>var GUEST=["nick","mail","link"],meta="nick,mail",meta=meta.split(",").filter(function(e){return GUEST.indexOf(e)>-1});new Valine({el:"#vcomments",verify:null,notify:null,appId:"2A2wQX1Rs6bncdlrRguNq27J-gzGzoHsz",appKey:"hFOX6badEuckpc33uwYqWFDk",placeholder:"评论框上方可以留下联系邮箱，评论支持MD语法",avatar:"retro",meta,pageSize:"10"||10,visitor:!1,emojiCDN:"//i0.hdslb.com/bfs/emote/",emojiMaps:{"藏狐":"ba0937ef6f3ccca85e2e0047e6263f3b4da37201.png",doge:"3087d273a78ccaff4bb1e9972e2ba2a7583c9f11.png","微笑":"685612eadc33f6bc233776c6241813385844f182.png",OK:"4683fd9ffc925fa6423110979d7dcac5eda297f4.png","星星眼":"63c9d1a31c0da745b61cdb35e0ecb28635675db2.png","妙啊":"b4cb77159d58614a9b787b91b1cd22a81f383535.png","辣眼睛":"35d62c496d1e4ea9e091243fa812866f5fecc101.png","吃瓜":"4191ce3c44c2b3df8fd97c33f85d3ab15f4f3c84.png","滑稽":"d15121545a99ac46774f1f4465b895fe2d1411c3.png","呲牙":"b5a5898491944a4268360f2e7a84623149672eb6.png","打call":"431432c43da3ee5aab5b0e4f8931953e649e9975.png","歪嘴":"4384050fbab0586259acdd170b510fe262f08a17.png","调皮":"8290b7308325e3179d2154327c85640af1528617.png","嗑瓜子":"28a91da1685d90124cfeead74622e1ebb417c0eb.png","笑哭":"c3043ba94babf824dea03ce500d0e73763bf4f40.png","脱单doge":"bf7e00ecab02171f8461ee8cf439c73db9797748.png","给心心":"1597302b98827463f5b75c7cac1f29ea6ce572c4.png","嘟嘟":"abd7404537d8162720ccbba9e0a8cdf75547e07a.png","喜欢":"8a10a4d73a89f665feff3d46ca56e83dc68f9eb8.png","酸了":"92b1c8cbceea3ae0e8e32253ea414783e8ba7806.png","哦呼":"362bded07ea5434886271d23fa25f5d85d8af06c.png","嫌弃":"de4c0783aaa60ec03de0a2b90858927bfad7154b.png","大哭":"2caafee2e5db4db72104650d87810cc2c123fc86.png","害羞":"9d2ec4e1fbd6cb1b4d12d2bbbdd124ccb83ddfda.png","疑惑":"b7840db4b1f9f4726b7cb23c0972720c1698d661.png","喜极而泣":"485a7e0c01c2d70707daae53bee4a9e2e31ef1ed.png","奸笑":"bb84906573472f0a84cebad1e9000eb6164a6f5a.png","笑":"81edf17314cea3b48674312b4364df44d5c01f17.png","偷笑":"6c49d226e76c42cd8002abc47b3112bc5a92f66a.png","惊讶":"f8e9a59cad52ae1a19622805696a35f0a0d853f3.png","捂脸":"6921bb43f0c634870b92f4a8ad41dada94a5296d.png","阴险":"ba8d5f8e7d136d59aab52c40fd3b8a43419eb03c.png","囧":"12e41d357a9807cc80ef1e1ed258127fcc791424.png","呆":"33ad6000d9f9f168a0976bc60937786f239e5d8c.png","抠鼻":"cb89184c97e3f6d50acfd7961c313ce50360d70f.png","大笑":"ca94ad1c7e6dac895eb5b33b7836b634c614d1c0.png","惊喜":"0afecaf3a3499479af946f29749e1a6c285b6f65.png","无语":"44667b7d9349957e903b1b62cb91fb9b13720f04.png","点赞":"1a67265993913f4c35d15a6028a30724e83e7d35.png","鼓掌":"895d1fc616b4b6c830cf96012880818c0e1de00d.png","尴尬":"cb321684ed5ce6eacdc2699092ab8fe7679e4fda.png","灵魂出窍":"43d3db7d97343c01b47e22cfabeca84b4251f35a.png","委屈":"d2f26cbdd6c96960320af03f5514c5b524990840.png","傲娇":"010540d0f61220a0db4922e4a679a1d8eca94f4e.png","疼":"905fd9a99ec316e353b9bd4ecd49a5f0a301eabf.png","冷":"cb0ebbd0668640f07ebfc0e03f7a18a8cd00b4ed.png","生病":"0f25ce04ae1d7baf98650986454c634f6612cb76.png","吓":"9c10c5ebc7bef27ec641b8a1877674e0c65fea5d.png","吐":"06946bfe71ac48a6078a0b662181bb5cad09decc.png","捂眼":"c5c6d6982e1e53e478daae554b239f2b227b172b.png","嘘声":"e64af664d20716e090f10411496998095f62f844.png","思考":"cfa9b7e89e4bfe04bbcd34ccb1b0df37f4fa905c.png","再见":"fc510306bae26c9aec7e287cdf201ded27b065b9.png","翻白眼":"eba54707c7168925b18f6f8b1f48d532fe08c2b1.png","哈欠":"888d877729cbec444ddbd1cf4c9af155a7a06086.png","奋斗":"bb2060c15dba7d3fd731c35079d1617f1afe3376.png","墨镜":"3a03aebfc06339d86a68c2d893303b46f4b85771.png","难过":"a651db36701610aa70a781fa98c07c9789b11543.png",tv_doge:"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png"}})</script></body></html>
